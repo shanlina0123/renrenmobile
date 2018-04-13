@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>房源详情-商铺写字楼</title>
+    <meta name="description" content="">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/room.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/swiper.css"  />
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main">
+            <!--房源图片轮播-->
+            <div class="proImg swiper-container">
+                <div class="swiper-wrapper">
+                    <a href="#" class="swiper-slide">
+                        <img src="../images/proBanner.jpg" />
+                    </a>
+                    <a href="#" class="swiper-slide">
+                        <img src="../images/proBanner.jpg" />
+                    </a>
+                    <a href="#" class="swiper-slide">
+                        <img src="../images/proBanner.jpg" />
+                    </a>
+                </div>
+                <div class="pagination"></div>
+            </div>
+            <!--产品信息部分-->
+            <div class="msgPart samePadding">
+                <p class="partTitle"><img src="../images/money.png"><span>佣金规则</span></p>
+                <ul class="pricePart clearfix">
+                    <li>
+                        <span>总价</span>
+                        <p><span>20万</span>元/平</p>
+                    </li>
+                    <li>
+                        <span></span>
+                        <p></p>
+                    </li>
+                    <li>
+                        <span>建筑面积</span>
+                        <p><span>84.75</span>m<sup>2</sup></p>
+                    </li>
+                </ul>
+                <div class="listMsg">
+                    <div class="tipsWrap">
+                        <span>临地铁</span>
+                        <span>南北通透</span>
+                        <span>小户型</span>
+                        <span>学校周边</span>
+                    </div>
+                    <div class="samePadding">
+                        <ul class="detailUl clearfix">
+                            <li>楼盘：<span>罗马假日</span></li>
+                            <li>发布日期：<span>2018-01-02</span></li>
+                            <li>装修：<span>精装修</span></li>
+                            <li>朝向：<span>西南</span></li>
+                            <li>楼层：<span>中高层/33</span></li>
+                            <li>层高：<span>1m</span></li>
+                            <li>面宽：<span>1m</span></li>
+                            <li>进深：<span>1m</span></li>
+                            <li>双气：<span>有</span></li>
+                            <li>电梯：<span>有</span></li>
+                            <li>年代：<span>2013</span></li>
+                            <li>权属：<span>综合</span></li>
+                            <li>用途：<span>办公</span></li>
+                            <li>物业费：<span>1.5元/m<sup>2</sup>.月</span></li>
+                        </ul>
+                    </div>
+                    <div class="showMap samePadding">
+                        <p>地址：</p>
+                        <div class="roomMap" id="roomMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- //main -->
+        <div class="bootBar clearfix">
+            <a href="tel:88556895">
+                <img src="../images/contact1.png" width="20">
+                <p>联系我们</p>
+            </a>
+            <a href="recommend.html">
+                <img src="../images/recommend1.png" width="20">
+                <p>立即推荐</p>
+            </a>
+        </div><!-- //footBar -->
+    </div><!-- //wrap -->
+    <!--腾讯地图key:C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile-->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile"></script>
+    <script type="text/javascript" src="../js/Swiper.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //房源图片轮播
+            new Swiper(".proImg", {
+                speed: 3000,
+                autoplay:true,
+                pagination: '.pagination',
+                paginationClickable: true,
+            });
+            //地图显示
+            var center = new qq.maps.LatLng(34.2919258755,108.9472800493);
+            var map = new qq.maps.Map(
+            document.getElementById("roomMap"),
+                {
+                    center: center,
+                    zoom: 13,
+                    zoomControl: false,
+                    mapTypeControlOptions: {
+                    mapTypeIds: [
+                        qq.maps.MapTypeId.ROADMAP,
+                    ]
+                 }
+                }
+            );
+            var marker = new qq.maps.Marker({
+                position: center,
+                map: map
+            });
+        })
+        
+    </script>
+</body>
+</html>

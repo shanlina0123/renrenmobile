@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>搜索页面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main">
+            <div class="cusSearch">
+                <div class="bannerSearch clearfix">
+                    <div class="searchselect fl">
+                        <div class="showText">新房</div>
+                        <ul class="selectText">
+                            <li>新房</li>
+                            <li>二手房</li>
+                            <li>商铺写字楼</li>
+                        </ul>
+                    </div>
+                    <input type="text" class="searchInput fl" >
+                    <a href="newRoomList.html"><img src="../images/search.png" class="searchImage sameImg"></a>
+                </div>
+            </div><!-- 搜索部分结束 -->
+        </div><!-- //main -->
+     <div class="errorLabel"></div>
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //类型选择
+            $(".formSelect").click(function(){
+                $(".formUl").slideToggle();
+            });
+            $(".formUl li").click(function(){
+                var thisText = $(this).text();
+                $(".showForm ").text(thisText);
+            });
+            //模糊查询简单效果
+            $(".selectHouse").click(function(){
+                $(this).siblings(".forShowSearch").show();
+            })
+            $(".forShowSearch li").click(function(){
+                $(this).hide();
+                var thisText = $(this).text();
+                $(".selectHouse").val(thisText)
+            })
+        })
+    </script>
+</body>
+</html>

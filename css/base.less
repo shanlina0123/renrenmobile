@@ -1,0 +1,204 @@
+/*固定样式*/
+html, body, p, h1, h2, h3, h4, h5, h6, form, input, textarea, select, button, fieldset, legend, img, ul, ol, li, dl, dt, dd, th, td, pre, blockquote { margin: 0; padding: 0; }
+
+html {
+    color: #333;
+    background: #fff;
+    font-size: 1em;
+    line-height: 1.4;
+}
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 { font-size: .2rem; font-family: 'Microsoft YaHei',SimSun,Verdana, Arial, sans-serif; }
+img, fieldset { border: 0; vertical-align: middle; }
+textarea { word-wrap: break-word; word-break: break-all; resize: none; }
+li { list-style: none; }
+img { border: none; }
+a { text-decoration: none; color: #000; }
+a:hover { color: #628828; }
+a:focus { outline: none; }
+/*公用样式*/
+.fl { float: left; }
+.fr { float: right; }
+.sameImg{width: .5rem}
+.samePadding{padding-left: .15rem; padding-right: .15rem}
+/*公用验证弹窗*/
+label.error{
+    display: block;
+}
+.errorLabel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: .24rem;
+    overflow: hidden;
+    background-size: .31rem;
+    border-radius: 3px;
+    display: none;
+    margin: 0 auto;
+    width: 2.5rem;
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    margin-left: -1.25rem;
+    margin-top: -1.29rem;
+    z-index: 100;
+    background: #Eb7221;
+    color: #fff;
+}
+//底部公用tabBar
+.bootBar:first-child{
+    border-right: 1px solid #fff
+}
+.bootBar{
+    position: fixed;
+    width: 7.5rem;
+    bottom:0;
+    left: 0;
+    z-index: 30;
+    a{
+        float: left;
+        width: 3.75rem;
+        padding:.05rem 0 .05rem 0;
+        text-align: center;
+        background-color: #Eb7221;
+        color: #fff;
+        img{
+            width: .5rem;
+        }
+        p{
+            text-align: center;
+            padding-top: .1rem;
+            margin: 0;
+        }
+    }
+}
+//推荐房源部分样式
+.recommend{
+    margin-top: 15px;
+    .partTitle{
+        padding-left: 10px;
+        border-left: 5px solid #Eb7221;
+    }
+}
+//房源列表部分样式
+.roomListUl{
+    li{
+        border-top: 1px solid #ccc;
+        padding:10px 0;
+        
+        >a{
+        display: block;
+        }
+    }
+    li:first-child{
+        border-top: none;
+    }
+    
+    .imgpart{
+        position: relative;
+        .recommendLink{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: block;
+            width: 45px;
+            height: 40px;
+            padding-top: 5px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #fff;
+            p{
+                font-size: 12px;
+            }
+        }
+    }
+    .roomTable{
+        margin-top: .15rem;
+        tr{
+            td{
+                padding: .1rem 0;
+                text-align: left;
+            }
+        }
+        tr:first-child td{
+            padding-right: .2rem;
+        }
+    }
+    .lips{
+        span{
+            display: inline-block;
+            padding: .02rem .05rem;
+            border:1px solid #Eb7221;
+            color: #Eb7221;
+            border-radius: 3px;
+            margin:0 3px;
+        }
+    }
+}
+//新房的房源显示在售和待售
+.newHouse{
+    .forTips{
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 1px 3px;
+    }
+    .unBegin{
+        color: #628828
+    }
+    .beigin{
+        color: #ff0000
+    }
+}
+//搜索部分公用
+.bannerSearch{
+    position: absolute;
+    width: 6.5rem;
+    left: .5rem;
+    top: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    .searchselect{
+        position: relative;
+        width: 1.6rem;
+        height: .6rem;
+        line-height: .6rem;
+        border-right: 1px solid #ccc;
+        .showText{
+            border: none;
+            height: .61rem;
+            line-height: .61rem;
+            padding-left: 5px;
+            background: url(../images/down.png) 97% center no-repeat;
+            background-size: 10px;
+            overflow: hidden
+         }
+         .selectText{
+             display: none;
+             position: absolute;
+             width: 100%;
+             top: .6rem;
+             left: -1px;
+             background-color: #fff;
+             border: 1px solid #ccc;
+             li{
+                 padding-left: 5px;
+                 border-top: 1px solid #ccc;
+             }
+             li:first-child{
+                 border-top:none;
+             }
+         }
+    }
+    .searchInput{
+             width: 4rem;
+             height: .6rem;
+             line-height: .6rem;
+             padding-left: .2rem;
+             outline: none;
+             border: none;
+             background-size: .5rem;
+         }
+    .searchImage{
+        margin-left:.1rem;
+        margin-top:.03rem;
+    }
+}

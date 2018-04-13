@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>中介个人中心</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main samePadding">
+            <ul class="myMessageUl">
+                <li class="myName">
+                    <a href="javascript:;" class="clearfix">
+                        <img src="../images/defaultImg.png" class="sameImg userImage fl">
+                        <div class="rightName likePadding fl">
+                            <p>姓名：<span>张森</span></p>
+                            <p>类型：<span>高级经理</span></p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/myCustomer.html"><img src="../images/myCusom.png" class="sameImg"><span class="likePadding">我的客户</span></a>
+                </li>
+                <li class="myContact">
+                    <a href="tel:88556895" ><img src="../images/contact.png" class="sameImg"><span class="likePadding">联系我们</span><span class="fr">88556895</span></a>
+                </li>
+            </ul>
+        </div><!-- //main -->
+        <div class="bootBar clearfix">
+            <a href="../index.html" class="on">
+                <img src="../images/home.png"  class="sameImg">
+                <p>首页</p>
+            </a>
+            <a href="my.html">
+                <img src="../images/my.png"  class="sameImg">
+                <p>我的</p>
+            </a>
+        </div><!-- //footBar -->
+        <div class="changePop">
+            <div class="changeWrap">
+                <form>
+                    <table class="changeTable">
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" readonly class="changeInput" value="张森"></td>
+                        </tr>
+                        <tr>
+                            <td>电话：</td>
+                            <td><input type="text" class="changeInput" name="newPhone" value="15694856984"></td>
+                        </tr>
+                    </table>
+                    <p class="changeNotice">为了能快速给您结佣请提供准确的手机号，勿频繁修改</p>
+                    <input type="submit" class="chnageBtn" value="提交">
+                </form>
+            </div>
+        </div>
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".myMessageUl .myName").click(function(){
+                $(".changePop").show()
+            })
+        })
+    </script>
+</body>
+</html>

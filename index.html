@@ -1,9 +1,172 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 <head>
-<meta charset="utf-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>首页</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/rem.js"></script>
 </head>
 <body>
-欢迎进入 - 人人找房 - 手机端！!
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main">
+            <div class="banner">
+                <img src="images/banner.jpg" width="100%">
+                <div class="bannerSearch clearfix">
+                    <div class="searchselect fl">
+                        <div class="showText">新房</div>
+                        <ul class="selectText">
+                            <li>新房</li>
+                            <li>二手房</li>
+                            <li>商铺写字楼</li>
+                        </ul>
+                    </div>
+                    <input type="text" class="searchInput fl">
+                    <a href="pages/search.html"><img src="images/search.png" class="searchImage sameImg"></a>
+                </div><!-- 搜索部分结束 -->
+                <ul class="nav clearfix">
+                    <li>
+                        <a href="pages/newRoomList.html">
+                            <img src="images/newHouse.png" class="sameImg">
+                            <p>新房</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/oldRoomList.html">
+                            <img src="images/oldHouse.png" class="sameImg">
+                            <p>二手房</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/roomList.html">
+                            <img src="images/store.png" class="sameImg">
+                            <p>商铺写字楼</p>
+                        </a>
+                    </li>
+                </ul><!-- 导航部分结束 -->
+                <div class="recommend samePadding">
+                    <p class="partTitle">推荐房源</p>
+                    <ul class="roomListUl">
+                        <li>
+                            <a href="pages/roomDetail.html">
+                                <div class="imgpart">
+                                    <img src="images/roomPic.jpg" width="100%">
+                                    <a href="pages/recommend.html" class="recommendLink">
+                                        <img src="images/recommend.png" width="20">
+                                        <p>推荐</p>
+                                    </a>
+                                </div>
+                                <table class="roomTable">
+                                    <tr>
+                                        <td>总价：</td>
+                                        <td>20万</td>
+                                        <td>面积：</td>
+                                        <td>30平</td>
+                                    </tr>
+                                    <tr>
+                                        <td>楼盘：</td>
+                                        <td>印象城</td>
+                                        <td>街道：</td>
+                                        <td>鱼化街道</td>
+                                    </tr>
+                                    <tr>
+                                        <td>特点：</td>
+                                        <td colspan="2">
+                                            <div class="lips">
+                                                <span>紧邻地铁</span>
+                                                <span>押一付一</span>
+                                                <span>精装修</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>佣金规则：</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/roomDetail.html">
+                                <div class="imgpart">
+                                    <img src="images/roomPic.jpg" width="100%">
+                                    <a href="pages/recommend.html" class="recommendLink">
+                                        <img src="images/recommend.png" width="20">
+                                        <p>推荐</p>
+                                    </a>
+                                </div>
+                                <table class="roomTable">
+                                    <tr>
+                                        <td>总价：</td>
+                                        <td>20万</td>
+                                    </tr>
+                                    <tr>
+                                        <td>面积：</td>
+                                        <td>30平</td>
+                                    </tr>
+                                    <tr>
+                                        <td>楼盘：</td>
+                                        <td>印象城</td>
+                                    </tr>
+                                    <tr>
+                                        <td>街道：</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>特点：</td>
+                                        <td>
+                                            <div class="lips">
+                                                <span>紧邻地铁</span>
+                                                <span>押一付一</span>
+                                                <span>精装修</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>佣金规则：</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- //main -->
+        <div class="bootBar clearfix">
+            <a href="index.html" class="on">
+                <img src="images/home.png"  class="sameImg">
+                <p>首页</p>
+            </a>
+            <a href="pages/my.html">
+                <img src="images/my.png"  class="sameImg">
+                <p>我的</p>
+            </a>
+        </div><!-- //footBar -->
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".searchInput").click(function(){
+                window.open("pages/search.html");
+            })
+        })
+    </script>
 </body>
 </html>

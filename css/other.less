@@ -1,0 +1,235 @@
+//注册页面样式
+.titleNotice{
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+.formTable{
+    width: 100%;
+    tr{
+        td{
+            padding: 5px 0;
+        }
+        td:first-child{
+            padding-right: 5px;
+            text-align: right;
+        }
+    }
+    .isShow{
+        display: none
+    }
+    .sameInput,.showForm{
+        width: 80%;
+        height: 30px;
+        line-height: 30px;
+        padding:0 10px;
+        border: 1px solid #ccc; 
+    }
+    .formSelect{
+        position: relative;
+    }
+    .showForm{
+        background: url(../images/down.png) 95% center no-repeat;
+        background-size: 10px;
+    }
+    .formUl{
+        display: none;
+        position: absolute;
+        top:31px;
+        left: 0;
+        width: 80%;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        padding:0 10px;
+        background-color: #fff;
+        li{
+            border-top: 1px solid #ccc;
+        }
+        li:first-child{
+            border-top: none;
+        }
+    }
+}
+.formBtn{
+    display: block;
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+    margin:20px 5%;
+    text-align: center;
+    background-color: #Eb7221;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+.formBtn:hover{
+    color: #fff
+}
+//推荐客户页面样式
+.forInset{
+    position: relative;
+    .forShowSearch{
+        display: none;
+        position: absolute;
+        top:31px;
+        left: 0;
+        width: 80%;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        padding:0 10px;
+        background-color: #fff;
+        z-index: 20;
+        li{
+            border-top: 1px solid #ccc;
+        }
+        li:first-child{
+            border-top: none;
+        }
+    }
+}
+//我的客户页面样式
+.custormNum{
+    padding: 10px 0;
+    li{
+        float: left;
+        width: 25%;
+        text-align: center;
+        p{
+            color: #Eb7221;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+    }
+}
+.cusSearch{
+    margin: .3rem 0;
+    .bannerSearch{
+        position: static;
+        margin-left: .3rem;
+    }
+} 
+.customsList{
+    margin-top: 15px;
+    >li{
+        margin-bottom: 10px;
+        border-top: 1px solid #ccc;
+    }
+    >li:first-child{
+        border-top: none;
+    }
+    .subList{
+        li{
+            float: left;
+            width: 50%;
+            padding: 5px 0;
+        }
+    }
+    .editCus{
+        display: inline-block;
+        padding: 2px 6px;
+        background-color: #Eb7221;
+        color: #fff;
+        border-radius: 3px;
+        margin-left: .2rem;
+    }
+}
+//客户编辑弹窗
+.popWrap{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 30;
+    >p{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .popUl{
+        li{
+            text-align: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        li:first-child{
+            border-top: 1px solid #ccc;
+        }
+    }
+}
+//我的页面布局样式
+.myMessageUl{
+    margin-top: 10px;
+    li{
+        padding: .1rem 0;
+        background: url(../images/right.png) right center no-repeat;
+        background-size: .5rem;
+        border-top: 1px solid #ccc;
+        >a{
+            display: block
+        }
+    }
+    li:first-child{
+        border-top: none;
+    }
+    .myContact{
+        background:none;
+    }
+    .userImage{
+        margin-top: .15rem;
+    }
+    .likePadding{
+        padding-left: .2rem
+    }
+    .rightName{
+        p{
+            line-height: .4rem;
+        }
+    }
+}
+//修改信息弹窗
+.changePop{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(../images/blackBg.png) left top ;
+    z-index: 40;
+    .changeWrap{
+        margin-top: 30%;
+    }
+        .changeTable{
+            width: 6rem;
+            margin: 0 auto;
+            tr{
+                td{
+                    padding: .2rem 0;
+                }
+            }
+        }
+        .changeInput{
+            width: 4rem;
+            height: 30px;
+            line-height: 30px;
+            padding:0 10px;
+            border: 1px solid #ccc; 
+        }
+        .changeNotice{
+            text-align: center;
+            color: #fff;
+        }
+        .chnageBtn{
+            display: block;
+            width: 50%;
+            height: .8rem;
+            line-height: .8rem;
+            margin:20px 25%;
+            text-align: center;
+            background-color: #Eb7221;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+        }
+}

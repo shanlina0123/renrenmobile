@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的客户</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/rem.js"></script>
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main samePadding">
+            <!--访问客户量展示-->
+            <ul class="custormNum clearfix">
+                <li>
+                    <p>88</p>
+                    <span>累计推荐</span>
+                </li>
+                 <li>
+                    <p>88</p>
+                    <span>有效推荐</span>
+                </li>
+                 <li>
+                    <p>88</p>
+                    <span>无效推荐</span>
+                </li>
+                 <li>
+                    <p>88</p>
+                    <span>上门访问</span>
+                </li>
+            </ul>
+             <!--客户搜索部分-->
+             <!--<div class="cusSearch clearfix">
+                 <input type="input" class="cusSearchInput fl" placeholder="输入客户姓名或状态">
+                 <a href="javascript:;" class="searchBtn fl">搜索</a>
+             </div>-->
+             <div class="cusSearch">
+                <div class="bannerSearch clearfix">
+                    <div class="searchselect fl">
+                        <div class="showText">客户状态</div>
+                        <ul class="selectText">
+                            <li>有效</li>
+                            <li>无效</li>
+                            <li>已上门</li>
+                        </ul>
+                    </div>
+                    <input type="text" class="searchInput fl"  placeholder="输入客户姓名或状态">
+                    <a href="newRoomList.html"><img src="../images/search.png" class="searchImage sameImg"></a>
+                </div>
+            </div><!-- 搜索部分结束 -->
+             <!--客户展示结果集-->
+             <ul class="customsList clearfix">
+                <li>
+                    <ul class="subList clearfix">
+                        <li>客户姓名：<span>张先生</span></li>
+                        <li>手机号码：<span>12562365485</span></li>
+                        <li>预约时间：<span>2018-03-05</span></li>
+                        <li>预约楼盘：<span>印象城</span></li>
+                        <li>客户等级：<span class="levelShow">A类</span><a href="javascript:;" class="editCus levelEdit">编辑</a></li>
+                        <li>客户状态：<span class="stateShow">有效</span><a href="javascript:;" class="editCus stateEdit">编辑</a></li><!--客户状态：有效、无效、已上门-->
+                    </ul>
+                </li>
+                <li>
+                    <ul class="subList clearfix">
+                        <li>客户姓名：<span>张先生</span></li>
+                        <li>手机号码：<span>12562365485</span></li>
+                        <li>预约时间：<span>2018-03-05</span></li>
+                        <li>预约楼盘：<span>印象城</span></li>
+                        <li>客户等级：<span>A类</span><a href="javascript:;" class="editCus levelEdit">编辑</a></li>
+                        <li>客户状态：<span>有效</span><a href="javascript:;" class="editCus stateEdit">编辑</a></li>
+                    </ul>
+                </li>
+             </ul>
+        </div><!-- //main -->
+        <!--客户等级选择弹窗-->
+        <div class="popWrap levePop">
+            <p>请选择</p>
+            <ul class="popUl">
+                <li>A类</li>
+                <li>B类</li>
+                <li>C类</li>
+            </ul>
+        </div>
+        <!--客户状态选择弹窗-->
+        <div class="popWrap statePop">
+            <p>请选择</p>
+            <ul class="popUl">
+                <li>有效</li>
+                <li>无效</li>
+                <li>已上门</li>
+            </ul>
+        </div>
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script>
+        $(function(){
+            //等级选择效果实现
+            $(".levelEdit").click(function(){
+                if($(".levePop").css("display") == "none"){
+                    $(".levePop").show();
+                }else{
+                     $(".levePop").hide();
+                }
+            });
+            $(".levePop .popUl li").click(function(){
+                var thisText = $(this).text();
+                $(".levelShow").text(thisText);
+                 $(".levePop").hide();
+            });
+            //客户状态效果实现
+            $(".stateEdit").click(function(){
+                if($(".statePop").css("display") == "none"){
+                    $(".statePop").show();
+                }else{
+                     $(".statePop").hide();
+                }
+            });
+            $(".statePop .popUl li").click(function(){
+                var thisText = $(this).text();
+                $(".stateShow").text(thisText);
+                 $(".statePop").hide();
+            });
+        })
+    </script>
+</body>
+</html>

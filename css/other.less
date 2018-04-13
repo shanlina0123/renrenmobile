@@ -4,9 +4,6 @@
     padding: 15px 0;
     margin-bottom: 20px;
 }
-.formWrap{
-    margin-top: 1rem;
-}
 .formTable{
     width: 100%;
     tr{
@@ -70,6 +67,11 @@
     color: #fff
 }
 //推荐客户页面样式
+.logo{
+    width: 3rem;
+    display: block;
+    margin: .3rem auto .4rem auto;
+}
 .forInset{
     position: relative;
     .forShowSearch{
@@ -93,17 +95,23 @@
 }
 //我的客户页面样式
 .custormNum{
-    padding: 10px 0;
+    background: #Eb7221;
     li{
         float: left;
-        width: 25%;
+        width: 49.8%;
         text-align: center;
+        color:#fff;
+        padding: .2rem 0;
+        border-bottom: 1px solid #fff;
         p{
-            color: #Eb7221;
+            color: #fff;
             font-weight: bold;
             padding-bottom: 5px;
             font-size: .4rem;
         }
+    }
+    li:nth-child(2n){
+        border-left: 1px solid #fff;
     }
 }
 .cusSearch{
@@ -187,14 +195,16 @@
         background:none;
     }
     .userImage{
-        margin-top: .15rem;
+        width:1rem;
+        height: 1rem;
+        border-radius: 50%;
     }
     .likePadding{
         padding-left: .2rem
     }
     .rightName{
         p{
-            line-height: .4rem;
+            line-height: .5rem;
         }
     }
 }

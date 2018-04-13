@@ -138,7 +138,9 @@ label.error {
   padding-top: .1rem;
   margin: 0;
 }
-
+.recommend {
+  margin-top: 15px;
+}
 .recommend .partTitle {
   padding-left: 10px;
   border-left: 5px solid #Eb7221;
@@ -204,21 +206,21 @@ label.error {
   position: absolute;
   width: 6.5rem;
   left: .5rem;
-  top: 1.2rem;
+  top: .79rem;
   background-color: #fff;
   border: 1px solid #ccc;
 }
 .bannerSearch .searchselect {
   position: relative;
   width: 2rem;
-  height: .8rem;
-  line-height: .8rem;
+  height: .6rem;
+  line-height: .6rem;
   border-right: 1px solid #ccc;
 }
 .bannerSearch .searchselect .showText {
   border: none;
-  height: .81rem;
-  line-height: .81rem;
+  height: .61rem;
+  line-height: .61rem;
   padding-left: 5px;
   background: url(../images/down.png) 97% center no-repeat;
   background-size: 10px;
@@ -228,7 +230,7 @@ label.error {
   display: none;
   position: absolute;
   width: 100%;
-  top: .6rem;
+  top: .8rem;
   left: -1px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -242,8 +244,8 @@ label.error {
 }
 .bannerSearch .searchInput {
   width: 3.6rem;
-  height: .8rem;
-  line-height: .8rem;
+  height: .6rem;
+  line-height: .6rem;
   padding-left: .2rem;
   outline: none;
   border: none;
@@ -251,5 +253,5 @@ label.error {
 }
 .bannerSearch .searchImage {
   margin-left: .1rem;
-  margin-top: .15rem;
+  margin-top: .03rem;
 }

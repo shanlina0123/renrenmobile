@@ -2,7 +2,7 @@
   position: relative;
 }
 .nav {
-  padding: 30px 20px;
+  padding: .4rem .15rem;
 }
 .nav li {
   float: left;
@@ -13,7 +13,7 @@
   text-align: center;
 }
 .nav li a img {
-  width: .5rem;
+  width: .7rem;
 }
 .nav li a p {
   padding-top: 10px;

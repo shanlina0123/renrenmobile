@@ -38,7 +38,7 @@
   display: inline-block;
 }
 .msgPart .partTitle span {
-  font-size: .14rem;
+  font-size: .35rem;
   margin-left: 4px;
 }
 .msgPart .pricePart {
@@ -54,7 +54,7 @@
 }
 .msgPart .pricePart li p {
   padding-top: 10px;
-  font-size: .16rem;
+  font-size: .35rem;
   color: #ff0000;
   font-weight: bold;
 }
@@ -108,7 +108,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  top: .77rem;
+  top: 1.9rem;
   left: 0;
   background: url(../images/blackBg.png) left top;
   z-index: 50;
@@ -139,4 +139,15 @@
   background-color: #Eb7221;
   color: #fff;
   border-radius: .05rem;
+}
+.listearch {
+  margin-top: .2rem;
+}
+.listearch .bannerSearch {
+  position: static;
+  width: 7.2rem;
+  margin-left: .15rem;
+}
+.listearch .bannerSearch .searchInput {
+  width: 6.3rem;
 }

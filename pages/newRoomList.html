@@ -34,8 +34,8 @@
         <div class="main" id="main" v-cloak>
             <div class="listearch">
                 <div class="bannerSearch clearfix">
-                    <input type="text" class="searchInput fl" placeholder="请输入小区名称">
-                    <a href="newRoomList.html"><img src="../images/search.png" class="searchImage sameImg"></a>
+                    <input type="text" ref="name" class="searchInput fl" placeholder="请输入小区名称">
+                    <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div><!-- 搜索部分结束 -->
              <!-- 检索条件 -->

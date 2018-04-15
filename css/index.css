@@ -1,0 +1,20 @@
+.banner {
+  position: relative;
+}
+.nav {
+  padding: .4rem .15rem;
+}
+.nav li {
+  float: left;
+  width: 33%;
+}
+.nav li a {
+  display: block;
+  text-align: center;
+}
+.nav li a img {
+  width: .7rem;
+}
+.nav li a p {
+  padding-top: 10px;
+}

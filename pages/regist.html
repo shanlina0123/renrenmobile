@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main samePadding">
+            <img src="../images/logo.png" class="logo">
+            <div class="formWrap">
+                <form class="registForm">
+                    <table class="formTable">
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" class="sameInput" name="userName"></td>
+                        </tr>
+                        <tr>
+                            <td>手机号：</td>
+                            <td><input type="text" class="sameInput" name="uPhone"></td>
+                        </tr>
+                        <tr>
+                            <td>类型：</td>
+                            <td>
+                                <div class="formSelect">
+                                    <div class="showForm">独立经纪人</div>
+                                    <ul class="formUl">
+                                        <li>独立经纪人</li>
+                                        <li>房产经纪人</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" class="formBtn" value="注册">
+                </form>
+            </div>
+        </div><!-- //main -->
+        <div class="errorLabel"></div>
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //类型选择
+            $(".formSelect").click(function(){
+                $(".formUl").slideToggle();
+            });
+            $(".formUl li").click(function(){
+                var thisText = $(this).text();
+                $(".showForm ").text(thisText);
+            });
+            //表单验证
+            $(".registForm").validate({
+                errorLabelContainer: $(".errorLabel"),
+                rules: {
+                    userName: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    uPhone: {
+                        required: true,
+                        mobile:true
+                    }
+                },
+                messages: {
+                    userName: {
+                        required: "请输入账户名",
+                        maxlength:"名称最长为10个字符"
+                    },
+                    uPhone: {
+                        required: "请正确输入手机号"
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

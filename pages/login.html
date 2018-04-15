@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main samePadding">
+            <div class="formWrap">
+                <img src="../images/logo.png" class="logo">
+                <form class="loginForm">
+                    <table class="formTable">
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" class="sameInput" name="userName"></td>
+                        </tr>
+                        <tr>
+                            <td>手机号：</td>
+                            <td><input type="text" class="sameInput" name="uPhone"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" class="formBtn" value="登录">
+                </form>     
+            </div>
+        </div><!-- //main -->
+        <div class="errorLabel"></div>
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+        <script type="text/javascript">
+        $(function(){
+            //表单验证
+            $(".loginForm").validate({
+                errorLabelContainer: $(".errorLabel"),
+                rules: {
+                    userName: {
+                        required: true
+                    },
+                    uPhone: {
+                        required: true,
+                        mobile:true
+                    }
+                },
+                messages: {
+                    userName: {
+                        required: "请输入账户名"
+                    },
+                    uPhone: {
+                        required: "请正确输入手机号"
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

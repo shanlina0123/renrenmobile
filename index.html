@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>人人找房</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/rem.js"></script>
+    <!-- vue js-->
+    <script src="plugin/js/vue.js"></script>
+    <script src="plugin/js/axios.min.js"></script>
+    <script src="plugin/js/httpUrl.js"></script>
+
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrap">
+        <div class="main">
+            <div class="banner">
+                <img src="images/banner.jpg" width="100%">
+                <div class="bannerSearch clearfix">
+                    <div class="searchselect fl">
+                        <div class="showText">新房</div>
+                        <ul class="selectText">
+                            <li>新房</li>
+                            <li>二手房</li>
+                            <li>商铺写字楼</li>
+                        </ul>
+                    </div>
+                    <input type="text" class="searchInput fl">
+                    <a href="pages/roomList.html"><img src="images/search.png" class="searchImage sameImg"></a>
+                </div><!-- 搜索部分结束 -->
+                <ul class="nav clearfix">
+                    <li>
+                        <a href="pages/newRoomList.html">
+                            <img src="images/newHouse.png">
+                            <p>新房</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/oldRoomList.html">
+                            <img src="images/oldHouse.png">
+                            <p>二手房</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/roomList.html">
+                            <img src="images/store.png">
+                            <p>商铺写字楼</p>
+                        </a>
+                    </li>
+                </ul><!-- 导航部分结束 -->
+                <div class="recommend samePadding">
+                    <p class="partTitle">推荐房源</p>
+                    <ul class="roomListUl" id="index">
+                        <li v-for="item in recommend">
+                            <a href="pages/roomDetail.html">
+                                <div class="imgpart">
+                                    <img src="images/roomPic.jpg" width="100%">
+                                    <a href="pages/recommend.html" class="recommendLink">
+                                        <img src="images/recommend.png" width="20">
+                                        <p>推荐</p>
+                                    </a>
+                                </div>
+                                <table class="roomTable">
+                                    <tr>
+                                        <td>
+                                            <div class="newHouse">
+                                                楼盘：{{item.name}}
+                                                <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            </div></td><!--新楼的楼盘标志位待售或者在售-->
+                                        <td>总价：{{item.total}}万</td>
+                                        <td>面积：{{item.area}}平</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">街道：{{item.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="clearfix">
+                                                <span class="fl">特点：</span>
+                                                <div class="lips fl">
+                                                    <template v-for="tag in item.house_to_tag">
+                                                        <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>佣金规则：</td>
+                                        <td colspan="2" v-if="commission[item.commissionid]">{{commission[item.commissionid].name}}</td>
+                                    </tr>
+                                </table>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- //main -->
+        <div class="bootBar clearfix">
+            <a href="index.html" class="on">
+                <img src="images/home.png"  class="sameImg">
+                <p>首页</p>
+            </a>
+            <a href="pages/my.html">
+                <img src="images/my.png"  class="sameImg">
+                <p>我的</p>
+            </a>
+        </div><!-- //footBar -->
+    </div><!-- //wrap -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <!-- 嵌套数据js -->
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

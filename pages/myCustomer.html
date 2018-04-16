@@ -15,45 +15,52 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/other.css">
+    <link rel="stylesheet" href="../js/layer_mobile/need/layer.css">
     <script src="../js/rem.js"></script>
     <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="../js/layer_mobile/layer.js"></script>
+    <!-- vue js-->
+    <script src="../plugin/js/vue.js"></script>
+    <script src="../plugin/js/axios.min.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
+
 </head>
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="wrap">
+    <div class="wrap" id="my_vue_client" v-cloak>
         <div class="main samePadding">
             <div class="cusSearch">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
                         <div class="showText">客户状态</div>
                         <ul class="selectText">
-                            <li>有效</li>
-                            <li>无效</li>
-                            <li>已上门</li>
+                            <li @click="statusClick(null,'客户状态')">客户状态</li>
+                            <li v-for="item in default_followstatus_datas" @click="statusClick(item.id,item.name)" >{{ item.name }}</li>
                         </ul>
+
                     </div>
-                    <input type="text" class="searchInput fl"  placeholder="输入客户姓名或状态">
-                    <a href="#"><img src="../images/search.png" class="searchImage sameImg"></a>
+                    <input type="text" class="searchInput fl"  placeholder="输入客户姓名或状态" ref="name">
+                    <a href="#"><img src="../images/search.png" class="searchImage sameImg"   @click="searchClick()"></a>
                 </div>
             </div><!-- 搜索部分结束 -->
             <!--访问客户量展示-->
             <ul class="custormNum clearfix">
                 <li>
-                    <p>88</p>
+                    <p>{{client_statistics.refereeCount}}</p>
                     <span>累计推荐</span>
                 </li>
                  <li>
-                    <p>88</p>
+                    <p>{{client_statistics.effectiveCount}}</p>
                     <span>有效推荐</span>
                 </li>
                  <li>
-                    <p>88</p>
+                    <p>{{client_statistics.invalidCount}}</p>
                     <span>无效推荐</span>
                 </li>
                  <li>
-                    <p>88</p>
+                    <p>{{client_statistics.visitCount}}</p>
                     <span>上门访问</span>
                 </li>
             </ul>
@@ -65,79 +72,38 @@
              
              <!--客户展示结果集-->
              <ul class="customsList clearfix">
-                <li>
-                    <ul class="subList clearfix">
-                        <li>姓名：<span>张先生</span></li>
-                        <li>电话：<span>15896569847</span></li>
-                        <li>时间：<span>2018-03-05</span></li>
-                        <li>楼盘：<span>印象城</span></li>
-                        <li>客户状态：<span class="stateShow">有效</span><a href="javascript:;" class="editCus stateEdit">编辑</a></li>
-                        <!--外部中介看不到客户等级，添加isShow类名就行-->
-                        <li class="isShow">客户等级：<span class="levelShow">A类</span><a href="javascript:;" class="editCus levelEdit">编辑</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <ul class="subList clearfix">
-                        <li>姓名：<span>张先生</span></li>
-                        <li>电话：<span>15896569847</span></li>
-                        <li>时间：<span>2018-03-05</span></li>
-                        <li>楼盘：<span>印象城</span></li>
-                        <li>客户状态：<span class="stateShow">有效</span><a href="javascript:;" class="editCus stateEdit">编辑</a></li>
-                        <li>客户等级：<span class="levelShow">A类</span><a href="javascript:;" class="editCus levelEdit">编辑</a></li>
-                    </ul>
-                </li>
+                 <li v-for="client in client_list">
+                     <ul class="subList clearfix">
+                         <li>姓名：<span>{{client.name}}</span></li>
+                         <li>电话：<span>{{client.mobile}}</span></li>
+                         <li>时间：<span>{{client.makedate}}</span></li>
+                         <li>楼盘：<span>{{client.housename}}</span></li>
+                         <li>客户状态：<span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span><a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
+                         <!--外部中介看不到客户等级，添加isShow类名就行-->
+                         <li>客户等级：<span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
+                     </ul>
+                 </li>
              </ul>
         </div><!-- //main -->
         <!--客户等级选择弹窗-->
         <div class="popWrap levePop">
             <p>请选择</p>
             <ul class="popUl">
-                <li>A类</li>
-                <li>B类</li>
-                <li>C类</li>
+                <li v-for="level in level_datas"  @click="editLevelClick(level.id,level.name)">{{ level.name }}</li>
             </ul>
         </div>
         <!--客户状态选择弹窗-->
         <div class="popWrap statePop">
             <p>请选择</p>
             <ul class="popUl">
-                <li>有效</li>
-                <li>无效</li>
-                <li>已上门</li>
+                <li v-for="item in default_followstatus_datas"  @click="editStatusClick(item.id,item.name)">{{ item.name }}</li>
             </ul>
         </div>
     </div><!-- //wrap -->
-    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
-    <script>
-        $(function(){
-            //等级选择效果实现
-            $(".levelEdit").click(function(){
-                if($(".levePop").css("display") == "none"){
-                    $(".levePop").show();
-                }else{
-                     $(".levePop").hide();
-                }
-            });
-            $(".levePop .popUl li").click(function(){
-                var thisText = $(this).text();
-                $(".levelShow").text(thisText);
-                 $(".levePop").hide();
-            });
-            //客户状态效果实现
-            $(".stateEdit").click(function(){
-                if($(".statePop").css("display") == "none"){
-                    $(".statePop").show();
-                }else{
-                     $(".statePop").hide();
-                }
-            });
-            $(".statePop .popUl li").click(function(){
-                var thisText = $(this).text();
-                $(".stateShow").text(thisText);
-                 $(".statePop").hide();
-            });
-        })
-    </script>
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <!-- 嵌套数据js -->
+    <script type="text/javascript" src="../js/pages/checkToken.js"></script>
+    <script type="text/javascript" src="../js/pages/client.js"></script>
 </body>
 </html>

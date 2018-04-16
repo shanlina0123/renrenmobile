@@ -4,11 +4,14 @@
     //未带toke请求
     window.conf = {
         recommend: host + 'home/house/recommend',//首页推荐
+        pathUrl:'http://api.rrzhaofang.com/upload/',
         datas: host + 'home/datas',//前端数据
         datas_default: host + 'home/datas-default-one/',//前端自定义属性数据
+        datas_defaults:host+'home/datas-default',//前端自定义属性数据
         datas_one: host + 'home/datas-one/',//前端自定义属性数据
         house_list: host + 'home/house/list',//房源列表
-
+        house_info:host+'home/house/info/',//房源详情
+        login:host+'home/user/login',//登陆
         //手机端配置
         web_conf: host + 'home/conf',
     },
@@ -19,6 +22,5 @@
             client_list: host + 'home/client',  //我的客户列表
             datas_default_user_one_list: host + 'home/datas-default-user-one/',//前端自定义属性数据
         }
-
 
 })();

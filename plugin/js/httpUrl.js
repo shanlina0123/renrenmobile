@@ -20,6 +20,8 @@
             user_info: host + 'home/users',  //我的基本信息
             client_statistics: host + 'home/client-statistics',  //我的客户统计
             client_list: host + 'home/client',  //我的客户列表
+            client_update: host + 'home/client-update/',  //我的客户列表
+
             datas_default_user_one_list: host + 'home/datas-default-user-one/',//前端自定义属性数据
         }
 

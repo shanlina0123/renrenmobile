@@ -6,9 +6,6 @@ $(function(){
     $(".tabTable tr .td2").click(function(){
         $(".tabconWrap .priceTab").show().siblings().hide();
     });
-    $(".forTab").click(function(){
-        $(this).hide();
-    })
 })
 
 new Vue({
@@ -16,17 +13,21 @@ new Vue({
     data: {
         params:{
             typeid:3,
-            name:''
+            name:'',
+            price:'',
         },
         houseList:[],
         commission:[],
         tags:[],
-        roomtype:[]
+        roomtype:[],
+        priceE:'',
+        priceS:'',
     },
     methods:{
         getHouseList:function () {
             var url = conf.house_list;
             var that = this;
+            $(".forTab").hide();
             axios.get( url,{params:that.params} )
                 .then(function (response)
                 {
@@ -66,6 +67,20 @@ new Vue({
             var name = this.$refs.name.value;
                 this.params.name = name;
                 this.getHouseList();
+        },//价格区间
+        liData:function ( price ) {
+            var that = this;
+            that.params.price = price;
+            that.priceE = '';
+            that.priceS = '';
+        },//开始价格
+        changePriceS:function ( value ) {
+            this.priceS = value;
+            this.params.price =  value+'-'+this.priceE;
+        },//结束价格
+        changePriceE:function ( value ) {
+            this.priceE = value;
+            this.params.price = this.priceS+'-'+value;
         }
     },created: function () {
         var that = this;

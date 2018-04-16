@@ -9,5 +9,6 @@
         house_list:host+'home/house/list',//房源列表
         house_info:host+'home/house/info/',//房源详情
         login:host+'home/user/login',//登陆
+        regist:host+'home/user/register',//注册
     }
 })();

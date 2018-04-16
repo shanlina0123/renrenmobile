@@ -1,10 +1,5 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,38 +12,41 @@
     <link rel="stylesheet" href="../css/other.css">
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
+
+    <!-- vue -->
+    <script src="../plugin/js/vue.js"></script>
+    <script src="../plugin/js/axios.min.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
 </head>
 <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <div class="wrap">
         <div class="main samePadding">
             <img src="../images/logo.png" class="logo">
             <div class="formWrap">
-                <form class="registForm">
+                <form class="registForm" id="main">
                     <table class="formTable">
                         <tr>
                             <td>姓名：</td>
-                            <td><input type="text" class="sameInput" name="userName"></td>
+                            <td><input type="text" class="sameInput" name="nickname"></td>
                         </tr>
                         <tr>
                             <td>手机号：</td>
-                            <td><input type="text" class="sameInput" name="uPhone"></td>
+                            <td><input type="text" class="sameInput" name="mobile"></td>
                         </tr>
                         <tr>
                             <td>类型：</td>
                             <td>
                                 <div class="formSelect">
-                                    <div class="showForm">独立经纪人</div>
+                                    <div class="showForm">请选择</div>
                                     <ul class="formUl">
-                                        <li>独立经纪人</li>
-                                        <li>房产经纪人</li>
+                                        <li v-for="item in type" @click="typeName(item.id,item.name)">{{item.name}}</li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
                     </table>
+                    <input type="hidden"  id="economictid" name="economictid">
+                    <input type="hidden"  id="wechatopenid" name="wechatopenid">
                     <input type="submit" class="formBtn" value="注册">
                 </form>
             </div>
@@ -58,40 +56,7 @@
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            //类型选择
-            $(".formSelect").click(function(){
-                $(".formUl").slideToggle();
-            });
-            $(".formUl li").click(function(){
-                var thisText = $(this).text();
-                $(".showForm ").text(thisText);
-            });
-            //表单验证
-            $(".registForm").validate({
-                errorLabelContainer: $(".errorLabel"),
-                rules: {
-                    userName: {
-                        required: true,
-                        maxlength: 10
-                    },
-                    uPhone: {
-                        required: true,
-                        mobile:true
-                    }
-                },
-                messages: {
-                    userName: {
-                        required: "请输入账户名",
-                        maxlength:"名称最长为10个字符"
-                    },
-                    uPhone: {
-                        required: "请正确输入手机号"
-                    }
-                }
-            })
-        })
-    </script>
+
+    <script type="text/javascript" src="../js/pages/regist.js"></script>
 </body>
 </html>

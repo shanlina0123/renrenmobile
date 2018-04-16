@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>房源详情-新房</title>
+    <title>房源详情</title>
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="../css/common.css">
@@ -39,13 +39,24 @@
             <div class="msgPart samePadding">
                 <p class="partTitle"><img src="../images/money.png"><span>佣金规则</span></p>
                 <ul class="pricePart clearfix">
-                    <li>
+                    <!-- 新房 -->
+                    <li v-if="info.typeid == 1">
                         <span>单价</span>
                         <p><span>{{info.price}}</span>元/平</p>
                     </li>
-                    <li>
+                    <!-- 二手房和商铺  -->
+                    <li v-else>
+                        <span>总价</span>
+                        <p><span>{{info.total}}</span>万</p>
+                    </li>
+                    <!-- 商铺  -->
+                    <li v-if="info.typeid == 3">
+                        <span></span>
+                        <p></p>
+                    </li>
+                    <li v-else>
                         <span>房型</span>
-                        <p>2室2厅</p>
+                        <p v-if="roomtype[info.roomtypeid]">{{roomtype[info.roomtypeid].name}}</p>
                     </li>
                     <li>
                         <span>建筑面积</span>
@@ -59,7 +70,7 @@
                         </template>
                     </div>
                     <div class="samePadding">
-                        <ul class="detailUl clearfix">
+                        <ul class="detailUl clearfix" v-if="info.typeid == 1">
                             <li>现状：<sup class="unSale" v-if="salestatus[info.salestatusid]">{{salestatus[info.salestatusid].name}}</sup></li>
                             <li>发布日期：<span>{{info.created_at}}</span></li>
                             <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
@@ -73,6 +84,38 @@
                             <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
                             <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
                             <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                        </ul>
+                        <!--二手房-->
+                        <ul class="detailUl clearfix" v-if="info.typeid == 2">
+                            <li>单价：<span>{{info.price}}</span></li>
+                            <li>发布日期：<span>{{info.created_at}}</span></li>
+                            <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
+                            <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
+                            <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
+                            <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
+                            <li>年代：<span>{{info.years}}</span></li>
+                            <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
+                            <li>楼盘：<span>{{info.name}}</span></li>
+                            <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
+                            <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
+                            <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                        </ul>
+                        <!--商铺-->
+                        <ul class="detailUl clearfix" v-if="info.typeid == 3">
+                            <li>发布日期：<span>{{info.created_at}}</span></li>
+                            <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
+                            <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
+                            <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
+                            <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
+                            <li>层高：<span>{{info.storey}}</span></li>
+                            <li>面宽：<span>{{info.wide}}</span></li>
+                            <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
+                            <li>进深：<span>{{info.depth}}</span></li>
+                            <li>年代：<span>{{info.years}}</span></li>
+                            <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
+                            <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
+                            <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                            <li>楼盘：<span>{{info.name}}</span></li>
                         </ul>
                     </div>
                     <div class="showMap samePadding">

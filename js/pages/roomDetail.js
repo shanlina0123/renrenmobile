@@ -1,3 +1,6 @@
+
+var lng='';
+var lat='';
 $(function(){
     //筛选tab切换
     $(".tabTable tr .td1").click(function(){
@@ -17,7 +20,7 @@ $(function(){
         paginationClickable: true,
     });
     //地图显示
-    var center = new qq.maps.LatLng(34.2919258755,108.9472800493);
+    var center = new qq.maps.LatLng(lat,lng);
     var map = new qq.maps.Map(
         document.getElementById("roomMap"),
         {
@@ -36,7 +39,6 @@ $(function(){
         map: map
     });
 })
-
 new Vue({
     el: '#main',
     data: {
@@ -65,7 +67,10 @@ new Vue({
                     var data = response.data;
                     if( data.status == 1 )
                     {
+                        console.log( data.data );
                         that.info = data.data;
+                        lng = data.data.lng;
+                        lat = data.data.lat;
                     }
                 })
         },
@@ -86,9 +91,6 @@ new Vue({
                         that.tagsData = data.data[5]['_child'];
                     }
                 })
-                .catch(function (error) {
-                    //console.log(error);
-                });
         },
         getQueryString:function ( name )
         {

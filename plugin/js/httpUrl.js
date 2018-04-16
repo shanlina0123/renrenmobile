@@ -12,7 +12,8 @@
         house_list: host + 'home/house/list',//房源列表
         house_info:host+'home/house/info/',//房源详情
         login:host+'home/user/login',//登陆
-        web_conf: host + 'home/conf',//手机端配置
+        regist:host+'home/user/register',//注册
+        web_conf: host + 'home/conf', //手机端配置
     },
         //带token的请求
         window.auth_conf = {
@@ -25,5 +26,4 @@
             client_refree: host + 'home/client-refree',  //立即推荐客户
             datas_default_user_one_list: host + 'home/datas-default-user-one/',//前端自定义属性数据
         }
-
 })();

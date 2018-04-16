@@ -67,7 +67,7 @@
                     <p class="partTitle">推荐房源</p>
                     <ul class="roomListUl" id="index">
                         <li v-for="item in recommend">
-                            <a href="pages/roomDetail.html">
+                            <a :href="'pages/roomDetail.html?id='+item.id">
                                 <div class="imgpart">
                                     <img src="images/roomPic.jpg" width="100%">
                                     <a href="pages/recommend.html" class="recommendLink">

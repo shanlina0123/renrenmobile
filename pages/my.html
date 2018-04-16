@@ -17,20 +17,24 @@
     <link rel="stylesheet" href="../css/other.css">
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
+    <!-- vue js-->
+    <script src="../plugin/js/vue.js"></script>
+    <script src="../plugin/js/axios.min.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
 </head>
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="wrap">
+    <div class="wrap"  id="my_vue_data" v-cloak>
         <div class="main samePadding">
-            <ul class="myMessageUl">
+            <ul class="myMessageUl" >
                 <li class="myName">
                     <a href="javascript:;" class="clearfix">
                         <img src="../images/uHead.jpg" class="sameImg userImage fl">
                         <div class="rightName likePadding fl">
-                            <p>姓名：<span>张森</span></p>
-                            <p>类型：<span>高级经理</span></p>
+                            <p>姓名：<span>{{my_info.nickname}}</span></p>
+                            <p>类型：<span v-if="default_datas[my_info.economictid]"> {{default_datas[my_info.economictid]["name"]}}</span></p>
                         </div>
                     </a>
                 </li>
@@ -38,7 +42,7 @@
                     <a href="myCustomer.html"><img src="../images/myCusom.png" class="sameImg"><span class="likePadding">我的客户</span></a>
                 </li>
                 <li class="myContact">
-                    <a href="tel:88556895" ><img src="../images/contact.png" class="sameImg"><span class="likePadding">联系我们</span><span class="fr">88556895</span></a>
+                    <a href="tel:88556895" ><img src="../images/contact.png" class="sameImg"><span class="likePadding">联系我们</span><span class="fr">{{connect_tel}}</span></a>
                 </li>
             </ul>
         </div><!-- //main -->
@@ -79,5 +83,7 @@
             })
         })
     </script>
+    <!-- 嵌套数据js -->
+    <script type="text/javascript" src="../js/pages/my.js"></script>
 </body>
 </html>

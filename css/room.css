@@ -103,7 +103,10 @@
 }
 .tabTable tr td {
   text-align: center;
-  padding: 0.2rem 0;
+  padding: .2rem 0;
+}
+.tabTable tr td.on {
+  color: #ef7721;
 }
 .forTab {
   display: none;
@@ -121,6 +124,9 @@
 .forTab .topsort li {
   padding: .1rem .2rem .1rem .2rem;
   border-bottom: 1px solid #ccc;
+}
+.forTab .topsort li.on {
+  color: #ef7221;
 }
 .bottomSort {
   padding: .3rem .2rem .3rem .2rem;

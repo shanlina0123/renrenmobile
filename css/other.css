@@ -133,14 +133,19 @@
 .customsList .subList li {
   float: left;
   width: 50%;
-  padding: 5px 0;
+  height: .5rem;
+  padding: .08rem 0;
+  overflow: hidden;
+}
+.customsList .subList li img {
+  margin-right: 0.05rem;
 }
 .customsList .isShow {
   display: none;
 }
 .customsList .editCus {
   display: inline-block;
-  padding: 2px 6px;
+  padding: 0 .03rem;
   border: 1px solid #Eb7221;
   color: #Eb7221;
   border-radius: 3px;

@@ -30,7 +30,7 @@ blockquote {
   padding: 0;
 }
 html {
-  color: #333;
+  color: #3c3c3c;
   background: #fff;
   line-height: 1.4;
 }
@@ -66,7 +66,7 @@ img {
 }
 a {
   text-decoration: none;
-  color: #000;
+  color: #3c3c3c;
 }
 a:hover {
   color: #628828;

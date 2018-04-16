@@ -5,12 +5,13 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>登录</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
@@ -18,6 +19,7 @@
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
 </head>
+
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -38,16 +40,18 @@
                         </tr>
                     </table>
                     <input type="submit" class="formBtn" value="登录">
-                </form>     
+                </form>
             </div>
-        </div><!-- //main -->
+        </div>
+        <!-- //main -->
         <div class="errorLabel"></div>
-    </div><!-- //wrap -->
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
-        <script type="text/javascript">
-        $(function(){
+    <script type="text/javascript">
+        $(function() {
             //表单验证
             $(".loginForm").validate({
                 errorLabelContainer: $(".errorLabel"),
@@ -57,7 +61,7 @@
                     },
                     uPhone: {
                         required: true,
-                        mobile:true
+                        mobile: true
                     }
                 },
                 messages: {
@@ -68,8 +72,9 @@
                         required: "请正确输入手机号"
                     }
                 }
-            })
+            });
         })
     </script>
 </body>
+
 </html>

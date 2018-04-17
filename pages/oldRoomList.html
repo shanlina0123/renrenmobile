@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/room.css">
+    <link rel="stylesheet" href="../js/layui/css/layui.css">
     <style>
         [v-cloak] {
             display: none;
@@ -27,7 +28,7 @@
         <div class="main" >
             <div class="listearch">
                 <div class="bannerSearch clearfix">
-                    <input type="text" ref="name" class="searchInput fl" placeholder="请输入小区名称">
+                    <input type="text" ref="name" :value="params.name" class="searchInput fl" placeholder="请输入小区名称">
                     <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div><!-- 搜索部分结束 -->
@@ -85,7 +86,7 @@
             </div>
             <!--房源列表-->
             <div class="recommend samePadding">
-                <ul class="roomListUl">
+                <ul class="roomListUl" id="roomListUl">
                     <li v-for="item in houseList">
                         <a :href="'roomDetail.html?id='+item.id">
                             <div class="imgpart">
@@ -131,7 +132,7 @@
                 </ul>
             </div><!-- 产品列表结束 -->
         </div><!-- //main -->
-        <div class="bootBar clearfix">
+        <div class="bootBar clearfix xieybtn">
             <a href="tel:88556895">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
@@ -143,6 +144,7 @@
         </div><!-- //footBar -->
     </div><!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/layui/layui.js"></script>
     <script type="text/javascript" src="../js/pages/oldRoomList.js"></script>
 </body>
 </html>

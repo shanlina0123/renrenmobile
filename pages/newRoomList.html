@@ -28,7 +28,7 @@
         <div class="main">
             <div class="listearch">
                 <div class="bannerSearch clearfix">
-                    <input type="text" ref="name" class="searchInput fl" placeholder="请输入小区名称">
+                    <input type="text" ref="name" class="searchInput fl" :value="params.name" placeholder="请输入小区名称">
                     <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div><!-- 搜索部分结束 -->
@@ -86,7 +86,7 @@
             </div>
             <!--房源列表-->
             <div class="recommend samePadding">
-                <ul class="roomListUl" @scroll="paperScroll()" id="roomListUl">
+                <ul class="roomListUl"  id="roomListUl">
                     <li v-for="item in houseList">
                         <a :href="'roomDetail.html?id='+item.id" >
                             <div class="imgpart">

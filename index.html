@@ -1,10 +1,5 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,24 +19,22 @@
 
 </head>
 <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <div class="wrap">
-        <div class="main">
+        <div class="main" id="index">
             <div class="banner">
                 <img src="images/banner.jpg" width="100%">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
                         <div class="showText">新房</div>
                         <ul class="selectText">
-                            <li>新房</li>
-                            <li>二手房</li>
-                            <li>商铺写字楼</li>
+                            <li data-id="1">新房</li>
+                            <li data-id="2">二手房</li>
+                            <li data-id="3">商铺写字楼</li>
                         </ul>
                     </div>
-                    <input type="text" class="searchInput fl">
-                    <a href="pages/roomList.html"><img src="images/search.png" class="searchImage sameImg"></a>
+                    <input type="text"  ref="name"  class="searchInput fl">
+                    <input type="hidden"  ref="typeid" value="1" class="searchInput fl">
+                    <a href="javascript:;"><img src="images/search.png" class="searchImage sameImg" @click="getHouseList()"></a>
                 </div><!-- 搜索部分结束 -->
                 <ul class="nav clearfix">
                     <li>
@@ -65,7 +58,7 @@
                 </ul><!-- 导航部分结束 -->
                 <div class="recommend samePadding">
                     <p class="partTitle">推荐房源</p>
-                    <ul class="roomListUl" id="index">
+                    <ul class="roomListUl">
                         <li v-for="item in recommend">
                             <a :href="'pages/roomDetail.html?id='+item.id">
                                 <div class="imgpart">
@@ -123,7 +116,6 @@
         </div><!-- //footBar -->
     </div><!-- //wrap -->
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
     <!-- 嵌套数据js -->
     <script type="text/javascript" src="index.js"></script>
 </body>

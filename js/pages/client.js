@@ -61,6 +61,12 @@ new Vue({
           this.params.followstatusid=id;
           $(".showText").html(name);
           $(".selectText").hide();
+          //搜索
+          if(this.$refs.name.value)
+          {
+                this.params.name=this.$refs.name.value;
+          }
+            this.getClientList();
         },
         //搜索
         searchClick:function(){

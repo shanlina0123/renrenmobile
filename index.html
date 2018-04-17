@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>人人找房</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/base.css">
@@ -18,6 +19,7 @@
     <script src="plugin/js/httpUrl.js"></script>
 
 </head>
+
 <body>
     <div class="wrap">
         <div class="main" id="index">
@@ -32,10 +34,11 @@
                             <li data-id="3">商铺写字楼</li>
                         </ul>
                     </div>
-                    <input type="text"  ref="name"  class="searchInput fl">
-                    <input type="hidden"  ref="typeid" value="1" class="searchInput fl">
+                    <input type="text" ref="name" class="searchInput fl">
+                    <input type="hidden" ref="typeid" value="1" class="searchInput fl">
                     <a href="javascript:;"><img src="images/search.png" class="searchImage sameImg" @click="getHouseList()"></a>
-                </div><!-- 搜索部分结束 -->
+                </div>
+                <!-- 搜索部分结束 -->
                 <ul class="nav clearfix">
                     <li>
                         <a href="pages/newRoomList.html">
@@ -55,7 +58,8 @@
                             <p>商铺写字楼</p>
                         </a>
                     </li>
-                </ul><!-- 导航部分结束 -->
+                </ul>
+                <!-- 导航部分结束 -->
                 <div class="recommend samePadding">
                     <p class="partTitle">推荐房源</p>
                     <ul class="roomListUl">
@@ -68,13 +72,14 @@
                                         <p>推荐</p>
                                     </a>
                                 </div>
-                                <table class="roomTable">
+                                <!--<table class="roomTable">
                                     <tr>
                                         <td>
                                             <div class="newHouse">
                                                 楼盘：{{item.name}}
                                                 <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
-                                            </div></td><!--新楼的楼盘标志位待售或者在售-->
+                                            </div>
+                                        </td>
                                         <td>总价：{{item.total}}万</td>
                                         <td>面积：{{item.area}}平</td>
                                     </tr>
@@ -97,26 +102,57 @@
                                         <td>佣金规则：</td>
                                         <td colspan="2" v-if="commission[item.commissionid]">{{commission[item.commissionid].name}}</td>
                                     </tr>
+                                </table>-->
+                                <table class="roomTable">
+                                    <tr>
+                                        <td>
+                                            <span class="newHouse">
+                                                {{item.name}}
+                                                <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            </span>&nbsp;
+                                            <span>{{item.total}}万</span>&nbsp;
+                                            <span>{{item.area}}m<sup>2</sup></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{item.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="lips">
+                                                <template v-for="tag in item.house_to_tag">
+                                                        <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                                    </template>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td v-if="commission[item.commissionid]"><img src="images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
+                                    </tr>
                                 </table>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div><!-- //main -->
+        </div>
+        <!-- //main -->
         <div class="bootBar clearfix">
             <a href="index.html" class="on">
-                <img src="images/home.png"  class="sameImg">
+                <img src="images/home.png" class="sameImg">
                 <p>首页</p>
             </a>
             <a href="pages/my.html">
-                <img src="images/my.png"  class="sameImg">
+                <img src="images/my.png" class="sameImg">
                 <p>我的</p>
             </a>
-        </div><!-- //footBar -->
-    </div><!-- //wrap -->
+        </div>
+        <!-- //footBar -->
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <!-- 嵌套数据js -->
     <script type="text/javascript" src="index.js"></script>
 </body>
+
 </html>

@@ -175,6 +175,7 @@ label.error {
 }
 .roomListUl .roomTable {
   margin-top: .15rem;
+  width: 100%;
 }
 .roomListUl .roomTable tr td {
   padding: .1rem 0;
@@ -184,23 +185,43 @@ label.error {
   padding-right: .2rem;
 }
 .roomListUl .lips span {
+  font-size: .14rem;
   display: inline-block;
-  padding: .02rem .05rem;
-  border: 1px solid #Eb7221;
+  padding: 0 .03rem;
+  border: 1px solid #e6e6e6;
   color: #Eb7221;
   border-radius: 3px;
   margin: 0 3px;
 }
-.newHouse .forTips {
+.forTips {
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 1px 3px;
 }
-.newHouse .unBegin {
+.unBegin {
   color: #628828;
 }
-.newHouse .beigin {
+.beigin {
   color: #ff0000;
+}
+.yongjinWrap {
+  color: #d81e06;
+  font-weight: bold;
+}
+.colorRed {
+  color: #d81e06;
+}
+.colorGreen {
+  color: green;
+}
+.colorYellow {
+  color: yellow;
+}
+.colorBlue {
+  color: blue;
+}
+.colorPurple {
+  color: purple;
 }
 .bannerSearch {
   position: absolute;
@@ -213,14 +234,14 @@ label.error {
 .bannerSearch .searchselect {
   position: relative;
   width: 2rem;
-  height: .6rem;
-  line-height: .6rem;
+  height: .8rem;
+  line-height: .8rem;
   border-right: 1px solid #ccc;
 }
 .bannerSearch .searchselect .showText {
   border: none;
-  height: .61rem;
-  line-height: .61rem;
+  height: .81rem;
+  line-height: .81rem;
   padding-left: 5px;
   background: url(../images/down.png) 97% center no-repeat;
   background-size: 10px;
@@ -244,8 +265,8 @@ label.error {
 }
 .bannerSearch .searchInput {
   width: 3.6rem;
-  height: .6rem;
-  line-height: .6rem;
+  height: .8rem;
+  line-height: .8rem;
   padding-left: .2rem;
   outline: none;
   border: none;
@@ -253,5 +274,5 @@ label.error {
 }
 .bannerSearch .searchImage {
   margin-left: .1rem;
-  margin-top: .03rem;
+  margin-top: .15rem;
 }

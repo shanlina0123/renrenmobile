@@ -133,11 +133,7 @@ new Vue({
                     var data = response.data;
                     if( data.status == 1 )
                     {
-                        layer.open({
-                            content: '修改成功',
-                            skin: 'msg',
-                            time: 2 
-                        });
+                        //修改成功
                     }
                     // console.log(response.data.status);
                 }).catch(function (error) {

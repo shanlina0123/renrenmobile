@@ -21,6 +21,9 @@
             client_statistics: host + 'home/client-statistics',  //我的客户统计
             client_list: host + 'home/client',  //我的客户列表
             client_update: host + 'home/client-update/',  //我的客户列表
+            client_houses: host + 'home/client-houses',  //房源下拉框
+            client_compnay: host + 'home/company',  //公司下拉框
+            client_refree: host + 'home/client-refree',  //立即推荐客户
             datas_default_user_one_list: host + 'home/datas-default-user-one/',//前端自定义属性数据
         }
 })();

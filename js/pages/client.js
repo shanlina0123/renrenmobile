@@ -52,6 +52,10 @@ new Vue({
         tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods:{
+        //点击搜索状态显示下拉框
+        showStatusClick:function(){
+            $(".selectText").show();
+        },
         //搜索点击-状态
         statusClick:function(id,name){
           this.params.followstatusid=id;

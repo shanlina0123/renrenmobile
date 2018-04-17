@@ -32,9 +32,9 @@
             <div class="cusSearch">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
-                        <div class="showText">客户状态</div>
+                        <div class="showText"   @click="showStatusClick()">客户状态</div>
                         <ul class="selectText">
-                            <li @click="statusClick(null,'客户状态')">客户状态</li>
+                            <li @click="statusClick(null,'客户状态')" >客户状态</li>
                             <li v-for="item in default_followstatus_datas" @click="statusClick(item.id,item.name)" >{{ item.name }}</li>
                         </ul>
 

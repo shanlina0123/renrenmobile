@@ -4,21 +4,25 @@ html, body, p, h1, h2, h3, h4, h5, h6, form, input, textarea, select, button, fi
 html {
     color: #333;
     background: #fff;
+    font-size: 100px;
     line-height: 1.4;
 }
-body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 { font-size: 0.3rem; font-family: 'Microsoft YaHei',SimSun,Verdana, Arial, sans-serif; }
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 { font-family: 'Microsoft YaHei',SimSun,Verdana, Arial, sans-serif; }
 img, fieldset { border: 0; vertical-align: middle; }
 textarea { word-wrap: break-word; word-break: break-all; resize: none; }
 li { list-style: none; }
 img { border: none; }
-a { text-decoration: none; color: #000; }
-a:hover { color: #628828; }
+a { text-decoration: none; color: #333; }
+a:hover { color: #ef7221; }
 a:focus { outline: none; }
 /*公用样式*/
 .fl { float: left; }
 .fr { float: right; }
-.sameImg{width: .5rem}
+.sameImg{width: 100%}
 .samePadding{padding-left: .15rem; padding-right: .15rem}
+.main{
+    padding-bottom: 1.42rem;
+}
 /*公用验证弹窗*/
 label.error{
     display: block;
@@ -56,7 +60,8 @@ label.error{
     a{
         float: left;
         width: 3.75rem;
-        padding:.05rem 0 .05rem 0;
+        font-size: .5rem;
+        padding:.1rem 0;
         text-align: center;
         background-color: #Eb7221;
         color: #fff;
@@ -67,6 +72,7 @@ label.error{
             text-align: center;
             padding-top: .1rem;
             margin: 0;
+            font-size: .3rem;
         }
     }
 }
@@ -75,6 +81,7 @@ label.error{
     margin-top: 15px;
     .partTitle{
         padding-left: 10px;
+        font-size: .26rem;
         border-left: 5px solid #Eb7221;
     }
 }
@@ -96,26 +103,27 @@ label.error{
         position: relative;
         .recommendLink{
             position: absolute;
-            right: 10px;
-            bottom: 10px;
+            right: .1rem;
+            bottom: .1rem;
             display: block;
             width: 45px;
             height: 40px;
+            font-size: .2rem;
             padding-top: 5px;
             text-align: center;
             border-radius: 50%;
             background-color: #fff;
             p{
-                font-size: 12px;
+                font-size: .12rem;
             }
         }
     }
     .roomTable{
         margin-top: .15rem;
+        font-size: .48rem;
         width: 100%;
         tr{
             td{
-                padding: .1rem 0;
                 text-align: left;
             }
         }
@@ -132,14 +140,31 @@ label.error{
             color: #Eb7221;
             border-radius: 3px;
             margin:0 3px;
+            
         }
     }
+}
+//首页房源列表字体
+.houseName{
+    font-size: .32rem;
+}
+.allPrice{
+    font-size: .26rem;
+}
+.onePrice{
+    font-size: .26rem;
+}
+.streetText{
+    font-size: .26rem
 }
 //新房的房源显示在售和待售
 .forTips{
     border: 1px solid #ccc;
     border-radius: 3px;
-    padding: 1px 3px;
+    padding: .01rem .04rem;
+    font-size: .12rem;
+    -webkit-transform-origin: 0% 0%;
+    -webkit-transform:scale(0.8)!important;
 }
 .unBegin{
     color: #628828
@@ -148,6 +173,7 @@ label.error{
     color: #ff0000
 }
 .yongjinWrap{
+    font-size: .26rem;
     color: #d81e06;
     font-weight: bold;
 }
@@ -170,6 +196,7 @@ label.error{
 .bannerSearch{
     position: absolute;
     width: 6.5rem;
+    height: .8rem;
     left: .5rem;
     top: .79rem;
     background-color: #fff;
@@ -185,6 +212,7 @@ label.error{
             height: .81rem;
             line-height: .81rem;
             padding-left: 5px;
+            font-size: .24rem;
             background: url(../images/down.png) 97% center no-repeat;
             background-size: 10px;
             overflow: hidden
@@ -195,6 +223,7 @@ label.error{
              width: 100%;
              top: .8rem;
              left: -1px;
+             font-size: .22rem;
              background-color: #fff;
              border: 1px solid #ccc;
              li{
@@ -207,16 +236,21 @@ label.error{
          }
     }
     .searchInput{
-             width: 3.6rem;
+             width: 3.5rem;
              height: .8rem;
              line-height: .8rem;
              padding-left: .2rem;
              outline: none;
+             font-size: .22rem;
              border: none;
-             background-size: .5rem;
          }
-    .searchImage{
-        margin-left:.1rem;
-        margin-top:.15rem;
+    .searchImgWrap{
+        width: .68rem;
+        height: .8rem;
+        line-height: .78rem;
+        font-size: .2rem;
+        img{
+            width: 100%;
+        }
     }
 }

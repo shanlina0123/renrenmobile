@@ -31,7 +31,7 @@
             <div class="listearch">
                 <div class="bannerSearch clearfix">
                     <input type="text" ref="name" class="searchInput fl" :value="params.name" placeholder="请输入小区名称">
-                    <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
+                    <a href="javascript:;" class="searchImgWrap fl" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div>
             <!-- 搜索部分结束 -->
@@ -106,15 +106,15 @@
                                 <tr>
                                     <td>
                                         <span class="newHouse">
-                                            {{item.name}}
-                                            <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            <span class="houseName">{{item.name}}</span>
+                                        <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
                                         </span>&nbsp;
-                                        <span>{{item.total}}万</span>&nbsp;
-                                        <span>{{item.area}}m</span><sup>2</sup>
+                                        <span class="allPrice">{{item.total}}万</span>&nbsp;
+                                        <span class="onePrice">{{item.area}}m</span><sup>2</sup>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>{{item.street}}</td>
+                                    <td><span class="streetText">{{item.street}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>

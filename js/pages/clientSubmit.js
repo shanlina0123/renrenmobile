@@ -44,12 +44,25 @@ new Vue({
     data: {
         house_name:null,
         add_params:{"name":null,"mobile":null,"houseid":null,"companyid":null,"remark":null},
+        search_params:{"name":null,"typeid":null,"uuid":null},
         company_list:[],
         house_list:[],
         tokenData: sessionStorage.getItem("userinfo")
     },
     methods:{
-
+        GetQueryString:function(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var url_param=decodeURIComponent(window.location.search)
+            var r = url_param.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        },
+        //其他链接进去的参数获取
+        enterParam:function()
+        {
+            this.search_params.typeid= this.GetQueryString("typeid");
+            this.search_params.uuid=this. GetQueryString("uuid");
+        },
         //检查是否内部外部人源
          checkAfterAdmin:function(){
              var that = this;
@@ -65,26 +78,38 @@ new Vue({
         showHouseClick:function(house_name){
             var url = auth_conf.client_houses;
             var that = this;
-            var house_name=house_name?house_name:null;
-            axios.post( url,{name:house_name},{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            that.house_name=house_name;
+            that.house_name?that.search_params.name=that.house_name:null;
+            axios.post( url,that.search_params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
                 .then(function (response)
                 {
                     var data = response.data;
                     if( data.status == 1 )
                     {
                         that.house_list = data.data;
+                        $(".forShowSearch").show();
+                    }else if (data.status == 4)
+                    {
+                        that.house_list = data.data;
+                        $(".forShowSearch").hide();
+                    }else{
+                        $(".forShowSearch").hide();
                     }
                 })
                 .catch(function (error)
                 {
                     //console.log(error);
                 });
-            $(".forShowSearch").show();
-
         },
         //点击显示公司
         showCompanyClick:function(){
-            $(".formUl").show();
+            if($(".formUl")[0].childElementCount==0)
+            {
+                $(".formUl").hide();
+            }else{
+                $(".formUl").show();
+            }
+
         },
         //选择房源
         houseClick:function(id,name){
@@ -109,6 +134,12 @@ new Vue({
                     if( data.status == 1 )
                     {
                         that.company_list = data.data;
+                        if(data.data.length==0)
+                        {
+                            $(".formUl").hide();
+                        }else{
+                            $(".formUl").show();
+                        }
                     }
                 })
                 .catch(function (error)
@@ -141,6 +172,6 @@ new Vue({
     ,created: function () {
         var that = this;
         that.checkAfterAdmin();//检查是否业务员
-
+        that.enterParam();
     }
 });

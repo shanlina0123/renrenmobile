@@ -23,8 +23,8 @@
     <script src="../plugin/js/httpUrl.js"></script>
 </head>
 <body>
-    <div class="wrap">
-        <div class="main" id="main" v-cloak>
+    <div class="wrap" id="main" v-cloak>
+        <div class="main" >
             <div class="listearch">
                 <div class="bannerSearch clearfix">
                     <input type="text" ref="name" class="searchInput fl" placeholder="请输入小区名称">
@@ -90,7 +90,7 @@
                         <a :href="'roomDetail.html?id='+item.id">
                             <div class="imgpart">
                                 <img src="../images/roomPic.jpg" width="100%">
-                                <a href="recommend.html" class="recommendLink">
+                                <a @click="refreeClick(item.typeid,item.uuid)" class="recommendLink">
                                     <img src="../images/recommend.png" width="20">
                                     <p>推荐</p>
                                 </a>
@@ -136,7 +136,7 @@
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>
-            <a href="recommend.html">
+            <a @click="refreeClick(2,null)">
                 <img src="../images/recommend1.png" width="20">
                 <p>立即推荐</p>
             </a>

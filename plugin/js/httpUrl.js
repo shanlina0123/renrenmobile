@@ -17,6 +17,7 @@
     },
         //带token的请求
         window.auth_conf = {
+            token:host+"home/token",//检查而已有token
             user_info: host + 'home/users',  //我的基本信息
             client_statistics: host + 'home/client-statistics',  //我的客户统计
             client_list: host + 'home/client',  //我的客户列表

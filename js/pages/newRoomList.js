@@ -33,6 +33,7 @@ new Vue({
         priceS:'',
     },
     methods:{
+
         getHouseList:function () {
             $(".forTab").hide();
             var url = conf.house_list;
@@ -130,6 +131,16 @@ new Vue({
                 });
             });
 
+        },
+        //进入推荐页面
+        refreeClick:function (typeid,uuid) {
+            var target_url="typeid="+typeid;
+            if(uuid)
+            {
+                target_url+="&uuid="+uuid;
+            }
+
+            window.location.href="../pages/recommend.html?"+encodeURIComponent(target_url);
         }
     },created: function () {
         var that = this;

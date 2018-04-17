@@ -31,7 +31,8 @@
             <ul class="myMessageUl" >
                 <li class="myName">
                     <a href="javascript:;" class="clearfix">
-                        <img src="../images/uHead.jpg" class="sameImg userImage fl">
+                        <img v-if="my_info.faceimg"  :src="my_info.faceimg"  class="sameImg userImage fl">
+                        <img v-else  src="../images/uHead.jpg" class="sameImg userImage fl">
                         <div class="rightName likePadding fl">
                             <p>姓名：<span>{{my_info.nickname}}</span></p>
                             <p>类型：<span v-if="default_datas[my_info.economictid]"> {{default_datas[my_info.economictid]["name"]}}</span></p>

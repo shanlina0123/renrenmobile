@@ -47,7 +47,7 @@ new Vue({
         search_params:{"name":null,"typeid":null,"uuid":null},
         company_list:[],
         house_list:[],
-        tokenData: sessionStorage.getItem("userinfo")
+        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods:{
         GetQueryString:function(name)
@@ -80,7 +80,7 @@ new Vue({
             var that = this;
             that.house_name=house_name;
             that.house_name?that.search_params.name=that.house_name:null;
-            axios.post( url,that.search_params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.post( url,that.search_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response)
                 {
                     var data = response.data;
@@ -127,7 +127,7 @@ new Vue({
         getCompanyList:function () {
             var url = auth_conf.client_compnay;
             var that = this;
-            axios.get( url,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.get( url,{headers: {"Authorization":that.tokenValue} })
                 .then(function (response)
                 {
                     var data = response.data;
@@ -155,7 +155,7 @@ new Vue({
             that.add_params.mobile=that.$refs.mobile.value;
             that.add_params.remark=that.$refs.remark.value;
             //token
-            axios.post(url,that.add_params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.post(url,that.add_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
                     if( data.status == 1 )

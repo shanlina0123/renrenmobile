@@ -73,6 +73,7 @@
         border-radius: 3px;
         border:1px solid #Eb7221;
         color: #Eb7221;
+        margin: 0 .05rem;
     }
 }
 .unSale{
@@ -109,7 +110,10 @@
     tr{
         td{
             text-align: center;
-            padding: .2rem 0
+            padding: .2rem 0;
+            &.on{
+                color: #Eb7221;
+            }
         }
     }
 }
@@ -130,6 +134,9 @@
         li{
             padding: .1rem .2rem .1rem .2rem;
             border-bottom: 1px solid #ccc;
+            &.on{
+                color: #Eb7221;
+            }
         }  
     }
 }

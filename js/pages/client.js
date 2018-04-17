@@ -52,11 +52,21 @@ new Vue({
         tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods:{
+        //点击搜索状态显示下拉框
+        showStatusClick:function(){
+            $(".selectText").show();
+        },
         //搜索点击-状态
         statusClick:function(id,name){
           this.params.followstatusid=id;
           $(".showText").html(name);
           $(".selectText").hide();
+          //搜索
+          if(this.$refs.name.value)
+          {
+                this.params.name=this.$refs.name.value;
+          }
+            this.getClientList();
         },
         //搜索
         searchClick:function(){

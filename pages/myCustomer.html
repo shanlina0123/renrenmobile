@@ -5,12 +5,13 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>我的客户</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
@@ -23,6 +24,7 @@
     <script src="../plugin/js/httpUrl.js"></script>
 
 </head>
+
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -32,79 +34,83 @@
             <div class="cusSearch">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
-                        <div class="showText">客户状态</div>
+                        <div class="showText" @click="showStatusClick()">客户状态</div>
                         <ul class="selectText">
                             <li @click="statusClick(null,'客户状态')">客户状态</li>
-                            <li v-for="item in default_followstatus_datas" @click="statusClick(item.id,item.name)" >{{ item.name }}</li>
+                            <li v-for="item in default_followstatus_datas" @click="statusClick(item.id,item.name)">{{ item.name }}</li>
                         </ul>
 
                     </div>
-                    <input type="text" class="searchInput fl"  placeholder="输入客户姓名或状态" ref="name">
-                    <a href="#"><img src="../images/search.png" class="searchImage sameImg"   @click="searchClick()"></a>
+                    <input type="text" class="searchInput fl" placeholder="输入客户姓名或状态" ref="name">
+                    <a href="#"><img src="../images/search.png" class="searchImage sameImg" @click="searchClick()"></a>
                 </div>
-            </div><!-- 搜索部分结束 -->
+            </div>
+            <!-- 搜索部分结束 -->
             <!--访问客户量展示-->
             <ul class="custormNum clearfix">
                 <li>
                     <p>{{client_statistics.refereeCount}}</p>
                     <span>累计推荐</span>
                 </li>
-                 <li>
+                <li>
                     <p>{{client_statistics.effectiveCount}}</p>
                     <span>有效推荐</span>
                 </li>
-                 <li>
+                <li>
                     <p>{{client_statistics.invalidCount}}</p>
                     <span>无效推荐</span>
                 </li>
-                 <li>
+                <li>
                     <p>{{client_statistics.visitCount}}</p>
                     <span>上门访问</span>
                 </li>
             </ul>
-             <!--客户搜索部分-->
-             <!--<div class="cusSearch clearfix">
+            <!--客户搜索部分-->
+            <!--<div class="cusSearch clearfix">
                  <input type="input" class="cusSearchInput fl" placeholder="输入客户姓名或状态">
                  <a href="javascript:;" class="searchBtn fl">搜索</a>
              </div>-->
-             
-             <!--客户展示结果集-->
-             <ul class="customsList clearfix">
-                 <li v-for="client in client_list">
-                     <ul class="subList clearfix">
-                         <li>姓名：<span>{{client.name}}</span></li>
-                         <li>电话：<span>{{client.mobile}}</span></li>
-                         <li>时间：<span>{{client.makedate}}</span></li>
-                         <li>楼盘：<span>{{client.housename}}</span></li>
-                         <li>客户状态：
-                             <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
-                             <span class="stateShow"  v-else></span>
-                             <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
-                         <!--外部中介看不到客户等级，添加isShow类名就行-->
-                         <li v-if="tokenUserInfo.isadminafter==1">客户等级：<span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
-                     </ul>
-                 </li>
-             </ul>
-        </div><!-- //main -->
+
+            <!--客户展示结果集-->
+            <ul class="customsList clearfix">
+                <li v-for="client in client_list">
+                    <ul class="subList clearfix">
+                        <li><img src="../images/uname.png" width="20"><span>{{client.name}}</span></li>
+                        <li><img src="../images/phoneNum.png" width="20"><span>{{client.mobile}}</span></li>
+                        <li><img src="../images/setdate.png" width="20"><span>{{client.makedate}}</span></li>
+                        <li><img src="../images/building.png" width="20"><span>{{client.housename}}</span></li>
+                        <li><img src="../images/state.png" width="20">
+                            <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
+                            <span class="stateShow" v-else></span>
+                            <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
+                        <!--外部中介看不到客户等级，添加isShow类名就行-->
+                        <li v-if="tokenUserInfo.isadminafter==1"><img src="../images/level.png" width="20"><span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- //main -->
         <!--客户等级选择弹窗-->
         <div class="popWrap levePop">
             <p>请选择</p>
             <ul class="popUl">
-                <li v-for="level in level_datas"  @click="editLevelClick(level.id,level.name)">{{ level.name }}</li>
+                <li v-for="level in level_datas" @click="editLevelClick(level.id,level.name)">{{ level.name }}</li>
             </ul>
         </div>
         <!--客户状态选择弹窗-->
         <div class="popWrap statePop">
             <p>请选择</p>
             <ul class="popUl">
-                <li v-for="item in default_followstatus_datas"  @click="editStatusClick(item.id,item.name)">{{ item.name }}</li>
+                <li v-for="item in default_followstatus_datas" @click="editStatusClick(item.id,item.name)">{{ item.name }}</li>
             </ul>
         </div>
-    </div><!-- //wrap -->
-    <script type="text/javascript" src="../js/common.js"></script>
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
     <!-- 嵌套数据js -->
     <script type="text/javascript" src="../js/pages/checkToken.js"></script>
     <script type="text/javascript" src="../js/pages/client.js"></script>
 </body>
+
 </html>

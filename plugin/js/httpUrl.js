@@ -13,7 +13,7 @@
         house_info:host+'home/house/info/',//房源详情
         login:host+'home/user/login',//登陆
         regist:host+'home/user/register',//注册
-        get_openid:host+'/home/get/openid/',//openid
+        get_openid:host+'home/get-openid/',//openid
         web_conf: host + 'home/conf', //手机端配置
     },
         //带token的请求

@@ -117,9 +117,12 @@ new Vue({
                 });
         },
         //立即推荐
-        client_refree:function () {
+        submitClick:function () {
             var url = auth_conf.client_refree;
             var that = this;
+            that.add_params.name=that.$refs.name.value;
+            that.add_params.mobile=that.$refs.mobile.value;
+            that.add_params.remark=that.$refs.remark.value;
             //token
             axios.post(url,that.add_params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
                 .then(function (response) {

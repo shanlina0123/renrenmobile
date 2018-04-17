@@ -1,12 +1,34 @@
+$(".selectText li").click(function(){
+    var thisText = $(this).text();
+    $(".showText ").text(thisText);
+    $(this).parents('.bannerSearch').find("input[type=hidden]").val($(this).data('id'));
+});
 new Vue({
     el: '#index',
     data: {
         recommend:[],
         commission:[],
         tags:[],
-        salestatus:[]
+        salestatus:[],
     },
     methods:{
+        getHouseList:function ()
+        {
+            var that = this;
+            var type = that.$refs.typeid.value;
+                switch ( parseInt(type) )
+                {
+                    case 1:
+                        window.location.href = 'pages/newRoomList.html?name='+that.$refs.name.value;
+                        break;
+                    case 2:
+                        window.location.href = 'pages/oldRoomList.html?name='+that.$refs.name.value;
+                        break;
+                    case 3:
+                        window.location.href = 'pages/roomList.html?name='+that.$refs.name.value;
+                        break;
+                }
+        },
         getRecommend:function () {
             var url = conf.recommend;
             var that = this;

@@ -14,7 +14,7 @@ $(function(){
     })*/
 });
 
-new Vue({
+var vm = new Vue({
     el: '#main',
     data: {
         params:{
@@ -31,6 +31,7 @@ new Vue({
         salestatus:[],
         priceE:'',
         priceS:'',
+        pages:0
     },
     methods:{
         getHouseList:function () {
@@ -43,15 +44,11 @@ new Vue({
                     var data = response.data;
                     if( data.status == 1 )
                     {
-                        console.log(11);
                         var list = data.data;
                         that.houseList = list.data;
+                        that.pages = list.last_page;
                     }
                 })
-                .catch(function (error)
-                {
-                    //console.log(error);
-                });
         },
         getData:function () {
             var url = conf.datas;
@@ -70,10 +67,6 @@ new Vue({
                         that.tags = data.data[5]['_child'];
                     }
                 })
-                .catch(function (error)
-                {
-                    //console.log(error);
-                });
         },
         getDefaultData:function () {
             var url = conf.datas_default+'7';
@@ -117,26 +110,54 @@ new Vue({
         handleScroll:function()
         {
             var that = this;
-            layui.use('flow', function() {
-                var flow = layui.flow;
-                flow.load({
-                    elem: '#roomListUl',
-                    scrollElem: '#roomListUl',
-                    isAuto: true,
-                    done: function(page, next) {
-                        that.getHouseList();
-                        next(page < 10);
-                    }
-                });
-            });
+            var lis = that.houseList;
 
-        }
+
+        },
+        getQueryString:function ( name )
+        {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 匹配目标参数
+            var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+            if (result != null) {
+                return decodeURIComponent(result[2]);
+            }else
+            {
+                return null;
+            }
+        },
     },created: function () {
         var that = this;
         that.getDefaultData();//默认属性
         that.getData();//自定义属性
-        that.getHouseList();//新房房源列表
-    },mounted:function () {
-        window.addEventListener('scroll',this.handleScroll)
+        that.params.name = that.getQueryString('name');//获取name
+        //that.getHouseList();//新房房源列表
     }
+});
+
+/**
+ * 加载分页
+ */
+layui.use('flow', function(){
+    var flow = layui.flow;
+    flow.load({
+        elem: '#roomListUl' //指定列表容器
+        ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+            vm.params.page = page;
+            var url = conf.house_list;
+            var oldlist = vm.$data.houseList;
+            axios.get( url,{params:vm.$data.params} )
+                .then(function (response)
+                {
+                    var data = response.data;
+                    if( data.status == 1 )
+                    {
+                        var list = data.data;
+                        vm.$data.pages = list.last_page;
+                        vm.$data.houseList = oldlist.concat( list.data )
+                    }
+                    next($("#roomListUl li").html(), page < vm.$data.pages);
+                })
+
+        }
+    });
 });

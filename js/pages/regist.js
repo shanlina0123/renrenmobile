@@ -57,7 +57,9 @@ $(function(){
 new Vue({
     el: '#main',
     data: {
-       type:[]
+       type:[],
+       code:'',
+       openid:''
     },
     methods:{
         getData:function () {
@@ -75,9 +77,41 @@ new Vue({
         typeName:function (id,name) {
             $(".showForm").html(name);
             $("#economictid").val(id);
+        },
+        getQueryString:function ( name )
+        {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 匹配目标参数
+            var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+            if (result != null) {
+                return decodeURIComponent(result[2]);
+            }else
+            {
+                return null;
+            }
+        },
+        getOpenID:function () {
+            var that = this;
+            var code = that.getQueryString('code');
+            var url = conf.get_openid+code;
+            if( code )
+            {
+                axios.get(url)
+                .then(function (response) {
+                    var data = response.data;
+                    if ( data.status == 1 )
+                    {
+                        that.openid = data.openid;
+                    }
+                })
+            }
         }
     },created: function () {
         var that = this;
+        if( !that.getQueryString('code') )
+        {
+            window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fpages%2Fregist.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        }
         that.getData();//自定义属性
+        that.getOpenID();
     }
 });

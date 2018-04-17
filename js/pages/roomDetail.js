@@ -1,44 +1,4 @@
 
-var lng='';
-var lat='';
-$(function(){
-    //筛选tab切换
-    $(".tabTable tr .td1").click(function(){
-        $(".tabconWrap .areaTab").show().siblings().hide();
-    });
-    $(".tabTable tr .td2").click(function(){
-        $(".tabconWrap .priceTab").show().siblings().hide();
-    });
-    $(".forTab").click(function(){
-        $(this).hide();
-    });
-    //房源图片轮播
-    new Swiper(".proImg", {
-        speed: 3000,
-        autoplay:true,
-        pagination: '.pagination',
-        paginationClickable: true,
-    });
-    //地图显示
-    var center = new qq.maps.LatLng(lat,lng);
-    var map = new qq.maps.Map(
-        document.getElementById("roomMap"),
-        {
-            center: center,
-            zoom: 13,
-            zoomControl: false,
-            mapTypeControlOptions: {
-                mapTypeIds: [
-                    qq.maps.MapTypeId.ROADMAP,
-                ]
-            }
-        }
-    );
-    var marker = new qq.maps.Marker({
-        position: center,
-        map: map
-    });
-})
 new Vue({
     el: '#main',
     data: {
@@ -54,7 +14,9 @@ new Vue({
         decoratestyle:[], //装修
         ownership:[], //权属
         purpose:[],//用途
-        hasdoublegas:[]//双气
+        hasdoublegas:[],//双气
+        lat:'',
+        lng:''
     },
     methods:{
         getHouse:function () {
@@ -67,10 +29,10 @@ new Vue({
                     var data = response.data;
                     if( data.status == 1 )
                     {
-                        console.log( data.data );
                         that.info = data.data;
-                        lng = data.data.lng;
-                        lat = data.data.lat;
+                        that.lng = data.data.lng;
+                        that.lat = data.data.lat;
+                        that.getMap();
                     }
                 })
         },
@@ -126,6 +88,26 @@ new Vue({
                         that.hasdoublegas = data.data[6]['_child'];
                     }
                 })
+        },getMap:function () {
+            //地图显示
+            var center = new qq.maps.LatLng(this.lat,this.lng);
+            var map = new qq.maps.Map(
+                document.getElementById("roomMap"),
+                {
+                    center: center,
+                    zoom: 13,
+                    zoomControl: false,
+                    mapTypeControlOptions: {
+                        mapTypeIds: [
+                            qq.maps.MapTypeId.ROADMAP,
+                        ]
+                    }
+                }
+            );
+            var marker = new qq.maps.Marker({
+                position: center,
+                map: map
+            });
         }
     },created: function () {
         var that = this;
@@ -135,3 +117,23 @@ new Vue({
         that.getHouse();
     }
 });
+
+$(function(){
+    //筛选tab切换
+    $(".tabTable tr .td1").click(function(){
+        $(".tabconWrap .areaTab").show().siblings().hide();
+    });
+    $(".tabTable tr .td2").click(function(){
+        $(".tabconWrap .priceTab").show().siblings().hide();
+    });
+    $(".forTab").click(function(){
+        $(this).hide();
+    });
+    //房源图片轮播
+    new Swiper(".proImg", {
+        speed: 3000,
+        autoplay:true,
+        pagination: '.pagination',
+        paginationClickable: true,
+    });
+})

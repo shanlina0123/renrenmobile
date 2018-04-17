@@ -76,9 +76,12 @@
                          <li>电话：<span>{{client.mobile}}</span></li>
                          <li>时间：<span>{{client.makedate}}</span></li>
                          <li>楼盘：<span>{{client.housename}}</span></li>
-                         <li>客户状态：<span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span><a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
+                         <li>客户状态：
+                             <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
+                             <span class="stateShow"  v-else></span>
+                             <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
                          <!--外部中介看不到客户等级，添加isShow类名就行-->
-                         <li>客户等级：<span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
+                         <li v-if="tokenUserInfo.isadminafter==1">客户等级：<span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
                      </ul>
                  </li>
              </ul>

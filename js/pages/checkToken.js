@@ -14,7 +14,31 @@ new Vue({
                     {
                         window.location="../pages/login.html";
                     }
+                    //检查token是否失效
+                    that.checkToken();
                 }
+        },
+        checkToken:function(){
+            var url = auth_conf.token;
+            var that = this;
+            axios.get( url,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+                .then(function (response)
+                {
+                    var data = response.data;
+                    if(data.status!=1)
+                    {
+                        if(data.message)
+                        {
+                            alert(data.message);
+                        }
+                         that.tokenData=null;
+                         window.location="../pages/login.html";
+                    }
+                })
+                .catch(function (error)
+                {
+                    //console.log(error);
+                });
         }
     }
     ,created: function () {

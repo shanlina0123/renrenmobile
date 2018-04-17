@@ -48,7 +48,8 @@ new Vue({
         client_list:[],
         level_datas:[],
         default_followstatus_datas:[],
-        tokenData: sessionStorage.getItem("userinfo")
+        tokenUserInfo:JSON.parse(sessionStorage.getItem("userinfo")),
+        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods:{
         //搜索点击-状态
@@ -93,7 +94,7 @@ new Vue({
             var url = auth_conf.client_statistics;
             var that = this;
 
-            axios.get( url,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.get( url,{headers: {"Authorization":that.tokenValue} })
                 .then(function (response)
                 {
                     var data = response.data;
@@ -111,7 +112,7 @@ new Vue({
             var url = auth_conf.client_list;
             var that = this;
             //token
-            axios.post(url,that.params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.post(url,that.params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
                     if( data.status == 1 )
@@ -128,7 +129,7 @@ new Vue({
             var url = auth_conf.client_update+this.edit_params.uuid;
             var that = this;
             //token
-            axios.put(url,that.edit_params,{headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.put(url,that.edit_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
                     if( data.status == 1 )
@@ -144,7 +145,7 @@ new Vue({
         getDefaultDataOne:function () {
             var url = auth_conf.datas_default_user_one_list+"8";
             var that = this;
-            axios.get( url,{headers: {"Authorization": JSON.parse(that.tokenData).token}} )
+            axios.get( url,{headers: {"Authorization": that.tokenValue}} )
                 .then(function (response)
                 {
                     var data = response.data;

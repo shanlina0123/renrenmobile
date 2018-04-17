@@ -4,13 +4,13 @@ new Vue({
         my_info:[],
         default_datas:[],
         connect_tel:"",
-        tokenData: sessionStorage.getItem("userinfo")
+        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods:{
         getMyInfo:function () {
             var url = auth_conf.user_info;
             var that = this;
-            axios.get(url, {headers: {"Authorization": JSON.parse(that.tokenData).token} })
+            axios.get(url, {headers: {"Authorization": that.tokenValue} })
               .then(function (response) {
                     var data = response.data;
                     if( data.status == 1 )

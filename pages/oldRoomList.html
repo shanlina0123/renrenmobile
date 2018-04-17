@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
-<html >
+<html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>房源列表-二手房</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
@@ -23,16 +24,18 @@
     <script src="../plugin/js/axios.min.js"></script>
     <script src="../plugin/js/httpUrl.js"></script>
 </head>
+
 <body>
     <div class="wrap" id="main" v-cloak>
-        <div class="main" >
+        <div class="main">
             <div class="listearch">
                 <div class="bannerSearch clearfix">
                     <input type="text" ref="name" :value="params.name" class="searchInput fl" placeholder="请输入小区名称">
-                    <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
+                    <a href="javascript:;" class="searchImgWrap fl" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
-            </div><!-- 搜索部分结束 -->
-             <!-- 检索条件 -->
+            </div>
+            <!-- 搜索部分结束 -->
+            <!-- 检索条件 -->
             <div class="listSort">
                 <table class="tabTable">
                     <tr>
@@ -44,7 +47,8 @@
                 <div class="tabconWrap">
                     <div class="forTab areaTab">
                         <div class="forTabInner">
-                            <ul class="topsort"><!--上半部分筛选-->
+                            <ul class="topsort">
+                                <!--上半部分筛选-->
                                 <li>全西安</li>
                             </ul>
                         </div>
@@ -64,24 +68,26 @@
                             <div class="bottomSort clearfix">
                                 <div class="leftInsert fl">
                                     <input type="text" class="searchInput" v-model="priceS" @change="changePriceS(priceS)"> -
-                                    <input type="text" class="searchInput" v-model="priceE" @change="changePriceE(priceE)" >
+                                    <input type="text" class="searchInput" v-model="priceE" @change="changePriceE(priceE)">
                                 </div>
                                 <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
                             </div>
                         </div>
                     </div>
-                   <div class="forTab roomTab">
+                    <div class="forTab roomTab">
                         <div class="forTabInner">
-                            <ul class="topsort"><!--上半部分筛选-->
-                                <template  v-for="type in roomtype">
+                            <ul class="topsort">
+                                <!--上半部分筛选-->
+                                <template v-for="type in roomtype">
                                     <li :data-id="type.id" @click="roomData(type.id)">{{type.name}}</li>
                                 </template>
                             </ul>
-                            <div class="bottomSort clearfix"><!--下半部分筛选-->
+                            <div class="bottomSort clearfix">
+                                <!--下半部分筛选-->
                                 <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
             <!--房源列表-->
@@ -99,39 +105,36 @@
                             <table class="roomTable">
                                 <tr>
                                     <td>
-                                        <div class="newHouse">
-                                            楼盘：{{item.name}}
-                                        </div>
-                                    </td><!--新楼的楼盘标志位待售或者在售-->
-                                    <td>总价：{{item.total}}万</td>
-                                    <td>面积：{{item.area}}平</td>
-                                </tr>
-                               <tr>
-                                   <td colspan="2">街道：{{item.street}}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="clearfix">
-                                            <span class="fl">特点：</span>
-                                            <div class="lips fl">
-                                                <template v-for="tag in item.house_to_tag">
-                                                    <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
-                                                </template>
-                                            </div>
-                                        </div>
-                                        
+                                        <span class="newHouse">
+                                            <span class="houseName">{{item.name}}</span>
+                                        </span>
+                                        <span class="allPrice">总价：{{item.total}}万</span>
+                                        <span class="onePrice">{{item.area}}m<sup>2</sup></span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>佣金规则：</td>
-                                    <td colspan="2" v-if="commission[item.commissionid]">{{commission[item.commissionid].name}}</td>
+                                    <td><span class="streetText">{{item.street}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="lips fl">
+                                            <template v-for="tag in item.house_to_tag">
+                                                    <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                            </template>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>
                         </a>
                     </li>
                 </ul>
-            </div><!-- 产品列表结束 -->
-        </div><!-- //main -->
+            </div>
+            <!-- 产品列表结束 -->
+        </div>
+        <!-- //main -->
         <div class="bootBar clearfix xieybtn">
             <a href="tel:88556895">
                 <img src="../images/contact1.png" width="20">
@@ -141,10 +144,13 @@
                 <img src="../images/recommend1.png" width="20">
                 <p>立即推荐</p>
             </a>
-        </div><!-- //footBar -->
-    </div><!-- //wrap -->
+        </div>
+        <!-- //footBar -->
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/layui/layui.js"></script>
     <script type="text/javascript" src="../js/pages/oldRoomList.js"></script>
 </body>
+
 </html>

@@ -35,8 +35,8 @@
                         </ul>
                     </div>
                     <input type="text" ref="name" class="searchInput fl">
-                    <input type="hidden" ref="typeid" value="1" class="searchInput fl">
-                    <a href="javascript:;"><img src="images/search.png" class="searchImage sameImg" @click="getHouseList()"></a>
+                    <input type="hidden" ref="typeid" value="1" class="searchInput">
+                    <a href="javascript:;" class="searchImgWrap fl"><img src="images/search.png" class="searchImage sameImg" @click="getHouseList()"></a>
                 </div>
                 <!-- 搜索部分结束 -->
                 <ul class="nav clearfix">
@@ -107,15 +107,15 @@
                                     <tr>
                                         <td>
                                             <span class="newHouse">
-                                                {{item.name}}
-                                                <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
-                                            </span>&nbsp;
-                                            <span>{{item.total}}万</span>&nbsp;
-                                            <span>{{item.area}}m<sup>2</sup></span>
+                                                <span class="houseName">{{item.name}}</span>
+                                            <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            </span>
+                                            <span class="allPrice">{{item.total}}万</span>
+                                            <span class="onePrice">{{item.area}}m<sup>2</sup></span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>{{item.street}}</td>
+                                        <td><span class="streetText">{{item.street}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>

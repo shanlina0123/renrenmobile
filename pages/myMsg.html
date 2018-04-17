@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的信息</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/rem.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="main samePadding">
+            <div class="formWrap">
+                <img src="../images/logo.png" class="logo">
+                <form class="loginForm" id="loginForm">
+                    <table class="changeTable">
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" readonly class="changeInput" value="张森"></td>
+                        </tr>
+                        <tr>
+                            <td>电话：</td>
+                            <td><input type="text" class="changeInput" name="newPhone" value="15694856984"></td>
+                        </tr>
+                    </table>
+                    <p class="changeNotice">为了能快速给您结佣请提供准确的手机号，勿频繁修改</p>
+                    <input type="submit" class="formBtn" value="提交">
+                </form>
+            </div>
+        </div>
+        <!-- //main -->
+        <div class="errorLabel"></div>
+    </div>
+    <!-- //wrap -->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            //表单验证
+            $(".loginForm").validate({
+                errorLabelContainer: $(".errorLabel"),
+                rules: {
+                    nickname: {
+                        required: true
+                    },
+                    mobile: {
+                        required: true,
+                        mobile: true
+                    }
+                },
+                messages: {
+                    nickname: {
+                        required: "请输入账户名"
+                    },
+                    mobile: {
+                        required: "请正确输入手机号"
+                    }
+                },
+                submitHandler: function(form) {
+                    $.ajax({
+                        type: "POST", //方法类型
+                        dataType: "json", //预期服务器返回的数据类型
+                        url: conf.login, //url
+                        data: $('#loginForm').serialize(),
+                        success: function(result) {
+                            if (result.status == 1) {
+                                var data = JSON.stringify(result.data);
+                                sessionStorage.setItem("userinfo", data);
+                                window.location.href = 'my.html';
+                            } else {
+                                $(".errorLabel").show().html(result.messages);
+                            }
+                        },
+                        error: function() {}
+                    });
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

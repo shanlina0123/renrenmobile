@@ -26,7 +26,7 @@
             <div class="listearch">
                 <div class="bannerSearch clearfix">
                     <input type="text" :value="params.name" ref="name" class="searchInput fl" placeholder="请输入小区名称">
-                    <a href="javascript:;" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
+                    <a href="javascript:;" class="searchImgWrap fl" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div>
             <!-- 搜索部分结束 -->
@@ -87,33 +87,28 @@
                             <table class="roomTable">
                                 <tr>
                                     <td>
-                                        <div class="newHouse">
-                                            楼盘：{{item.name}}
-                                        </div>
+                                        <span class="newHouse">
+                                            {{item.name}}
+                                        </span>
+                                        <span class="allPrice">{{item.total}}万</span>
+                                        <span class="onePrice">{{item.area}}m<sup>2</sup></span>
                                     </td>
-                                    <!--新楼的楼盘标志位待售或者在售-->
-                                    <td>总价：{{item.total}}万</td>
-                                    <td>面积：{{item.area}}平</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">街道：{{item.street}}</td>
+                                    <td><span class="streetText">{{item.street}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">
-                                        <div class="clearfix">
-                                            <span class="fl">特点：</span>
-                                            <div class="lips fl">
-                                                <template v-for="tag in item.house_to_tag">
+                                    <td>
+                                        <div class="lips fl">
+                                            <template v-for="tag in item.house_to_tag">
                                                     <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
                                                 </template>
-                                            </div>
                                         </div>
 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>佣金规则：</td>
-                                    <td colspan="2" v-if="commission[item.commissionid]">{{commission[item.commissionid].name}}</td>
+                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>
                         </a>

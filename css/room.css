@@ -69,6 +69,7 @@
   border-radius: 3px;
   border: 1px solid #Eb7221;
   color: #Eb7221;
+  margin: 0 .05rem;
 }
 .unSale {
   border: 1px solid #ff0000;
@@ -103,7 +104,10 @@
 }
 .tabTable tr td {
   text-align: center;
-  padding: 0.2rem 0;
+  padding: .2rem 0;
+}
+.tabTable tr td.on {
+  color: #Eb7221;
 }
 .forTab {
   display: none;
@@ -121,6 +125,9 @@
 .forTab .topsort li {
   padding: .1rem .2rem .1rem .2rem;
   border-bottom: 1px solid #ccc;
+}
+.forTab .topsort li.on {
+  color: #Eb7221;
 }
 .bottomSort {
   padding: .3rem .2rem .3rem .2rem;

@@ -1,4 +1,4 @@
-new Vue({
+var vm = new Vue({
     el: '#my_vue_client',
     data: {
         params:{name:null,followstatusid:null},
@@ -79,23 +79,23 @@ new Vue({
                 });
         },
         //获取客户列表
-        getClientList:function () {
-            var url = auth_conf.client_list;
-            var that = this;
-            //token
-            axios.post(url,that.params,{headers: {"Authorization": that.tokenValue} })
-                .then(function (response) {
-                    var data = response.data;
-                    if( data.status == 1 )
-                    {
-                        that.client_list = data.data.data;
-                    }
-                    // console.log(response.data.status);
-                }).catch(function (error) {
-                //console.log(error);
-                // console.log(this);
-            });
-        },
+        // getClientList:function () {
+        //     var url = auth_conf.client_list;
+        //     var that = this;
+        //     //token
+        //     axios.post(url,that.params,{headers: {"Authorization": that.tokenValue} })
+        //         .then(function (response) {
+        //             var data = response.data;
+        //             if( data.status == 1 )
+        //             {
+        //                 that.client_list = data.data.data;
+        //             }
+        //             // console.log(response.data.status);
+        //         }).catch(function (error) {
+        //         //console.log(error);
+        //         // console.log(this);
+        //     });
+        // },
         //修改客户级别和状态
         updateClient:function () {
             var url = auth_conf.client_update+this.edit_params.uuid;
@@ -152,8 +152,33 @@ new Vue({
     ,created: function () {
         var that = this;
         that.getClientStatistics();//客户统计
-        that.getClientList();//客户列表
+       // that.getClientList();//客户列表
         that.getDefaultDataOne();//默认配置
         that.getDataOne();//自定义配置
     }
+});
+
+/**
+ * 加载分页
+ */
+layui.use('flow', function() {
+    var flow = layui.flow;
+    flow.load({
+        elem: '.samePadding' , //指定列表容器
+        done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
+            vm.params.page = page;
+            var url = auth_conf.client_list;
+            var showList = vm.$data.client_list;
+            axios.post(url,vm.$data.params,{headers: {"Authorization": vm.$data.tokenValue} })
+                .then(function(response) {
+                    var data = response.data;
+                    if (data.status == 1) {
+                        var list = data.data;
+                        vm.$data.pages = list.last_page;
+                        vm.$data.client_list = showList.concat(list.data)
+                    }
+                   next($(".customerTable tr").html(), page < vm.$data.pages);
+                })
+        }
+    });
 });

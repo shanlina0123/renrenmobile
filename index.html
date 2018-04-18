@@ -27,15 +27,15 @@
                 <img src="images/banner.jpg" width="100%">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
-                        <div class="showText">新房</div>
+                        <div class="showText" @click="typeStatus()">新房</div>
                         <ul class="selectText">
-                            <li data-id="1">新房</li>
-                            <li data-id="2">二手房</li>
-                            <li data-id="3">商铺写字楼</li>
+                            <li data-id="1" @click="getTypeID(1,'新房')">新房</li>
+                            <li data-id="2" @click="getTypeID(2,'二手房')">二手房</li>
+                            <li data-id="3" @click="getTypeID(3,'商铺写字楼')">商铺写字楼</li>
                         </ul>
                     </div>
                     <input type="text" ref="name" class="searchInput fl">
-                    <input type="hidden" ref="typeid" value="1" class="searchInput">
+                    <input type="hidden" ref="typeid" :value="typeid" class="searchInput">
                     <a href="javascript:;" class="searchImgWrap fl"><img src="images/search.png" class="searchImage sameImg" @click="getHouseList()"></a>
                 </div>
                 <!-- 搜索部分结束 -->

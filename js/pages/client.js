@@ -1,14 +1,15 @@
 var vm = new Vue({
     el: '#my_vue_client',
     data: {
-        params:{name:null,followstatusid:null},
+        params:{name:null,followstatusid:null,page: 1},
         edit_params:{"uuid":null,"levelid":null,"followstatusid":null},
         client_statistics:[],
         client_list:[],
         level_datas:[],
         default_followstatus_datas:[],
         tokenUserInfo:JSON.parse(sessionStorage.getItem("userinfo")),
-        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
+        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token,
+        pages: 0
     },
     methods:{
         //点击搜索状态显示下拉框
@@ -33,7 +34,8 @@ var vm = new Vue({
             {
                 this.params.name=this.$refs.name.value;
             }
-            this.getClientList();
+
+           this.getClientList();
         },
         //点击修改级别
         clientLevelClick:function(id){
@@ -79,23 +81,24 @@ var vm = new Vue({
                 });
         },
         //获取客户列表
-        // getClientList:function () {
-        //     var url = auth_conf.client_list;
-        //     var that = this;
-        //     //token
-        //     axios.post(url,that.params,{headers: {"Authorization": that.tokenValue} })
-        //         .then(function (response) {
-        //             var data = response.data;
-        //             if( data.status == 1 )
-        //             {
-        //                 that.client_list = data.data.data;
-        //             }
-        //             // console.log(response.data.status);
-        //         }).catch(function (error) {
-        //         //console.log(error);
-        //         // console.log(this);
-        //     });
-        // },
+        getClientList:function () {
+            var url = auth_conf.client_list;
+            var that = this;
+            //token
+            axios.post(url,that.params,{headers: {"Authorization": that.tokenValue} })
+                .then(function (response) {
+                    var data = response.data;
+                    if( data.status == 1 )
+                    {
+                        that.client_list = data.data.data;
+                        that.pages = data.data.last_page;
+                    }
+                    // console.log(response.data.status);
+                }).catch(function (error) {
+                //console.log(error);
+                // console.log(this);
+            });
+        },
         //修改客户级别和状态
         updateClient:function () {
             var url = auth_conf.client_update+this.edit_params.uuid;
@@ -174,8 +177,8 @@ layui.use('flow', function() {
                     var data = response.data;
                     if (data.status == 1) {
                         var list = data.data;
-                        vm.$data.pages = list.last_page;
                         vm.$data.client_list = showList.concat(list.data)
+                        vm.$data.pages = list.last_page;
                     }
                    next($(".customerTable tr").html(), page < vm.$data.pages);
                 })

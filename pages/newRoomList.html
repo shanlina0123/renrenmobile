@@ -39,9 +39,9 @@
             <div class="listSort">
                 <table class="tabTable">
                     <tr>
-                        <td class="td1">全西安&nbsp;&nbsp;<img src="../images/down.png" width="10"></td>
-                        <td class="td2">单价&nbsp;&nbsp;<img src="../images/down.png" width="10"></td>
-                        <td class="td3">房型&nbsp;&nbsp;<img src="../images/down.png" width="10"></td>
+                        <td class="td1">全西安&nbsp;<i class="layui-icon">&#xe625</i></td>
+                        <td class="td2">单价&nbsp;<i class="layui-icon">&#xe625</i></td>
+                        <td class="td3">房型&nbsp;<i class="layui-icon">&#xe625</i></td>
                     </tr>
                 </table>
                 <div class="tabconWrap">
@@ -79,8 +79,7 @@
                             <ul class="topsort">
                                 <!--上半部分筛选-->
                                 <template v-for="type in roomtype">
-                                    <li :data-id="type.id" @click="roomData(type.id)">{{type.name}}</li>
-                                </template>
+                                    <li :data-id="type.id" @click="roomData(type.id)" :class="{on:type.id==clickNum}">{{type.name}}</li>                                </template>
                             </ul>
                             <div class="bottomSort clearfix">
                                 <!--下半部分筛选-->

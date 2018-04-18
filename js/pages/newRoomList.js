@@ -1,12 +1,15 @@
 $(function() {
     //筛选tab切换
     $(".tabTable tr .td1").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
         $(".tabconWrap .areaTab").show().siblings().hide();
     });
     $(".tabTable tr .td2").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
         $(".tabconWrap .priceTab").show().siblings().hide();
     });
     $(".tabTable tr .td3").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
         $(".tabconWrap .roomTab").show().siblings().hide();
     });
     //筛选条件选中样式
@@ -14,7 +17,6 @@ $(function() {
         $(this).addClass("on").siblings().removeClass("on");
     })
 });
-
 var vm = new Vue({
     el: '#main',
     data: {
@@ -32,7 +34,8 @@ var vm = new Vue({
         salestatus: [],
         priceE: '',
         priceS: '',
-        pages: 0
+        pages: 0,
+        clickNum: '0' //房型筛选添加选中样式
     },
     methods: {
 
@@ -93,6 +96,7 @@ var vm = new Vue({
             that.priceS = '';
         }, //房型区间
         roomData: function(id) {
+            this.clickNum = id; //房型筛选添加选中样式
             this.params.roomtypeid = id;
         }, //开始价格
         changePriceS: function(value) {

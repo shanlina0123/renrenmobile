@@ -98,7 +98,7 @@ var vm = new Vue({
 layui.use('flow', function() {
     var flow = layui.flow;
     flow.load({
-        elem: '#roomListUl' //指定列表容器
+        elem: '.samePadding' //指定列表容器
             ,
         done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
             vm.params.page = page;

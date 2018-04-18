@@ -32,7 +32,7 @@
         <div class="main samePadding">
             <ul class="myMessageUl">
                 <li class="myName">
-                    <a href="javascript:;" class="clearfix">
+                    <a @click="showEditMyInfo(my_info.nickname,my_info.mobile)" class="clearfix">
                         <img v-if="my_info.faceimg" :src="my_info.faceimg" class="sameImg userImage fl">
                         <img v-else src="../images/uHead.jpg" class="sameImg userImage fl">
                         <div class="rightName likePadding fl">
@@ -61,25 +61,6 @@
             </a>
         </div>
         <!-- //footBar -->
-        <!--<div class="changePop">
-            <div class="changeWrap">
-                <form>
-                    <table class="changeTable">
-                        <tr>
-                            <td>姓名：</td>
-                            <td><input type="text" readonly class="changeInput" value="张森"></td>
-                        </tr>
-                        <tr>
-                            <td>电话：</td>
-                            <td><input type="text" class="changeInput" name="newPhone" value="15694856984"></td>
-                        </tr>
-                    </table>
-                    <p class="changeNotice">为了能快速给您结佣请提供准确的手机号，勿频繁修改</p>
-                    <input type="submit" class="chnageBtn" value="提交">
-                </form>
-            </div>
-        </div>
-    </div>-->
         <!-- //wrap -->
         <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
         <!-- 嵌套数据js -->

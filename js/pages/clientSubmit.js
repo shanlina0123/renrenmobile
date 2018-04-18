@@ -6,6 +6,7 @@ new Vue({
         search_params: { "name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
+        userInfoData:JSON.parse(sessionStorage.getItem("userinfo")),
         tokenValue: JSON.parse(sessionStorage.getItem("userinfo")).token
     },
     methods: {
@@ -24,7 +25,7 @@ new Vue({
         //检查是否内部外部人源
         checkAfterAdmin: function() {
             var that = this;
-            if (JSON.parse(that.tokenData).isadminafter == 1) {
+            if (that.userInfoData.isadminafter == 1) {
                 $(".afteradmin").addClass("isShow");
             } else {
                 $(".afteradmin").removeClass("isShow");
@@ -84,11 +85,7 @@ new Vue({
                     var data = response.data;
                     if (data.status == 1) {
                         that.company_list = data.data;
-                        if (data.data.length == 0) {
-                            $(".formUl").hide();
-                        } else {
-                            $(".formUl").show();
-                        }
+                        $(".formUl").hide();
                     }
                 })
                 .catch(function(error) {
@@ -99,24 +96,9 @@ new Vue({
         submitClick: function() {
             var url = auth_conf.client_refree;
             var that = this;
-            that.validate();
             that.add_params.name = that.$refs.name.value;
             that.add_params.mobile = that.$refs.mobile.value;
             that.add_params.remark = that.$refs.remark.value;
-            //token
-            axios.post(url, that.add_params, { headers: { "Authorization": that.tokenValue } })
-                .then(function(response) {
-                    var data = response.data;
-                    if (data.status == 1) {
-                        window.location.href = "../pages/myCustomer.html";
-                    }
-                    // console.log(response.data.status);
-                }).catch(function(error) {
-                    //console.log(error);
-                    // console.log(this);
-                });
-        },
-        validate: function() {
             $(".recommendForm").validate({
                 errorLabelContainer: $(".errorLabel"),
                 rules: {
@@ -142,8 +124,25 @@ new Vue({
                     selectHouse: {
                         required: "请选择楼盘"
                     }
+                },submitHandler:function(form){
+                    //token
+                    axios.post(url, that.add_params, { headers: { "Authorization": that.tokenValue } })
+                        .then(function(response) {
+                            var data = response.data;
+                            if (data.status == 1) {
+                                window.location.href = "../pages/myCustomer.html";
+                            }else{
+                                alert(data.messages)
+                            }
+                            // console.log(response.data.status);
+                        }).catch(function(error) {
+                        //console.log(error);
+                        // console.log(this);
+                    });
+
                 }
             })
+
         }
     },
     created: function() {

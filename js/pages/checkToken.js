@@ -27,9 +27,9 @@ new Vue({
                     var data = response.data;
                     if(data.status!=1)
                     {
-                        if(data.message)
+                        if(data.messages)
                         {
-                            alert(data.message);
+                            alert(data.messages);
                         }
                          that.tokenData=null;
                          window.location="../pages/login.html";

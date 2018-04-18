@@ -1,44 +1,3 @@
-// $(function(){
-//
-//     //搜索栏 - 客户状态点击
-//     $(".showText").click(function(){
-//         if($(".selectText").css("display") == "none"){
-//             $(".selectText").show();
-//         }else{
-//             $(".selectText").hide();
-//         }
-//     });
-//
-//
-//     //等级选择效果实现
-//     $(".levelEdit").click(function(){
-//         if($(".levePop").css("display") == "none"){
-//             $(".levePop").show();
-//         }else{
-//             $(".levePop").hide();
-//         }
-//     });
-//     $(".levePop .popUl li").click(function(){
-//         var thisText = $(this).text();
-//         $(".levelShow").text(thisText);
-//         $(".levePop").hide();
-//     });
-//     //客户状态效果实现
-//     $(".stateEdit").click(function(){
-//         if($(".statePop").css("display") == "none"){
-//             $(".statePop").show();
-//         }else{
-//             $(".statePop").hide();
-//         }
-//     });
-//     $(".statePop .popUl li").click(function(){
-//         var thisText = $(this).text();
-//         $(".stateShow").text(thisText);
-//         $(".statePop").hide();
-//     });
-//
-//
-// })
 new Vue({
     el: '#my_vue_client',
     data: {
@@ -100,6 +59,7 @@ new Vue({
             $(".statePop").hide();
             this.updateClient();
         },
+        //获取客户统计
         getClientStatistics:function () {
             var url = auth_conf.client_statistics;
             var that = this;
@@ -118,6 +78,7 @@ new Vue({
                     //console.log(error);
                 });
         },
+        //获取客户列表
         getClientList:function () {
             var url = auth_conf.client_list;
             var that = this;
@@ -135,6 +96,7 @@ new Vue({
                 // console.log(this);
             });
         },
+        //修改客户级别和状态
         updateClient:function () {
             var url = auth_conf.client_update+this.edit_params.uuid;
             var that = this;
@@ -142,16 +104,13 @@ new Vue({
             axios.put(url,that.edit_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
-                    if( data.status == 1 )
-                    {
-                        //修改成功
-                    }
+                    alert(data.messages);
                     // console.log(response.data.status);
                 }).catch(function (error) {
-                //console.log(error);
-                // console.log(this);
+                   alert("Error:System");
             });
         },
+        //获取默认单分类列表
         getDefaultDataOne:function () {
             var url = auth_conf.datas_default_user_one_list+"8";
             var that = this;
@@ -170,6 +129,7 @@ new Vue({
                     //console.log(error);
                 });
         },
+        //获取自定义单分类列表
         getDataOne:function () {
             var url = conf.datas_one+"4";
             var that = this;

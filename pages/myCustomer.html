@@ -72,7 +72,7 @@
              </div>-->
 
             <!--客户展示结果集-->
-            <ul class="customsList clearfix">
+            <!--<ul class="customsList clearfix">
                 <li v-for="client in client_list">
                     <ul class="subList clearfix">
                         <li><img src="../images/uname.png" width="20"><span>{{client.name}}</span></li>
@@ -83,11 +83,27 @@
                             <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
                             <span class="stateShow" v-else></span>
                             <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
-                        <!--外部中介看不到客户等级，添加isShow类名就行-->
                         <li v-if="tokenUserInfo.isadminafter==1"><img src="../images/level.png" width="20"><span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul>-->
+            <table v-for="client in client_list" class="customerTable">
+                <tr>
+                    <td colspan="3"><span class="userName">{{client.name}}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span class="userPhone">{{client.mobile}}</span></td>
+                    <td v-if="tokenUserInfo.isadminafter==1">
+                        <span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="userPhone">{{client.housename}}</span></td>
+                    <td><span class="dateTime">{{client.makedate}}</span></td>
+                    <td><span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
+                        <span class="stateShow" v-else></span></td>
+                </tr>
+            </table>
         </div>
         <!-- //main -->
         <!--客户等级选择弹窗-->

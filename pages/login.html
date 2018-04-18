@@ -1,19 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>登录</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/other.css">
+    <link rel="stylesheet" href="../js/layui/css/layui.css">
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
     <script src="../plugin/js/httpUrl.js"></script>
 </head>
+
 <body>
     <div class="wrap">
         <div class="main samePadding">
@@ -31,16 +34,19 @@
                         </tr>
                     </table>
                     <input type="submit" class="formBtn" value="登录">
-                </form>     
+                </form>
             </div>
-        </div><!-- //main -->
+        </div>
+        <!-- //main -->
         <div class="errorLabel"></div>
-    </div><!-- //wrap -->
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
-        <script type="text/javascript">
-        $(function(){
+    <script type="text/javascript" src="../js/layui/layui.js"></script>
+    <script type="text/javascript">
+        $(function() {
             //表单验证
             $(".loginForm").validate({
                 errorLabelContainer: $(".errorLabel"),
@@ -50,7 +56,7 @@
                     },
                     mobile: {
                         required: true,
-                        mobile:true
+                        mobile: true
                     }
                 },
                 messages: {
@@ -60,30 +66,30 @@
                     mobile: {
                         required: "请正确输入手机号"
                     }
-                },submitHandler:function(form){
+                },
+                submitHandler: function(form) {
                     $.ajax({
-                        type: "POST",//方法类型
-                        dataType: "json",//预期服务器返回的数据类型
-                        url: conf.login ,//url
+                        type: "POST", //方法类型
+                        dataType: "json", //预期服务器返回的数据类型
+                        url: conf.login, //url
                         data: $('#loginForm').serialize(),
-                        success: function (result)
-                        {
-                            if ( result.status == 1 )
-                            {
+                        success: function(result) {
+                            if (result.status == 1) {
                                 var data = JSON.stringify(result.data);
-                                sessionStorage.setItem("userinfo", data );
+                                sessionStorage.setItem("userinfo", data);
                                 window.location.href = 'my.html';
-                            }else
-                            {
-                                 $(".errorLabel").show().html(result.messages);
+                            } else {
+                                $(".errorLabel").show().html(result.messages);
                             }
                         },
-                        error : function() {
+                        error: function() {
+
                         }
                     });
                 }
-            })
+            });
         })
     </script>
 </body>
+
 </html>

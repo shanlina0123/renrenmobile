@@ -6,8 +6,8 @@ new Vue({
         search_params: { "name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
-        userInfoData:JSON.parse(sessionStorage.getItem("userinfo")),
-        tokenValue: JSON.parse(sessionStorage.getItem("userinfo")).token
+        userInfoData:JSON.parse(localStorage.getItem("userinfo")),
+        tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
     },
     methods: {
         GetQueryString: function(name) {

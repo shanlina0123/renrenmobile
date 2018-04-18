@@ -7,8 +7,8 @@ var vm = new Vue({
         client_list:[],
         level_datas:[],
         default_followstatus_datas:[],
-        tokenUserInfo:JSON.parse(sessionStorage.getItem("userinfo")),
-        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token,
+        tokenUserInfo:JSON.parse(localStorage.getItem("userinfo")),
+        tokenValue:JSON.parse(localStorage.getItem("userinfo")).token,
         pages: 0
     },
     methods:{

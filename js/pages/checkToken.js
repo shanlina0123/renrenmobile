@@ -1,7 +1,7 @@
 new Vue({
     el: 'body',
     data: {
-        tokenData: sessionStorage.getItem("userinfo")
+        tokenData: localStorage.getItem("userinfo")
     },
     methods:{
         filterToken:function(){

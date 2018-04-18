@@ -4,7 +4,7 @@ new Vue({
         my_info:[],
         default_datas:[],
         connect_tel:"",
-        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
+        tokenValue:JSON.parse(localStorage.getItem("userinfo")).token
     },
     methods:{
         getMyInfo:function () {

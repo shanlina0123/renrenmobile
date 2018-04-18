@@ -1,3 +1,18 @@
+$(function() {
+    //筛选tab切换
+    $(".tabTable tr .td1").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".tabconWrap .areaTab").show().siblings().hide();
+    });
+    $(".tabTable tr .td2").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".tabconWrap .priceTab").show().siblings().hide();
+    });
+    //筛选条件选中样式
+    $(".topsort li").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+    })
+});
 var vm = new Vue({
     el: '#main',
     data: {

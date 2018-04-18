@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script src="plugin/js/httpUrl.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    function getQueryString( name )
+    {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        if (result != null) {
+            return decodeURIComponent(result[2]);
+        }else
+        {
+            return null;
+        }
+    }
+    var code = getQueryString('code');
+    if( code )
+    {
+        $.ajax({
+            type: "GET", //方法类型
+            dataType: "json", //预期服务器返回的数据类型
+            url: conf.get_openid+code, //url
+            success: function(result) {
+                if ( result.status == 1 )
+                {
+                    if( result.data.users )
+                    {
+                        var data = JSON.stringify(result.data.users);
+                        localStorage.setItem("userinfo", data);
+                    }
+                    localStorage.setItem("openid", result.data.openid);
+                    window.location.href = 'http://wx.rrzhaofang.com';
+                }
+            },
+            error: function() {
+               alert( '请求失败' );
+            }
+        });
+    }
+</script>
+</html>

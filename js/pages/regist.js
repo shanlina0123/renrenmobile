@@ -47,7 +47,10 @@ $(function(){
                         window.location.href = 'login.html';
                     }else
                     {
-
+                        layui.use('layer', function() {
+                            var layer = layui.layer;
+                            layer.msg(result.messages);
+                        });
                     }
                 }
             });
@@ -100,7 +103,7 @@ new Vue({
                     var data = response.data;
                     if ( data.status == 1 )
                     {
-                        that.openid = data.openid;
+                        that.openid = data.data.openid;
                     }
                 })
             }

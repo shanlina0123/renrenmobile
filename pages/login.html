@@ -76,10 +76,14 @@
                         success: function(result) {
                             if (result.status == 1) {
                                 var data = JSON.stringify(result.data);
-                                sessionStorage.setItem("userinfo", data);
+                                localStorage.setItem("userinfo", data);
                                 window.location.href = 'my.html';
-                            } else {
-                                $(".errorLabel").show().html(result.messages);
+                            } else
+                            {
+                                layui.use('layer', function() {
+                                    var layer = layui.layer;
+                                    layer.msg(result.messages);
+                                });
                             }
                         },
                         error: function() {

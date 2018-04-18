@@ -31,8 +31,8 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="wrap" id="my_vue_client" v-cloak>
-        <div class="main samePadding">
-            <div class="cusSearch">
+        <div class="main">
+            <div class="cusSearch samePadding">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
                         <div class="showText" @click="showStatusClick()">客户状态</div>
@@ -48,24 +48,26 @@
             </div>
             <!-- 搜索部分结束 -->
             <!--访问客户量展示-->
-            <ul class="custormNum clearfix">
-                <li>
-                    <p>{{client_statistics.refereeCount}}</p>
-                    <span>累计推荐</span>
-                </li>
-                <li>
-                    <p>{{client_statistics.effectiveCount}}</p>
-                    <span>有效推荐</span>
-                </li>
-                <li>
-                    <p>{{client_statistics.invalidCount}}</p>
-                    <span>无效推荐</span>
-                </li>
-                <li>
-                    <p>{{client_statistics.visitCount}}</p>
-                    <span>上门访问</span>
-                </li>
-            </ul>
+            <div class="samePadding">
+                <ul class="custormNum clearfix">
+                    <li>
+                        <p>{{client_statistics.refereeCount}}</p>
+                        <span>累计推荐</span>
+                    </li>
+                    <li>
+                        <p>{{client_statistics.effectiveCount}}</p>
+                        <span>有效推荐</span>
+                    </li>
+                    <li>
+                        <p>{{client_statistics.invalidCount}}</p>
+                        <span>无效推荐</span>
+                    </li>
+                    <li>
+                        <p>{{client_statistics.visitCount}}</p>
+                        <span>上门访问</span>
+                    </li>
+                </ul>
+            </div>
             <!--客户搜索部分-->
             <!--<div class="cusSearch clearfix">
                  <input type="input" class="cusSearchInput fl" placeholder="输入客户姓名或状态">
@@ -73,38 +75,27 @@
              </div>-->
 
             <!--客户展示结果集-->
-            <!--<ul class="customsList clearfix">
-                <li v-for="client in client_list">
-                    <ul class="subList clearfix">
-                        <li><img src="../images/uname.png" width="20"><span>{{client.name}}</span></li>
-                        <li><img src="../images/phoneNum.png" width="20"><span>{{client.mobile}}</span></li>
-                        <li><img src="../images/setdate.png" width="20"><span>{{client.makedate}}</span></li>
-                        <li><img src="../images/building.png" width="20"><span>{{client.housename}}</span></li>
-                        <li><img src="../images/state.png" width="20">
-                            <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
-                            <span class="stateShow" v-else></span>
-                            <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)">编辑</a></li>
-                        <li v-if="tokenUserInfo.isadminafter==1"><img src="../images/level.png" width="20"><span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span><a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)">编辑</a></li>
-                    </ul>
-                </li>
-            </ul>-->
-            <table v-for="client in client_list" class="customerTable">
-                <tr>
-                    <td colspan="3"><span class="userName">{{client.name}}</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><span class="userPhone">{{client.mobile}}</span></td>
-                    <td v-if="tokenUserInfo.isadminafter==1">
-                        <span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="userPhone">{{client.housename}}</span></td>
-                    <td><span class="dateTime">{{client.makedate}}</span></td>
-                    <td><span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
-                        <span class="stateShow" v-else></span></td>
-                </tr>
-            </table>
+            <div class="customulWrap">
+                <ul class="customsList samePadding clearfix">
+                    <li v-for="client in client_list">
+                        <ul class="subList clearfix">
+                            <li class="nameLi">{{client.name}}</li>
+                            <li class="mobileLi">{{client.mobile}}</li>
+                            <li class="dateLi">{{client.makedate}}</li>
+                            <li class="houseDate">{{client.housename}}</li>
+                            <li class="stateLi">
+                                <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
+                                <span class="stateShow" v-else></span>
+                                <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
+                            </li>
+                            <li v-if="tokenUserInfo.isadminafter==1" class="levelLi">
+                                <span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span>
+                                <a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- //main -->
         <!--客户等级选择弹窗-->

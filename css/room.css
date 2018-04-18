@@ -31,7 +31,8 @@
 }
 .msgPart .partTitle {
   border-bottom: 1px solid #ccc;
-  padding: .2rem 0;
+  padding: .01rem 0;
+  color: #ff0000;
 }
 .msgPart .partTitle img {
   width: 0.5rem;
@@ -47,6 +48,7 @@
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   padding-left: 0;
+  font-size: .2rem;
 }
 .msgPart .pricePart li {
   float: left;
@@ -54,13 +56,13 @@
   text-align: center;
 }
 .msgPart .pricePart li p {
-  padding-top: .1rem;
   font-size: .35rem;
   color: #ff0000;
   font-weight: bold;
 }
 .tipsWrap {
   padding: 8px 0;
+  font-size: .12rem;
 }
 .tipsWrap span {
   display: inline-block;
@@ -80,6 +82,7 @@
 }
 .detailUl {
   padding: 0;
+  font-size: .18rem;
 }
 .detailUl li {
   float: left;
@@ -93,6 +96,7 @@
 }
 .showMap {
   margin-top: 10px;
+  font-size: .2rem;
 }
 .roomMap {
   width: 7rem;

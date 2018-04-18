@@ -100,7 +100,7 @@ new Vue({
                     var data = response.data;
                     if ( data.status == 1 )
                     {
-                        that.openid = data.openid;
+                        that.openid = data.data.openid;
                     }
                 })
             }

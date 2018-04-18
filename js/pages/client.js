@@ -107,10 +107,16 @@ var vm = new Vue({
             axios.put(url,that.edit_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
-                    alert(data.messages);
+                    layui.use('layer', function(id) {
+                        var layer = layui.layer;
+                        layer.msg(data.messages);
+                    });
                     // console.log(response.data.status);
                 }).catch(function (error) {
-                   alert("Error:System");
+                    layui.use('layer', function(id) {
+                        var layer = layui.layer;
+                        layer.msg("系统错误");
+                    });
             });
         },
         //获取默认单分类列表

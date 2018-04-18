@@ -47,7 +47,10 @@ $(function(){
                         window.location.href = 'login.html';
                     }else
                     {
-
+                        layui.use('layer', function() {
+                            var layer = layui.layer;
+                            layer.msg(result.messages);
+                        });
                     }
                 }
             });

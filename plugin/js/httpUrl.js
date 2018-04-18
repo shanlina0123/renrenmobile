@@ -1,6 +1,6 @@
 (function () {
-   // var host = "http://api.rrzhaofang.com/";
-     var host = "http://dev.renren.com/";
+    var host = "http://api.rrzhaofang.com/";
+   //  var host = "http://dev.renren.com/";
    // var host = "http://local.fang.com/";
     //未带toke请求
     window.conf = {

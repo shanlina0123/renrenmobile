@@ -1,20 +1,20 @@
 var vm = new Vue({
     el: '#my_vue_client',
     data: {
-        params:{name:null,followstatusid:null,page: 1},
-        edit_params:{"uuid":null,"levelid":null,"followstatusid":null},
-        client_statistics:[],
-        client_list:[],
-        level_datas:[],
-        default_followstatus_datas:[],
-        tokenUserInfo:JSON.parse(localStorage.getItem("userinfo")),
-        tokenValue:JSON.parse(localStorage.getItem("userinfo")).token,
+        params: { name: null, followstatusid: null, page: 1 },
+        edit_params: { "uuid": null, "levelid": null, "followstatusid": null },
+        client_statistics: [],
+        client_list: [],
+        level_datas: [],
+        default_followstatus_datas: [],
+        tokenUserInfo: JSON.parse(localStorage.getItem("userinfo")),
+        tokenValue: JSON.parse(localStorage.getItem("userinfo")).token,
         pages: 0
     },
     methods: {
         //点击搜索状态显示下拉框
         showStatusClick: function() {
-            $(".selectText").show();
+            $(".selectText").toggle();
         },
         //搜索点击-状态
         statusClick: function(id, name) {
@@ -43,7 +43,7 @@ var vm = new Vue({
         //点击修改客户状态
         clientStatusClick: function(id) {
             this.edit_params.uuid = id;
-            $(".statePop").show();
+            $(".statePop").toggle();
         },
         //修改级别
         editLevelClick: function(id, name) {
@@ -157,7 +157,7 @@ var vm = new Vue({
 layui.use('flow', function() {
     var flow = layui.flow;
     flow.load({
-        elem: '.samePadding', //指定列表容器
+        elem: '.customulWrap', //指定列表容器
         done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
             vm.params.page = page;
             var url = auth_conf.client_list;
@@ -167,10 +167,10 @@ layui.use('flow', function() {
                     var data = response.data;
                     if (data.status == 1) {
                         var list = data.data;
-                        vm.$data.client_list = showList.concat(list.data)
+                        vm.$data.client_list = showList.concat(list.data);
                         vm.$data.pages = list.last_page;
                     }
-                    next($(".customerTable tr").html(), page < vm.$data.pages);
+                    next($(".samePadding  li").html(), page < vm.$data.pages);
                 })
         }
     });

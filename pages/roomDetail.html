@@ -67,8 +67,8 @@
                 </ul>
                 <div class="listMsg">
                     <div class="tipsWrap">
-                        <template v-for="tag in info.tags">
-                            <span v-if="tagsData[tag.tagid]">{{tagsData[tag.tagid].name}}</span>
+                        <template v-for="(tag,index) in info.tags">
+                            <span v-if="tagsData[tag.tagid]" :class="'color'+index">{{tagsData[tag.tagid].name}}</span>
                         </template>
                     </div>
                     <div class="samePadding">

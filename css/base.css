@@ -143,13 +143,18 @@ label.error {
   margin: 0;
   font-size: .3rem;
 }
-.recommend {
-  margin-top: 15px;
-}
 .recommend .partTitle {
   padding-left: 10px;
   font-size: .26rem;
-  border-left: 5px solid #Eb7221;
+  text-align: center;
+  background: #eb7221;
+  color: #fff;
+  padding: .05rem;
+  width: 1.6rem;
+  height: .4rem;
+  border-radius: .3rem;
+  margin: 0 auto;
+  font-weight: bold;
 }
 .roomListUl li {
   border-top: 1px solid #ccc;
@@ -169,21 +174,12 @@ label.error {
   right: .1rem;
   bottom: .1rem;
   display: block;
-  width: 45px;
-  height: 40px;
+  width: .8rem;
   font-size: .2rem;
-  padding-top: 5px;
-  text-align: center;
-  border-radius: 50%;
-  background-color: #fff;
-}
-.roomListUl .imgpart .recommendLink p {
-  font-size: .12rem;
 }
 .roomListUl .roomTable {
   margin-top: .15rem;
-  font-size: .48rem;
-  width: 100%;
+  font-size: .4rem;
 }
 .roomListUl .roomTable tr td {
   text-align: left;
@@ -192,7 +188,7 @@ label.error {
   padding-right: .2rem;
 }
 .roomListUl .lips span {
-  font-size: .14rem;
+  font-size: .12rem;
   display: inline-block;
   padding: 0 .03rem;
   border: 1px solid #e6e6e6;
@@ -201,16 +197,18 @@ label.error {
   margin: 0 3px;
 }
 .houseName {
-  font-size: .32rem;
+  font-size: .4rem;
 }
 .allPrice {
   font-size: .26rem;
 }
 .onePrice {
   font-size: .26rem;
+  color: #707070;
 }
 .streetText {
-  font-size: 0.26rem;
+  font-size: .12rem;
+  color: #707070;
 }
 .forTips {
   border: 1px solid #ccc;
@@ -269,7 +267,7 @@ label.error {
   padding-left: 5px;
   font-size: .24rem;
   background: url(../images/down.png) 97% center no-repeat;
-  background-size: 10px;
+  background-size: .4rem;
   overflow: hidden;
 }
 .bannerSearch .searchselect .selectText {

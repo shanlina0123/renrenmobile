@@ -78,10 +78,9 @@
                                 var data = JSON.stringify(result.data);
                                 localStorage.setItem("userinfo", data);
                                 window.location.href = 'my.html';
-                            } else
-                            {
-                                layui.use('layer', function() {
-                                    var layer = layui.layer;
+                            } else {
+                                layui.use('layer',  function()  {
+                                    var  layer  =  layui.layer;
                                     layer.msg(result.messages);
                                 });
                             }

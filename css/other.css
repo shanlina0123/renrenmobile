@@ -13,7 +13,7 @@
 .formTable tr td:first-child {
   padding-right: 5px;
   text-align: right;
-  width: 28%;
+  width: 20%;
 }
 .formTable .isShow {
   display: none;

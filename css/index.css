@@ -16,6 +16,7 @@
   width: 1rem;
 }
 .nav li a p {
-  padding-top: 10px;
   font-size: .28rem;
+  color: #eb7721;
+  font-weight: bold;
 }

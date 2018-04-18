@@ -38,7 +38,7 @@ var vm = new Vue({
         //点击修改级别
         clientLevelClick: function(id) {
             this.edit_params.uuid = id;
-            $(".levePop").show();
+            $(".levePop").toggle();
         },
         //点击修改客户状态
         clientStatusClick: function(id) {

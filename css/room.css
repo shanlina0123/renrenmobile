@@ -33,6 +33,7 @@
   border-bottom: 1px solid #ccc;
   padding: .01rem 0;
   color: #ff0000;
+  margin: 0;
 }
 .msgPart .partTitle img {
   width: 0.5rem;
@@ -44,9 +45,7 @@
   vertical-align: middle;
 }
 .msgPart .pricePart {
-  margin-top: 10px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
   padding-left: 0;
   font-size: .2rem;
 }

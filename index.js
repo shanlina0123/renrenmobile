@@ -1,8 +1,3 @@
-$(".selectText li").click(function(){
-    var thisText = $(this).text();
-    $(".showText ").text(thisText);
-    $(this).parents('.bannerSearch').find("input[type=hidden]").val($(this).data('id'));
-});
 new Vue({
     el: '#index',
     data: {
@@ -10,8 +5,17 @@ new Vue({
         commission:[],
         tags:[],
         salestatus:[],
+        typeid:'1'
     },
     methods:{
+        typeStatus:function () {
+            $(".selectText").slideToggle();
+        },
+        getTypeID:function (id,name) {
+             this.typeid = id;
+             $(".showText").html(name);
+            $(".selectText").slideToggle();
+        },
         getHouseList:function ()
         {
             var that = this;

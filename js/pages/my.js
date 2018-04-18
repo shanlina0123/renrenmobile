@@ -23,6 +23,11 @@ new Vue({
                // console.log(this);
             });
         },
+        showEditMyInfo:function(name,mobile)
+        {
+            var target_url = "name=" + name+"&mobile="+mobile;
+            window.location.href = "../pages/myMsg.html?" + encodeURIComponent(target_url);
+        },
         getDefaultData:function () {
             var url = conf.datas_default+'9';
             var that = this;
@@ -58,7 +63,7 @@ new Vue({
                 {
                     //console.log(error);
                 });
-        },
+        }
     },created: function () {
         var that = this;
         that.getMyInfo();//我的信息

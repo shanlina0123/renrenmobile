@@ -94,6 +94,12 @@ a:focus {
 .mainNoPadding {
   padding-bottom: 0;
 }
+.layui-flow-more {
+  font-size: 12px!important;
+}
+sup {
+  top: -0.2em;
+}
 /*公用验证弹窗*/
 label.error {
   display: block;
@@ -249,29 +255,6 @@ label.error {
 }
 .unBegin {
   color: #628828;
-}
-.beigin {
-  color: #ff0000;
-}
-.yongjinWrap {
-  font-size: .26rem;
-  color: #d81e06;
-  font-weight: bold;
-}
-.colorRed {
-  color: #d81e06;
-}
-.colorGreen {
-  color: green;
-}
-.colorYellow {
-  color: yellow;
-}
-.colorBlue {
-  color: blue;
-}
-.colorPurple {
-  color: purple;
 }
 .bannerSearch {
   position: absolute;

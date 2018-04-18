@@ -117,43 +117,83 @@
   border-left: 1px solid #fff;
 }
 .cusSearch {
-  margin: .3rem 0;
+  padding: .3rem 0;
+  background-color: #fff;
 }
 .cusSearch .bannerSearch {
   width: 7.2rem;
   position: static;
+  margin: 0 auto;
 }
 .cusSearch .searchInput {
   width: 4.2rem;
 }
+.numberWrap {
+  background-color: #fff;
+}
 .customulWrap {
   background-color: #f5f5f5;
+  padding-bottom: 10px;
 }
 .customsList > li {
   padding: .1rem 0;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
   margin-bottom: .2rem;
+  position: relative;
+  padding: 0 .3rem;
 }
 .customsList > li:first-child {
   border-top: none;
 }
 .customsList .subList li {
   float: left;
-  width: 48%;
-  font-size: .24rem;
+  width: 31%;
+  font-size: .12rem;
+  height: .46rem;
+  line-height: .46rem;
+  overflow: hidden;
   padding: .08rem 0 .08rem .1rem;
 }
 .customsList .subList .nameLi {
   width: 100%;
   padding: .1rem;
-  font-size: .24rem;
+  font-size: .32rem;
+}
+.customsList .subList .mobileLi {
+  width: 100%;
 }
 .customsList .subList .mobileLi,
 .customsList .subList .houseDate {
   color: #707070;
 }
+.customsList .subList .stateLi {
+  width: 20%;
+  text-align: center;
+}
+.customsList .subList .dateLi {
+  width: 30%;
+  padding-right: .1rem;
+  text-align: right;
+}
 .customsList .subList .houseDate {
+  width: 42%;
+  overflow: hidden;
+  height: .46rem;
+  line-height: .46rem;
+}
+.customsList .subList .floatLi {
+  position: absolute;
+  width: auto;
+  top: .3rem;
+  right: .5rem;
+}
+.customsList .subList .floatLi a {
+  display: inline-block;
+  width: .5rem;
+  margin: 0 .1rem;
+}
+.customsList .subList .floatLi a img {
   width: 100%;
 }
 .customsList .isShow {
@@ -163,6 +203,9 @@
   width: .5rem;
   display: inline-block;
   margin-left: .2rem;
+}
+.unAble {
+  color: #707070;
 }
 .popWrap {
   display: none;
@@ -264,7 +307,12 @@
 .changeTable tr td {
   padding: .2rem 0;
 }
+.changeTable tr td:first-child {
+  text-align: right;
+  padding-right: .1rem;
+}
 .changeNotice {
   text-align: center;
-  font-size: 0.2rem;
+  font-size: .2rem;
+  color: #707070;
 }

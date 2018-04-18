@@ -26,8 +26,8 @@
 </head>
 
 <body>
-    <div class="wrap">
-        <div class="main" id="main" v-cloak>
+    <div class="wrap" id="main" v-cloak>
+        <div class="main">
             <!--房源图片轮播-->
             <div class="proImg swiper-container">
                 <div class="swiper-wrapper">
@@ -129,7 +129,7 @@
         </div>
         <!-- //main -->
         <div class="bootBar clearfix">
-            <a href="tel:88556895">
+            <a :href="'tel:'+connect_tel">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>
@@ -144,9 +144,21 @@
 
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile"></script>
-    <script type="text/javascript" src="../js/Swiper.min.js"></script>
+
     <!-- js -->
     <script type="text/javascript" src="../js/pages/roomDetail.js"></script>
+    <script type="text/javascript" src="../js/Swiper.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            //房源图片轮播
+            new Swiper(".proImg", {
+                speed: 1000,
+                autoplay: true,
+                pagination: '.pagination',
+                paginationClickable: false,
+            });
+        })
+    </script>
 </body>
 
 </html>

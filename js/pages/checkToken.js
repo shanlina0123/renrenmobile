@@ -29,11 +29,16 @@ new Vue({
                     {
                         if(data.messages)
                         {
-                            alert(data.messages);
+                            //alert(data.messages);
+                            // layui.use('layer', function(id) {
+                            //     var layer = layui.layer;
+                            //     layer.msg(data.messages);
+                            // });
                         }
                          that.tokenData=null;
                          window.location="../pages/login.html";
                     }
+
                 })
                 .catch(function (error)
                 {

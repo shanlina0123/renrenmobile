@@ -132,10 +132,18 @@ new Vue({
                             if (data.status == 1) {
                                 window.location.href = "../pages/myCustomer.html";
                             }else{
-                                alert(data.messages)
+                              //  alert(data.messages)
+                                layui.use('layer', function(id) {
+                                    var layer = layui.layer;
+                                    layer.msg(data.messages);
+                                });
                             }
                             // console.log(response.data.status);
                         }).catch(function(error) {
+                        layui.use('layer', function(id) {
+                            var layer = layui.layer;
+                            layer.msg("系统错误");
+                        });
                         //console.log(error);
                         // console.log(this);
                     });

@@ -1,3 +1,18 @@
+$(function() {
+    //筛选tab切换
+    $(".tabTable tr .td1").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".tabconWrap .areaTab").show().siblings().hide();
+    });
+    $(".tabTable tr .td2").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".tabconWrap .priceTab").show().siblings().hide();
+    });
+    //筛选条件选中样式
+    $(".topsort li").click(function() {
+        $(this).addClass("on").siblings().removeClass("on");
+    })
+});
 var vm = new Vue({
     el: '#main',
     data: {
@@ -98,7 +113,7 @@ var vm = new Vue({
 layui.use('flow', function() {
     var flow = layui.flow;
     flow.load({
-        elem: '#roomListUl' //指定列表容器
+        elem: '.samePadding' //指定列表容器
             ,
         done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
             vm.params.page = page;

@@ -1,14 +1,15 @@
-new Vue({
+var vm = new Vue({
     el: '#my_vue_client',
     data: {
-        params:{name:null,followstatusid:null},
+        params:{name:null,followstatusid:null,page: 1},
         edit_params:{"uuid":null,"levelid":null,"followstatusid":null},
         client_statistics:[],
         client_list:[],
         level_datas:[],
         default_followstatus_datas:[],
         tokenUserInfo:JSON.parse(sessionStorage.getItem("userinfo")),
-        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token
+        tokenValue:JSON.parse(sessionStorage.getItem("userinfo")).token,
+        pages: 0
     },
     methods:{
         //点击搜索状态显示下拉框
@@ -33,7 +34,8 @@ new Vue({
             {
                 this.params.name=this.$refs.name.value;
             }
-            this.getClientList();
+
+           this.getClientList();
         },
         //点击修改级别
         clientLevelClick:function(id){
@@ -89,6 +91,7 @@ new Vue({
                     if( data.status == 1 )
                     {
                         that.client_list = data.data.data;
+                        that.pages = data.data.last_page;
                     }
                     // console.log(response.data.status);
                 }).catch(function (error) {
@@ -104,10 +107,16 @@ new Vue({
             axios.put(url,that.edit_params,{headers: {"Authorization": that.tokenValue} })
                 .then(function (response) {
                     var data = response.data;
-                    alert(data.messages);
+                    layui.use('layer', function(id) {
+                        var layer = layui.layer;
+                        layer.msg(data.messages);
+                    });
                     // console.log(response.data.status);
                 }).catch(function (error) {
-                   alert("Error:System");
+                    layui.use('layer', function(id) {
+                        var layer = layui.layer;
+                        layer.msg("系统错误");
+                    });
             });
         },
         //获取默认单分类列表
@@ -152,8 +161,33 @@ new Vue({
     ,created: function () {
         var that = this;
         that.getClientStatistics();//客户统计
-        that.getClientList();//客户列表
+       // that.getClientList();//客户列表
         that.getDefaultDataOne();//默认配置
         that.getDataOne();//自定义配置
     }
+});
+
+/**
+ * 加载分页
+ */
+layui.use('flow', function() {
+    var flow = layui.flow;
+    flow.load({
+        elem: '.samePadding' , //指定列表容器
+        done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
+            vm.params.page = page;
+            var url = auth_conf.client_list;
+            var showList = vm.$data.client_list;
+            axios.post(url,vm.$data.params,{headers: {"Authorization": vm.$data.tokenValue} })
+                .then(function(response) {
+                    var data = response.data;
+                    if (data.status == 1) {
+                        var list = data.data;
+                        vm.$data.client_list = showList.concat(list.data)
+                        vm.$data.pages = list.last_page;
+                    }
+                   next($(".customerTable tr").html(), page < vm.$data.pages);
+                })
+        }
+    });
 });

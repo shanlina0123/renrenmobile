@@ -2,7 +2,7 @@ new Vue({
     el: '#my_vue_client_edit',
     data: {
         edit_params: { "mobile": null },
-        tokenValue: JSON.parse(sessionStorage.getItem("userinfo")).token
+        tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
     },
     methods: {
         GetQueryString: function(name) {

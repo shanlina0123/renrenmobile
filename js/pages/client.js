@@ -1,14 +1,14 @@
 var vm = new Vue({
     el: '#my_vue_client',
     data: {
-        params: { name: null, followstatusid: null, page: 1 },
-        edit_params: { "uuid": null, "levelid": null, "followstatusid": null },
-        client_statistics: [],
-        client_list: [],
-        level_datas: [],
-        default_followstatus_datas: [],
-        tokenUserInfo: JSON.parse(sessionStorage.getItem("userinfo")),
-        tokenValue: JSON.parse(sessionStorage.getItem("userinfo")).token,
+        params:{name:null,followstatusid:null,page: 1},
+        edit_params:{"uuid":null,"levelid":null,"followstatusid":null},
+        client_statistics:[],
+        client_list:[],
+        level_datas:[],
+        default_followstatus_datas:[],
+        tokenUserInfo:JSON.parse(localStorage.getItem("userinfo")),
+        tokenValue:JSON.parse(localStorage.getItem("userinfo")).token,
         pages: 0
     },
     methods: {

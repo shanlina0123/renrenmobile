@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>房源详情</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/room.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/swiper.css"  />
+    <link rel="stylesheet" href="../css/swiper.css" />
     <style>
         [v-cloak] {
             display: none;
@@ -23,13 +24,14 @@
     <script src="../plugin/js/axios.min.js"></script>
     <script src="../plugin/js/httpUrl.js"></script>
 </head>
+
 <body>
     <div class="wrap">
         <div class="main" id="main" v-cloak>
             <!--房源图片轮播-->
             <div class="proImg swiper-container">
                 <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide" v-for="img in info.image" >
+                    <a href="#" class="swiper-slide" v-for="img in info.image">
                         <img :src="pathUrl + img.url" />
                     </a>
                 </div>
@@ -37,7 +39,7 @@
             </div>
             <!--产品信息部分-->
             <div class="msgPart samePadding">
-                <p class="partTitle"><img src="../images/money.png"><span>佣金规则</span></p>
+                <p class="partTitle"><img src="../images/yongjin.png"><span>佣金规则</span></p>
                 <ul class="pricePart clearfix">
                     <!-- 新房 -->
                     <li v-if="info.typeid == 1">
@@ -71,7 +73,7 @@
                     </div>
                     <div class="samePadding">
                         <ul class="detailUl clearfix" v-if="info.typeid == 1">
-                            <li>现状：<sup class="unSale" v-if="salestatus[info.salestatusid]">{{salestatus[info.salestatusid].name}}</sup></li>
+                            <li>现状：<span class="unSale" v-if="salestatus[info.salestatusid]">{{salestatus[info.salestatusid].name}}</span></li>
                             <li>发布日期：<span>{{info.created_at}}</span></li>
                             <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
                             <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
@@ -124,7 +126,8 @@
                     </div>
                 </div>
             </div>
-        </div><!-- //main -->
+        </div>
+        <!-- //main -->
         <div class="bootBar clearfix">
             <a href="tel:88556895">
                 <img src="../images/contact1.png" width="20">
@@ -134,8 +137,10 @@
                 <img src="../images/recommend1.png" width="20">
                 <p>立即推荐</p>
             </a>
-        </div><!-- //footBar -->
-    </div><!-- //wrap -->
+        </div>
+        <!-- //footBar -->
+    </div>
+    <!-- //wrap -->
 
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile"></script>
@@ -143,4 +148,5 @@
     <!-- js -->
     <script type="text/javascript" src="../js/pages/roomDetail.js"></script>
 </body>
+
 </html>

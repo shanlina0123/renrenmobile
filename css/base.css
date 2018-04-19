@@ -101,7 +101,8 @@ a:focus {
     width: 100%;
 }*/
 
-.samePadding {
+.samePadding,
+.searchPad {
     padding-left: .15rem;
     padding-right: 0.15rem;
 }
@@ -285,12 +286,12 @@ label.error {
 }
 
 .allPrice {
-    font-size: .26rem;
+    font-size: .3rem;
     color: #707070;
 }
 
 .onePrice {
-    font-size: .26rem;
+    font-size: .3rem;
     color: #707070;
 }
 

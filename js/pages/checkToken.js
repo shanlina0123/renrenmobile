@@ -43,9 +43,7 @@ new Vue({
                 })
                 .catch(function (error)
                 {
-                    localStorage.removeItem("userinfo");
-                    that.tokenData=null;
-                    window.location="../pages/login.html";
+                    alert("Token验证异常");
                 });
         }
     }

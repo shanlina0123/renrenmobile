@@ -43,8 +43,9 @@ $(function() {
                 data: $('#main').serialize(),
                 success: function(result) {
                     if (result.status == 1) {
-                        window.location.href = 'index.html';
+                        window.location.href = '/index.html';
                     } else {
+                        alert("注册失败");
                         layui.use('layer',  function()  {
                             var  layer  =  layui.layer;
                             layer.msg(result.messages);

@@ -27,19 +27,15 @@
 
 <body>
     <div class="wrap">
-        <div class="main" id="main" v-cloak>
+        <div class="main">
             <!--房源图片轮播-->
             <div class="proImg swiper-container">
-                <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide" v-for="img in info.image">
-                        <img :src="pathUrl + img.url" />
-                    </a>
-                </div>
+                <div class="swiper-wrapper"></div>
                 <div class="pagination"></div>
             </div>
             <!--产品信息部分-->
-            <div class="msgPart samePadding">
-                <p class="partTitle"><img src="../images/yongjin.png"><span>佣金规则</span></p>
+            <div class="msgPart samePadding" id="main" v-cloak>
+                <p class="partTitle"><img src="../images/yongjin.png"><span v-if="commission[info.commissionid]">{{commission[info.commissionid].name}}</span></p>
                 <ul class="pricePart clearfix">
                     <!-- 新房 -->
                     <li v-if="info.typeid == 1">
@@ -67,8 +63,8 @@
                 </ul>
                 <div class="listMsg">
                     <div class="tipsWrap">
-                        <template v-for="tag in info.tags">
-                            <span v-if="tagsData[tag.tagid]">{{tagsData[tag.tagid].name}}</span>
+                        <template v-for="(tag,index) in info.tags">
+                            <span v-if="tagsData[tag.tagid]" :class="'color'+index">{{tagsData[tag.tagid].name}}</span>
                         </template>
                     </div>
                     <div class="samePadding">
@@ -128,8 +124,8 @@
             </div>
         </div>
         <!-- //main -->
-        <div class="bootBar clearfix">
-            <a href="tel:88556895">
+        <div class="bootBar clearfix" id="fortell" v-cloak>
+            <a :href="'tel:'+connect_tel">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>
@@ -144,9 +140,10 @@
 
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile"></script>
-    <script type="text/javascript" src="../js/Swiper.min.js"></script>
+
     <!-- js -->
     <script type="text/javascript" src="../js/pages/roomDetail.js"></script>
+    <script type="text/javascript" src="../js/Swiper.min.js"></script>
 </body>
 
 </html>

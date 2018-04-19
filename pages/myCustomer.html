@@ -31,7 +31,7 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="wrap" id="my_vue_client" v-cloak>
-        <div class="main">
+        <div class="main mainNoPadding customulWrap ">
             <div class="cusSearch samePadding">
                 <div class="bannerSearch clearfix">
                     <div class="searchselect fl">
@@ -81,16 +81,21 @@
                         <ul class="subList clearfix">
                             <li class="nameLi">{{client.name}}</li>
                             <li class="mobileLi">{{client.mobile}}</li>
-                            <li class="dateLi">{{client.makedate}}</li>
                             <li class="houseDate">{{client.housename}}</li>
                             <li class="stateLi">
                                 <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
-                                <span class="stateShow" v-else></span>
-                                <a href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
+                                <span class="stateShow unAble" v-else>有效</span>
+                                <a v-if="tokenUserInfo.isadminafter==1" href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
                             </li>
-                            <li v-if="tokenUserInfo.isadminafter==1" class="levelLi">
+                            <li class="dateLi unAble">{{client.makedate}}</li>
+                            <!--<li v-if="tokenUserInfo.isadminafter==1" class="levelLi">
                                 <span class="levelShow" v-if="level_datas[client.levelid]">{{level_datas[client.levelid]["name"]}}</span>
+                                <span v-else class="levelShow">客户等级</span>
                                 <a href="javascript:;" class="editCus levelEdit" @click="clientLevelClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
+                            </li>-->
+                            <li class="floatLi">
+                                <a :href="'tel:'+client.mobile"><img src="../images/callPhone.png"></a>
+                                <a @click="linkToRecommend()"><img src="../images/callAdd.png"></a>
                             </li>
                         </ul>
                     </li>

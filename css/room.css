@@ -1,9 +1,9 @@
 .proImg {
-  height: 5.78rem;
+  height: 4rem;
   z-index: 0;
 }
 .proImg img {
-  width: 7.1rem;
+  width: 7.69rem;
 }
 .swiper-button-next,
 .swiper-button-prev {
@@ -36,11 +36,11 @@
   margin: 0;
 }
 .msgPart .partTitle img {
-  width: 0.5rem;
+  width: 0.3rem;
   display: inline-block;
 }
 .msgPart .partTitle span {
-  font-size: .35rem;
+  font-size: .24rem;
   margin-left: .1rem;
   vertical-align: middle;
 }
@@ -55,7 +55,7 @@
   text-align: center;
 }
 .msgPart .pricePart li p {
-  font-size: .35rem;
+  font-size: .24rem;
   color: #ff0000;
   font-weight: bold;
 }
@@ -65,11 +65,10 @@
 }
 .tipsWrap span {
   display: inline-block;
-  padding: .02rem .02rem;
+  padding: .02rem .04rem;
   margin-bottom: .1rem;
   border-radius: 3px;
-  border: 1px solid #Eb7221;
-  color: #Eb7221;
+  border: 1px solid #e6e6e6;
   margin: 0 .05rem;
 }
 .unSale {
@@ -78,6 +77,7 @@
   height: .5rem;
   line-height: .5rem;
   color: #ff0000;
+  padding: 0 .06rem;
 }
 .detailUl {
   padding: 0;

@@ -108,7 +108,7 @@
                                         <span class="newHouse">
                                             <span class="houseName">{{item.name}}</span>
                                         </span>
-                                        <span class="allPrice">总价：{{item.total}}万</span>
+                                        <span class="allPrice">{{item.total}}万</span>
                                         <span class="onePrice">{{item.area}}m<sup>2</sup></span>
                                     </td>
                                 </tr>
@@ -118,8 +118,8 @@
                                 <tr>
                                     <td>
                                         <div class="lips fl">
-                                            <template v-for="tag in item.house_to_tag">
-                                                    <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                            <template v-for="(tag,index) in item.house_to_tag">
+                                                    <span v-if="tags[tag.tagid]" :class="'color'+index">{{tags[tag.tagid].name}}</span>
                                             </template>
                                         </div>
                                     </td>

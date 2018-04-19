@@ -23,6 +23,15 @@ a:focus { outline: none; }
 .main{
     padding-bottom: 1.42rem;
 }
+.mainNoPadding{
+    padding-bottom: 0;
+}
+.layui-flow-more{
+    font-size: 12px!important;
+}
+sup{
+    top: -.2em
+}
 /*公用验证弹窗*/
 label.error{
     display: block;
@@ -123,6 +132,7 @@ label.error{
         tr{
             td{
                 text-align: left;
+                padding: .04rem 0;
             }
         }
         tr:first-child td{
@@ -135,12 +145,29 @@ label.error{
             display: inline-block;
             padding: 0 .03rem;
             border:1px solid #e6e6e6;
-            color: #Eb7221;
             border-radius: 3px;
             margin:0 3px;
             
         }
     }
+}
+.color0{
+    color: #ff0000;
+}
+.color1{
+    color: #eb7721
+}
+.color2{
+    color: green
+}
+.color3{
+    color: blueviolet
+}
+.color4{
+    color: blue
+}
+.color5{
+    color: #d81e06
 }
 //首页房源列表字体
 .houseName{
@@ -148,7 +175,7 @@ label.error{
 }
 .allPrice{
     font-size: .26rem;
-    
+    color: #707070;
 }
 .onePrice{
     font-size: .26rem;
@@ -164,34 +191,18 @@ label.error{
     border-radius: 3px;
     padding: .01rem .04rem;
     font-size: .12rem;
-    -webkit-transform-origin: 0% 0%;
-    -webkit-transform:scale(0.8)!important;
+    font-family: Arial;
+}
+.smallFont{
+    font-size: 12px;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(0.90);
+}
+.smallFonts{
+    font-size:10.8px;
 }
 .unBegin{
     color: #628828
-}
-.beigin{
-    color: #ff0000
-}
-.yongjinWrap{
-    font-size: .26rem;
-    color: #d81e06;
-    font-weight: bold;
-}
-.colorRed{
-    color: #d81e06
-}
-.colorGreen{
-    color: green
-}
-.colorYellow{
-    color: yellow
-}
-.colorBlue{
-    color: blue
-}
-.colorPurple{
-    color: purple
 }
 //搜索部分公用
 .bannerSearch{

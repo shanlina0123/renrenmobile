@@ -6,7 +6,7 @@ new Vue({
         search_params: { "name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
-        userInfoData:JSON.parse(localStorage.getItem("userinfo")),
+        userInfoData: JSON.parse(localStorage.getItem("userinfo")),
         tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
     },
     methods: {
@@ -57,10 +57,12 @@ new Vue({
         },
         //点击显示公司
         showCompanyClick: function() {
+            // var that = this;
+            // that.toggle();
             if ($(".formUl")[0].childElementCount == 0) {
                 $(".formUl").hide();
             } else {
-                $(".formUl").show();
+                $(".formUl").toggle();
             }
 
         },
@@ -124,29 +126,30 @@ new Vue({
                     selectHouse: {
                         required: "请选择楼盘"
                     }
-                },submitHandler:function(form){
+                },
+                submitHandler: function(form) {
                     //token
                     axios.post(url, that.add_params, { headers: { "Authorization": that.tokenValue } })
                         .then(function(response) {
                             var data = response.data;
                             if (data.status == 1) {
                                 window.location.href = "../pages/myCustomer.html";
-                            }else{
-                              //  alert(data.messages)
-                                layui.use('layer', function(id) {
-                                    var layer = layui.layer;
+                            } else {
+                                //  alert(data.messages)
+                                layui.use('layer',  function(id)  {
+                                    var  layer  =  layui.layer;
                                     layer.msg(data.messages);
                                 });
                             }
                             // console.log(response.data.status);
                         }).catch(function(error) {
-                        layui.use('layer', function(id) {
-                            var layer = layui.layer;
-                            layer.msg("系统错误");
+                            layui.use('layer',  function(id)  {
+                                var  layer  =  layui.layer;
+                                layer.msg("系统错误");
+                            });
+                            //console.log(error);
+                            // console.log(this);
                         });
-                        //console.log(error);
-                        // console.log(this);
-                    });
 
                 }
             })

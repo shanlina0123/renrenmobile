@@ -100,8 +100,8 @@
                                 <tr>
                                     <td>
                                         <div class="lips fl">
-                                            <template v-for="tag in item.house_to_tag">
-                                                    <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                            <template v-for="(tag,index) in item.house_to_tag">
+                                                    <span v-if="tags[tag.tagid]" :class="'color'+index">{{tags[tag.tagid].name}}</span>
                                                 </template>
                                         </div>
 

@@ -42,16 +42,20 @@
                     <div class="forTab areaTab">
                         <div class="forTabInner">
                             <ul class="topsort">
-                                <!--上半部分筛选-->
+                                <li>全西安</li>
                                 <li>莲湖区</li>
                                 <li>未央区</li>
                                 <li>雁塔区</li>
                             </ul>
+                            <div class="bottomSort clearfix">
+                                <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
+                            </div>
                         </div>
                     </div>
                     <div class="forTab priceTab">
                         <div class="forTabInner">
                             <ul class="topsort" ref="liData" id="liData">
+                                <li>不限</li>
                                 <li @click="liData('0-50')">50万以下</li>
                                 <li @click="liData('50-100')">50-100万</li>
                                 <li @click="liData('100-200')">100-200万</li>
@@ -108,7 +112,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
+                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" class="yongjinImg">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>
                         </a>

@@ -34,7 +34,6 @@
                     <a href="javascript:;" class="searchImgWrap fl" @click="search()"><img src="../images/search.png" class="searchImage sameImg"></a>
                 </div>
             </div>
-            <!-- 搜索部分结束 -->
             <!-- 检索条件 -->
             <div class="listSort">
                 <table class="tabTable">
@@ -48,14 +47,17 @@
                     <div class="forTab areaTab">
                         <div class="forTabInner">
                             <ul class="topsort">
-                                <!--上半部分筛选-->
                                 <li>全西安</li>
                             </ul>
+                            <div class="bottomSort clearfix">
+                                <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
+                            </div>
                         </div>
                     </div>
                     <div class="forTab priceTab">
                         <div class="forTabInner">
                             <ul class="topsort" ref="liData" id="liData">
+                                <li>不限</li>
                                 <li @click="liData('0-50')">50万以下</li>
                                 <li @click="liData('50-100')">50-100万</li>
                                 <li @click="liData('100-200')">100-200万</li>
@@ -125,7 +127,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
+                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" class="yongjinImg">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>
                         </a>

@@ -85,7 +85,7 @@
                         </ul>
                         <!--二手房-->
                         <ul class="detailUl clearfix" v-if="info.typeid == 2">
-                            <li>单价：<span>{{info.price}}</span></li>
+                            <li>单价：<span>{{info.price}}</span>元/m<sup>2</sup></li>
                             <li>发布日期：<span>{{info.created_at}}</span></li>
                             <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
                             <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
@@ -126,11 +126,11 @@
         <!-- //main -->
         <div class="bootBar clearfix" id="fortell" v-cloak>
             <a :href="'tel:'+connect_tel">
-                <img src="../images/contact1.png" width="20">
+                <img src="../images/contact1.png">
                 <p>联系我们</p>
             </a>
             <a href="recommend.html">
-                <img src="../images/recommend1.png" width="20">
+                <img src="../images/recommend1.png">
                 <p>立即推荐</p>
             </a>
         </div>

@@ -35,6 +35,7 @@ var vm = new Vue({
         priceE: '',
         priceS: '',
         pages: 0,
+        connect_tel: '',
         clickNum: '0' //房型筛选添加选中样式
     },
     methods: {
@@ -94,10 +95,12 @@ var vm = new Vue({
             that.params.price = price;
             that.priceE = '';
             that.priceS = '';
+            that.getHouseList();
         }, //房型区间
         roomData: function(id) {
             this.clickNum = id; //房型筛选添加选中样式
             this.params.roomtypeid = id;
+            this.getHouseList();
         }, //开始价格
         changePriceS: function(value) {
             this.priceS = value;
@@ -129,6 +132,19 @@ var vm = new Vue({
             }
 
             window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);
+        },getMyConf: function() {
+            var url = conf.web_conf;
+            var that = this;
+            axios.get(url)
+                .then(function(response) {
+                    var data = response.data;
+                    if (data.status == 1) {
+                        that.connect_tel = data.data[1]["_child"][2]["content"];
+                    }
+                })
+                .catch(function(error) {
+                    //console.log(error);
+                });
         }
     },
     created: function() {
@@ -136,7 +152,7 @@ var vm = new Vue({
         that.getDefaultData(); //默认属性
         that.getData(); //自定义属性
         that.params.name = that.getQueryString('name'); //获取name
-        //that.getHouseList();//新房房源列表
+        that.getMyConf();
     }
 });
 

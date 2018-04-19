@@ -39,26 +39,23 @@
             <div class="listSort">
                 <table class="tabTable">
                     <tr>
-                        <td class="td1">全西安&nbsp;<i class="layui-icon">&#xe625</i></td>
+                       <!-- <td class="td1">全西安&nbsp;<i class="layui-icon">&#xe625</i></td>-->
                         <td class="td2">单价&nbsp;<i class="layui-icon">&#xe625</i></td>
                         <td class="td3">房型&nbsp;<i class="layui-icon">&#xe625</i></td>
                     </tr>
                 </table>
                 <div class="tabconWrap">
-                    <div class="forTab areaTab">
+                    <!--<div class="forTab areaTab">
                         <div class="forTabInner">
                             <ul class="topsort">
                                 <li>全西安</li>
                             </ul>
-                            <div class="bottomSort clearfix">
-                                <a href="javascript:;" class="searchSubmitBtn fr">确定</a>
-                            </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="forTab priceTab">
                         <div class="forTabInner">
                             <ul class="topsort" ref="liData" id="liData">
-                                <li>不限</li>
+                                <li @click="liData('')">不限</li>
                                 <li @click="liData('0-5000')">5000元以下</li>
                                 <li @click="liData('5000-8000')">5000-8000元</li>
                                 <li @click="liData('8000-11000')">8000-11000元</li>
@@ -68,26 +65,28 @@
                                 <li @click="liData('25000-30000')">25000-30000元</li>
                                 <li @click="liData('30000')">30000元以上</li>
                             </ul>
-                            <div class="bottomSort clearfix">
-                                <!--<div class="leftInsert fl">
+                          <!--  <div class="bottomSort clearfix">
+                                &lt;!&ndash;<div class="leftInsert fl">
                                     <input type="text" class="searchInput" v-model="priceS" @change="changePriceS(priceS)"> -
                                     <input type="text" class="searchInput" v-model="priceE" @change="changePriceE(priceE)">
-                                </div>-->
-                                <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
-                            </div>
+                                </div>&ndash;&gt;
+                              &lt;!&ndash;  <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>&ndash;&gt;
+                            </div>-->
                         </div>
                     </div>
                     <div class="forTab roomTab">
                         <div class="forTabInner">
                             <ul class="topsort">
                                 <!--上半部分筛选-->
+                                <li @click="roomData('')">不限</li>
                                 <template v-for="type in roomtype">
-                                    <li :data-id="type.id" @click="roomData(type.id)" :class="{on:type.id==clickNum}">{{type.name}}</li>                                </template>
+                                    <li :data-id="type.id" @click="roomData(type.id)" :class="{on:type.id==clickNum}">{{type.name}}</li>
+                                </template>
                             </ul>
-                            <div class="bottomSort clearfix">
-                                <!--下半部分筛选-->
+                           <!-- <div class="bottomSort clearfix">
+                                &lt;!&ndash;下半部分筛选&ndash;&gt;
                                 <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -139,7 +138,7 @@
         </div>
         <!-- //main -->
         <div class="bootBar clearfix">
-            <a href="tel:88521562">
+            <a :href="'tel:'+connect_tel">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>

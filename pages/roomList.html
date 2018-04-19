@@ -55,7 +55,7 @@
                     <div class="forTab priceTab">
                         <div class="forTabInner">
                             <ul class="topsort" ref="liData" id="liData">
-                                <li>不限</li>
+                                <li @click="liData('')">不限</li>
                                 <li @click="liData('0-50')">50万以下</li>
                                 <li @click="liData('50-100')">50-100万</li>
                                 <li @click="liData('100-200')">100-200万</li>
@@ -65,13 +65,13 @@
                                 <li @click="liData('800-1000')">800-1000万</li>
                                 <li @click="liData('1000')">1000万以上</li>
                             </ul>
-                            <div class="bottomSort clearfix">
+                           <!-- <div class="bottomSort clearfix">
                                 <div class="leftInsert fl">
                                     <input type="text" class="searchInput" v-model="priceS" @change="changePriceS(priceS)"> -
                                     <input type="text" class="searchInput" v-model="priceE" @change="changePriceE(priceE)">
                                 </div>
                                 <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
         </div>
         <!-- //main -->
         <div class="bootBar clearfix">
-            <a href="">
+            <a :href="'tel:'+connect_tel">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>

@@ -29,10 +29,7 @@ var vm = new Vue({
         },
         //搜索
         searchClick: function() {
-            if (this.$refs.name.value) {
-                this.params.name = this.$refs.name.value;
-            }
-
+            this.params.name = this.$refs.name.value;
             this.getClientList();
         },
         //点击修改级别
@@ -151,7 +148,7 @@ var vm = new Vue({
         that.getClientStatistics(); //客户统计
         // that.getClientList();//客户列表
         that.getDefaultDataOne(); //默认配置
-        that.getDataOne(); //自定义配置
+       // that.getDataOne(); //自定义配置
     }
 });
 

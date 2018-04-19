@@ -16,7 +16,8 @@ new Vue({
         hasdoublegas: [], //双气
         lat: '',
         lng: '',
-        connect_tel: ''
+        connect_tel: '',
+        imgs: []
     },
     methods: {
         getHouse: function() {
@@ -30,9 +31,11 @@ new Vue({
                         that.info = data.data;
                         that.lng = data.data.lng;
                         that.lat = data.data.lat;
+                        that.imgs = data.data.image;
                         that.getMap();
+                        that.getImages();
                     }
-                })
+                });
         },
         getData: function() {
             var url = conf.datas;
@@ -103,6 +106,38 @@ new Vue({
                 map: map
             });
         },
+        getImages: function() {
+            var arr = this.imgs;
+            var path = this.pathUrl;
+            var str = '';
+            for (var index = 0; index < arr.length; index++) {
+                str += '<a href="#" class="swiper-slide" ><img src="' + path + arr[index].url + '" /></a>';
+            }
+            $(".swiper-wrapper").append(str);
+            //房源图片轮播
+            new Swiper(".proImg", {
+                speed: 3000,
+                autoplay: true,
+                pagination: '.pagination',
+                paginationClickable: false,
+            });
+        }
+    },
+    created: function() {
+        var that = this;
+        that.id = that.getQueryString('id'); //获取id
+        that.getData(); //自定义属性
+        that.getDefaultData(); //销售状态
+        that.getHouse();
+    }
+});
+
+new Vue({
+    el: '#fortell',
+    data: {
+        connect_tel: '',
+    },
+    methods: {
         getMyConf: function() {
             var url = conf.web_conf;
             var that = this;
@@ -120,10 +155,6 @@ new Vue({
     },
     created: function() {
         var that = this;
-        that.id = that.getQueryString('id'); //获取id
-        that.getData(); //自定义属性
-        that.getDefaultData(); //销售状态
-        that.getHouse();
         that.getMyConf();
     }
 });
@@ -139,11 +170,4 @@ $(function() {
     $(".forTab").click(function() {
         $(this).hide();
     });
-    //房源图片轮播
-    // new Swiper(".proImg", {
-    //     speed: 3000,
-    //     autoplay: true,
-    //     pagination: '.pagination',
-    //     paginationClickable: false,
-    // });
 })

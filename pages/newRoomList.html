@@ -48,14 +48,17 @@
                     <div class="forTab areaTab">
                         <div class="forTabInner">
                             <ul class="topsort">
-                                <!--上半部分筛选-->
                                 <li>全西安</li>
                             </ul>
+                            <div class="bottomSort clearfix">
+                                <a href="javascript:;" class="searchSubmitBtn fr">确定</a>
+                            </div>
                         </div>
                     </div>
                     <div class="forTab priceTab">
                         <div class="forTabInner">
                             <ul class="topsort" ref="liData" id="liData">
+                                <li>不限</li>
                                 <li @click="liData('0-5000')">5000元以下</li>
                                 <li @click="liData('5000-8000')">5000-8000元</li>
                                 <li @click="liData('8000-11000')">8000-11000元</li>
@@ -66,10 +69,10 @@
                                 <li @click="liData('30000')">30000元以上</li>
                             </ul>
                             <div class="bottomSort clearfix">
-                                <div class="leftInsert fl">
+                                <!--<div class="leftInsert fl">
                                     <input type="text" class="searchInput" v-model="priceS" @change="changePriceS(priceS)"> -
                                     <input type="text" class="searchInput" v-model="priceE" @change="changePriceE(priceE)">
-                                </div>
+                                </div>-->
                                 <a href="javascript:;" class="searchSubmitBtn fr" @click="getHouseList()">确定</a>
                             </div>
                         </div>
@@ -125,7 +128,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
+                                    <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" class="yongjinImg">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>
                         </a>
@@ -136,7 +139,7 @@
         </div>
         <!-- //main -->
         <div class="bootBar clearfix">
-            <a href="">
+            <a href="tel:88521562">
                 <img src="../images/contact1.png" width="20">
                 <p>联系我们</p>
             </a>

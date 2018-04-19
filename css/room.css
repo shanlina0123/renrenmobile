@@ -43,12 +43,12 @@
 }
 
 .msgPart .partTitle img {
-    width: 0.3rem;
+    width: 0.4rem;
     display: inline-block;
 }
 
 .msgPart .partTitle span {
-    font-size: .28rem;
+    font-size: .32rem;
     margin-left: .1rem;
     vertical-align: middle;
 }
@@ -56,33 +56,42 @@
 .msgPart .pricePart {
     border-bottom: 1px solid #ccc;
     padding-left: 0;
-    font-size: .2rem;
+    margin: 0;
 }
 
 .msgPart .pricePart li {
     float: left;
     width: 33%;
+    font-size: .2rem;
     text-align: center;
+    padding: .3rem 0;
+}
+
+.msgPart .pricePart li span {
+    font-size: .3rem;
 }
 
 .msgPart .pricePart li p {
     font-size: .24rem;
     color: #ff0000;
     font-weight: bold;
+    margin: 0;
+    padding-top: .1rem;
 }
 
 .tipsWrap {
-    padding: 8px 0;
+    padding: .1rem 0;
+    margin: .2rem 0;
     font-size: .12rem;
 }
 
 .tipsWrap span {
+    font-size: .26rem;
     display: inline-block;
-    padding: .02rem .04rem;
-    margin-bottom: .1rem;
-    border-radius: 3px;
+    padding: .03rem .04rem;
     border: 1px solid #e6e6e6;
-    margin: 0 .05rem;
+    border-radius: 3px;
+    margin: 0 3px;
 }
 
 .unSale {
@@ -96,13 +105,14 @@
 
 .detailUl {
     padding: 0;
-    font-size: .2rem;
+    margin: 0;
 }
 
 .detailUl li {
     float: left;
     width: 50%;
     height: .4rem;
+    font-size: .3rem;
     padding: .08rem 0;
     text-align: left;
 }
@@ -113,7 +123,7 @@
 
 .showMap {
     margin-top: 10px;
-    font-size: .2rem;
+    font-size: .3rem;
 }
 
 .roomMap {

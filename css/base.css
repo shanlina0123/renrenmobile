@@ -96,9 +96,10 @@ a:focus {
     float: right;
 }
 
-.sameImg {
+
+/*.sameImg {
     width: 100%;
-}
+}*/
 
 .samePadding {
     padding-left: .15rem;
@@ -165,7 +166,8 @@ label.error {
     float: left;
     width: 3.75rem;
     font-size: .4rem;
-    padding-bottom: .1rem;
+    padding-bottom: .08rem;
+    padding-top: .05rem;
     text-align: center;
     background-color: #Eb7221;
     color: #fff;
@@ -181,7 +183,7 @@ label.error {
 
 .bootBar a p {
     text-align: center;
-    padding-top: .1rem;
+    padding-top: .05rem;
     margin: 0;
     font-size: .3rem;
 }
@@ -246,7 +248,7 @@ label.error {
 }
 
 .roomListUl .lips span {
-    font-size: .14rem;
+    font-size: .2rem;
     display: inline-block;
     padding: .03rem .04rem;
     border: 1px solid #e6e6e6;
@@ -293,7 +295,7 @@ label.error {
 }
 
 .streetText {
-    font-size: .16rem;
+    font-size: .3rem;
     color: #707070;
 }
 
@@ -327,7 +329,6 @@ label.error {
     top: 1rem;
     background-color: #fff;
     border: 1px solid #ccc;
-    opacity: 0.9;
     border-radius: .1rem;
 }
 
@@ -337,6 +338,7 @@ label.error {
     height: .8rem;
     line-height: .8rem;
     border-right: 1px solid #ccc;
+    z-index: 100
 }
 
 .bannerSearch .searchselect .showText {
@@ -344,7 +346,7 @@ label.error {
     height: .81rem;
     line-height: .81rem;
     padding-left: 5px;
-    font-size: .24rem;
+    font-size: .28rem;
     background: url(../images/down.png) 97% center no-repeat;
     background-size: .4rem;
     overflow: hidden;
@@ -359,11 +361,11 @@ label.error {
     font-size: .22rem;
     background-color: #fff;
     border: 1px solid #ccc;
-    z-index: 50
 }
 
 .bannerSearch .searchselect .selectText li {
     padding-left: 5px;
+    font-size: .28rem;
     border-top: 1px solid #ccc;
 }
 
@@ -377,7 +379,7 @@ label.error {
     line-height: .8rem;
     padding-left: .2rem;
     outline: none;
-    font-size: .22rem;
+    font-size: .28rem;
     border: none;
     border-radius: .1rem;
 }
@@ -390,5 +392,5 @@ label.error {
 }
 
 .bannerSearch .searchImgWrap img {
-    width: 100%;
+    width: .5rem;
 }

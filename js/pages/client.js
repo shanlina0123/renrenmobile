@@ -148,7 +148,7 @@ var vm = new Vue({
         that.getClientStatistics(); //客户统计
         // that.getClientList();//客户列表
         that.getDefaultDataOne(); //默认配置
-       // that.getDataOne(); //自定义配置
+        // that.getDataOne(); //自定义配置
     }
 });
 
@@ -158,7 +158,7 @@ var vm = new Vue({
 layui.use('flow', function() {
     var flow = layui.flow;
     flow.load({
-        elem: '.customulWrap', //指定列表容器
+        elem: '.customsList', //指定列表容器
         done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
             vm.params.page = page;
             var url = auth_conf.client_list;
@@ -171,7 +171,7 @@ layui.use('flow', function() {
                         vm.$data.client_list = showList.concat(list.data);
                         vm.$data.pages = list.last_page;
                     }
-                    next($(".samePadding  li").html(), page < vm.$data.pages);
+                    next($("#customsList tr").html(), page < vm.$data.pages);
                 })
         }
     });

@@ -15,7 +15,13 @@ $(function() {
     //筛选条件选中样式
     $(".topsort li").click(function() {
         $(this).addClass("on").siblings().removeClass("on");
-    })
+    });
+    //点击任意区域，下拉菜单消失
+    // $(".forTab").touch(function(e) {
+    //     if (!$(e.target).is(".forTabInner") && !$(e.target).parents().is(".forTabInner")) {
+    //         $(".forTab").hide();
+    //     }
+    // });
 })
 
 var vm = new Vue({

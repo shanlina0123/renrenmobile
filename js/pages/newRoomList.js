@@ -15,7 +15,13 @@ $(function() {
     //筛选条件选中样式
     $(".topsort li").click(function() {
         $(this).addClass("on").siblings().removeClass("on");
-    })
+    });
+    //点击任意区域，下拉菜单消失
+    // $(".forTab").touch(function(e) {
+    //     if (!$(e.target).is(".forTabInner") && !$(e.target).parents().is(".forTabInner")) {
+    //         $(".forTab").hide();
+    //     }
+    // });
 });
 var vm = new Vue({
     el: '#main',
@@ -41,9 +47,9 @@ var vm = new Vue({
     methods: {
 
         getHouseList: function() {
-            $(".forTab").hide();
             var url = conf.house_list;
             var that = this;
+            $(".forTab").hide();
             axios.get(url, { params: that.params })
                 .then(function(response) {
                     var data = response.data;
@@ -132,7 +138,8 @@ var vm = new Vue({
             }
 
             window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);
-        },getMyConf: function() {
+        },
+        getMyConf: function() {
             var url = conf.web_conf;
             var that = this;
             axios.get(url)

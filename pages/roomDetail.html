@@ -1,14 +1,9 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>房源详情-新房</title>
+    <title>房源详情</title>
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="../css/common.css">
@@ -16,26 +11,26 @@
     <link rel="stylesheet" href="../css/room.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/swiper.css"  />
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
+    <!-- vue -->
+    <script src="../plugin/js/vue.js"></script>
+    <script src="../plugin/js/axios.min.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
 </head>
 <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <div class="wrap">
-        <div class="main">
+        <div class="main" id="main" v-cloak>
             <!--房源图片轮播-->
             <div class="proImg swiper-container">
                 <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide">
-                        <img src="../images/proBanner.jpg" />
-                    </a>
-                    <a href="#" class="swiper-slide">
-                        <img src="../images/proBanner.jpg" />
-                    </a>
-                    <a href="#" class="swiper-slide">
-                        <img src="../images/proBanner.jpg" />
+                    <a href="#" class="swiper-slide" v-for="img in info.image" >
+                        <img :src="pathUrl + img.url" />
                     </a>
                 </div>
                 <div class="pagination"></div>
@@ -44,46 +39,87 @@
             <div class="msgPart samePadding">
                 <p class="partTitle"><img src="../images/money.png"><span>佣金规则</span></p>
                 <ul class="pricePart clearfix">
-                    <li>
+                    <!-- 新房 -->
+                    <li v-if="info.typeid == 1">
                         <span>单价</span>
-                        <p><span>15775</span>元/平</p>
+                        <p><span>{{info.price}}</span>元/平</p>
                     </li>
-                    <li>
+                    <!-- 二手房和商铺  -->
+                    <li v-else>
+                        <span>总价</span>
+                        <p><span>{{info.total}}</span>万</p>
+                    </li>
+                    <!-- 商铺  -->
+                    <li v-if="info.typeid == 3">
+                        <span></span>
+                        <p></p>
+                    </li>
+                    <li v-else>
                         <span>房型</span>
-                        <p>2室2厅</p>
+                        <p v-if="roomtype[info.roomtypeid]">{{roomtype[info.roomtypeid].name}}</p>
                     </li>
                     <li>
                         <span>建筑面积</span>
-                        <p><span>84.75</span>m<sup>2</sup></p>
+                        <p><span>{{info.area}}</span>m<sup>2</sup></p>
                     </li>
                 </ul>
                 <div class="listMsg">
                     <div class="tipsWrap">
-                        <span>临地铁</span>
-                        <span>南北通透</span>
-                        <span>小户型</span>
-                        <span>学校周边</span>
-                        <span>五证齐全</span>
-                        <span>满五唯一</span>
+                        <template v-for="tag in info.tags">
+                            <span v-if="tagsData[tag.tagid]">{{tagsData[tag.tagid].name}}</span>
+                        </template>
                     </div>
                     <div class="samePadding">
-                        <ul class="detailUl clearfix">
-                            <li>楼盘：<span>印象城</span>&nbsp;<sup class="unSale">待售</sup></li>
-                            <li>发布日期：<span>2018-01-02</span></li>
-                            <li>面积：<span>90m<sup>2</sup></span></li>
-                            <li>房型：<span>两室一厅</span></li>
-                            <li>朝向：<span>西南</span></li>
-                            <li>楼层：<span>中高层/33</span></li>
-                            <li>双气：<span>有</span></li>
-                            <li>年代：<span>2013</span></li>
-                            <li>开盘日期：<span>2013-03-02</span></li>
-                            <li>权属：<span>商品房</span></li>
-                            <li>物业费：<span>1.5元/m<sup>2</sup></span></li>
-                            <li class="specailLi">街道：<span>鱼化街道鱼化街道鱼化街道</span></li>
+                        <ul class="detailUl clearfix" v-if="info.typeid == 1">
+                            <li>现状：<sup class="unSale" v-if="salestatus[info.salestatusid]">{{salestatus[info.salestatusid].name}}</sup></li>
+                            <li>发布日期：<span>{{info.created_at}}</span></li>
+                            <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
+                            <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
+                            <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
+                            <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
+                            <li>年代：<span>{{info.years}}</span></li>
+                            <li>开盘日期：<span>{{info.opendate}}</span></li>
+                            <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
+                            <li>楼盘：<span>{{info.name}}</span></li>
+                            <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
+                            <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
+                            <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                        </ul>
+                        <!--二手房-->
+                        <ul class="detailUl clearfix" v-if="info.typeid == 2">
+                            <li>单价：<span>{{info.price}}</span></li>
+                            <li>发布日期：<span>{{info.created_at}}</span></li>
+                            <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
+                            <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
+                            <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
+                            <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
+                            <li>年代：<span>{{info.years}}</span></li>
+                            <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
+                            <li>楼盘：<span>{{info.name}}</span></li>
+                            <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
+                            <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
+                            <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                        </ul>
+                        <!--商铺-->
+                        <ul class="detailUl clearfix" v-if="info.typeid == 3">
+                            <li>发布日期：<span>{{info.created_at}}</span></li>
+                            <li>楼层：<span v-if="floorpostion[info.floorpostionid]">{{floorpostion[info.floorpostionid].name}}/{{info.floor}}</span></li>
+                            <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
+                            <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
+                            <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
+                            <li>层高：<span>{{info.storey}}</span></li>
+                            <li>面宽：<span>{{info.wide}}</span></li>
+                            <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
+                            <li>进深：<span>{{info.depth}}</span></li>
+                            <li>年代：<span>{{info.years}}</span></li>
+                            <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
+                            <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>
+                            <li>双气：<span v-if="hasdoublegas[info.hasdoublegasid]">{{hasdoublegas[info.hasdoublegasid].name}}</span></li>
+                            <li>楼盘：<span>{{info.name}}</span></li>
                         </ul>
                     </div>
                     <div class="showMap samePadding">
-                        <p>地址：</p>
+                        <p>地址：{{info.fulladdr}}</p>
                         <div class="roomMap" id="roomMap"></div>
                     </div>
                 </div>
@@ -100,40 +136,11 @@
             </a>
         </div><!-- //footBar -->
     </div><!-- //wrap -->
-    <!--腾讯地图key:C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile-->
+
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=C24BZ-SML63-HTA3K-YLNHT-MABOZ-3SFS3fixture-mobile"></script>
     <script type="text/javascript" src="../js/Swiper.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            //房源图片轮播
-            new Swiper(".proImg", {
-                speed: 3000,
-                autoplay:true,
-                pagination: '.pagination',
-                paginationClickable: true,
-            });
-            //地图显示
-            var center = new qq.maps.LatLng(34.2919258755,108.9472800493);
-            var map = new qq.maps.Map(
-            document.getElementById("roomMap"),
-                {
-                    center: center,
-                    zoom: 13,
-                    zoomControl: false,
-                    mapTypeControlOptions: {
-                    mapTypeIds: [
-                        qq.maps.MapTypeId.ROADMAP,
-                    ]
-                 }
-                }
-            );
-            var marker = new qq.maps.Marker({
-                position: center,
-                map: map
-            });
-        })
-        
-    </script>
+    <!-- js -->
+    <script type="text/javascript" src="../js/pages/roomDetail.js"></script>
 </body>
 </html>

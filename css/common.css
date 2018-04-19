@@ -332,3 +332,7 @@ html, body {
         page-break-after: avoid;
     }
 }
+
+[v-cloak] {
+    display: none;
+}

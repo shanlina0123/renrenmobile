@@ -5,19 +5,25 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>推荐客户</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/other.css">
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
+    <!-- vue js-->
+    <script src="../plugin/js/vue.js"></script>
+    <script src="../plugin/js/axios.min.js"></script>
+    <script src="../plugin/js/httpUrl.js"></script>
 </head>
+
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -26,74 +32,58 @@
         <div class="main">
             <div class="formWrap">
                 <img src="../images/logo.png" class="logo">
-                <form class="recommendForm">
+                <form class="recommendForm" id="my_vue_client_submit" v-cloak>
                     <table class="formTable">
                         <tr>
                             <td>客户姓名：</td>
-                            <td><input type="text" class="sameInput" name="userName"></td>
+                            <td><input type="text" class="sameInput" name="userName" ref="name"></td>
                         </tr>
                         <tr>
                             <td>手机号码：</td>
-                            <td><input type="text" class="sameInput" name="uPhone"></td>
+                            <td><input type="text" class="sameInput" name="uPhone" ref="mobile"></td>
                         </tr>
                         <tr>
-                            <td>请选择楼盘：</td><!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
+                            <td>请选择楼盘：</td>
+                            <!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
                             <td>
                                 <div class="forInset">
-                                    <input type="text" class="sameInput selectHouse" name="selectHouse" oninput="myFunction()">
+                                    <input type="text" class="sameInput selectHouse" name="selectHouse" v-model="house_name" @keyup="showHouseClick(house_name)">
                                     <ul class="forShowSearch">
-                                        <li>查询结果</li>
+                                        <li v-for="house in house_list" @click="houseClick(house.id,house.name)">{{house.name}}</li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
                         <!--当是业务员的时候隐藏公司、备注选项给添加class="isShow"即可-->
-                        <tr class="">
+                        <tr class="afteradmin">
                             <td>公司：</td>
                             <td>
                                 <div class="formSelect">
-                                    <div class="showForm">人人居</div>
+                                    <div class="showForm" @click="showCompanyClick()">请选择</div>
                                     <ul class="formUl">
-                                        <li>人人居</li>
-                                        <li>搜房</li>
-                                        <li>其他</li>
+                                        <li v-for="company in company_list" @click="companyClick(company.id,company.name)">{{company.name}}</li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                        <tr class="">
+                        <tr class="afteradmin">
                             <td>备注：</td>
-                            <td><input type="text" class="sameInput" name="remark"></td>
+                            <td><input type="text" class="sameInput" name="remark" ref="remark"></td>
                         </tr>
                     </table>
-                    <input type="submit" class="formBtn" value="立即推荐">
+                    <input type="submit" class="formBtn" value="立即推荐" @click="submitClick()">
                 </form>
             </div>
-        </div><!-- //main -->
-     <div class="errorLabel"></div>
-    </div><!-- //wrap -->
+        </div>
+        <!-- //main -->
+        <div class="errorLabel"></div>
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
     <script type="text/javascript">
-           function  myFunction(){
-                $(".forShowSearch").show();
-            }
-        $(function(){
-            //类型选择
-            $(".formSelect").click(function(){
-                $(".formUl").slideToggle();
-            });
-            $(".formUl li").click(function(){
-                var thisText = $(this).text();
-                $(".showForm ").text(thisText);
-            });
-            //模糊查询简单效果
-            $(".forShowSearch li").click(function(){
-                var thisText = $(this).text();
-                $(".selectHouse").val(thisText);
-                 $(this).parents(".forShowSearch").hide();
-            })
+        $(function() {
             //表单验证
             $(".recommendForm").validate({
                 errorLabelContainer: $(".errorLabel"),
@@ -103,9 +93,9 @@
                     },
                     uPhone: {
                         required: true,
-                        mobile:true
+                        mobile: true
                     },
-                    selectHouse:{
+                    selectHouse: {
                         required: true
                     }
                 },
@@ -114,14 +104,18 @@
                         required: "请输入客户姓名"
                     },
                     uPhone: {
-                        required: "请正确输入客户手机号"
+                        required: "请正确输入手机号"
                     },
-                    selectHouse:{
+                    selectHouse: {
                         required: "请选择预约楼盘"
                     }
                 }
             })
         })
     </script>
+    <!-- 嵌套数据js -->
+    <script type="text/javascript" src="../js/pages/checkToken.js"></script>
+    <script type="text/javascript" src="../js/pages/clientSubmit.js"></script>
 </body>
+
 </html>

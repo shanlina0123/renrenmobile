@@ -5,19 +5,26 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>人人找房</title>
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/modernizr-2.6.2.min.js"></script>
     <script src="js/rem.js"></script>
+    <!-- vue js-->
+    <script src="plugin/js/vue.js"></script>
+    <script src="plugin/js/axios.min.js"></script>
+    <script src="plugin/js/httpUrl.js"></script>
+
 </head>
+
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -37,7 +44,8 @@
                     </div>
                     <input type="text" class="searchInput fl">
                     <a href="pages/roomList.html"><img src="images/search.png" class="searchImage sameImg"></a>
-                </div><!-- 搜索部分结束 -->
+                </div>
+                <!-- 搜索部分结束 -->
                 <ul class="nav clearfix">
                     <li>
                         <a href="pages/newRoomList.html">
@@ -57,12 +65,13 @@
                             <p>商铺写字楼</p>
                         </a>
                     </li>
-                </ul><!-- 导航部分结束 -->
+                </ul>
+                <!-- 导航部分结束 -->
                 <div class="recommend samePadding">
                     <p class="partTitle">推荐房源</p>
-                    <ul class="roomListUl">
-                        <li>
-                            <a href="pages/roomDetail.html">
+                    <ul class="roomListUl" id="index">
+                        <li v-for="item in recommend">
+                            <a :href="'pages/roomDetail.html?id='+item.id">
                                 <div class="imgpart">
                                     <img src="images/roomPic.jpg" width="100%">
                                     <a href="pages/recommend.html" class="recommendLink">
@@ -70,77 +79,64 @@
                                         <p>推荐</p>
                                     </a>
                                 </div>
-                                <table class="roomTable">
+                                <!--<table class="roomTable">
                                     <tr>
                                         <td>
                                             <div class="newHouse">
-                                                楼盘：印象城
-                                                <sup class="forTips unBegin">待售</sup>
-                                            </div></td><!--新楼的楼盘标志位待售或者在售-->
-                                        <td>总价：20万</td>
-                                        <td>面积：30平</td>
+                                                楼盘：{{item.name}}
+                                                <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            </div>
+                                        </td>
+                                        <td>总价：{{item.total}}万</td>
+                                        <td>面积：{{item.area}}平</td>
                                     </tr>
-                                <tr>
-                                        <td colspan="2">街道：航天大道</td>
+                                    <tr>
+                                        <td colspan="2">街道：{{item.street}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">
                                             <div class="clearfix">
                                                 <span class="fl">特点：</span>
                                                 <div class="lips fl">
-                                                    <span>紧邻地铁</span>
-                                                    <span>押一付一</span>
-                                                    <span>精装修</span>
+                                                    <template v-for="tag in item.house_to_tag">
+                                                        <span v-if="tags[tag.tagid]">{{tags[tag.tagid].name}}</span>
+                                                    </template>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>佣金规则：</td>
-                                        <td colspan="2"></td>
+                                        <td colspan="2" v-if="commission[item.commissionid]">{{commission[item.commissionid].name}}</td>
                                     </tr>
-                                </table>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/roomDetail.html">
-                                <div class="imgpart">
-                                    <img src="images/roomPic.jpg" width="100%">
-                                    <a href="pages/recommend.html" class="recommendLink">
-                                        <img src="images/recommend.png" width="20">
-                                        <p>推荐</p>
-                                    </a>
-                                </div>
+                                </table>-->
                                 <table class="roomTable">
                                     <tr>
-                                        <td>总价：</td>
-                                        <td>20万</td>
+                                        <td colspan="2">
+                                            <span>{{item.name}}
+                                                <sup class="forTips unBegin" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
+                                            </span>&nbsp;
+                                            <span>{{item.total}}万</span>&nbsp;
+                                            <span>{{item.area}}m<sup>2</sup></span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>面积：</td>
-                                        <td>30平</td>
+                                        <td colspan="2">{{item.street}}</td>
                                     </tr>
                                     <tr>
-                                        <td>楼盘：</td>
-                                        <td>印象城</td>
-                                    </tr>
-                                    <tr>
-                                        <td>街道：</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>特点：</td>
-                                        <td>
-                                            <div class="lips">
-                                                <span>紧邻地铁</span>
-                                                <span>押一付一</span>
-                                                <span>精装修</span>
+                                        <td colspan="2">
+                                            <div class="clearfix">
+                                                <span class="fl"></span>
+                                                <div class="lips fl colorTag">
+                                                    <template v-for="tag in item.house_to_tag">
+                                                        <span v-if="tags[tag.tagid]" >{{tags[tag.tagid].name}}</span>
+                                                    </template>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>佣金规则：</td>
-                                        <td></td>
+                                        <td colspan="2" v-if="commission[item.commissionid]"><img src="images/yongjin.png" width="20">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                     </tr>
                                 </table>
                             </a>
@@ -148,19 +144,25 @@
                     </ul>
                 </div>
             </div>
-        </div><!-- //main -->
+        </div>
+        <!-- //main -->
         <div class="bootBar clearfix">
             <a href="index.html" class="on">
-                <img src="images/home.png"  class="sameImg">
+                <img src="images/home.png" class="sameImg">
                 <p>首页</p>
             </a>
             <a href="pages/my.html">
-                <img src="images/my.png"  class="sameImg">
+                <img src="images/my.png" class="sameImg">
                 <p>我的</p>
             </a>
-        </div><!-- //footBar -->
-    </div><!-- //wrap -->
+        </div>
+        <!-- //footBar -->
+    </div>
+    <!-- //wrap -->
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <!-- 嵌套数据js -->
+    <script type="text/javascript" src="index.js"></script>
 </body>
+
 </html>

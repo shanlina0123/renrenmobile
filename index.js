@@ -92,6 +92,6 @@ new Vue({
 $(function() {
     var openid = localStorage.getItem("openid");
     if (!openid || openid == undefined || openid == 'undefined') {
-        //window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fweixin.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fweixin.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
     }
 });

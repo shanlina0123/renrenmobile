@@ -43,7 +43,9 @@ new Vue({
                 })
                 .catch(function (error)
                 {
-                    //console.log(error);
+                    localStorage.removeItem("userinfo");
+                    that.tokenData=null;
+                    window.location="../pages/login.html";
                 });
         }
     }

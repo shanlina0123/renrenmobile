@@ -7,6 +7,13 @@
     <title>人人找房</title>
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <!--去除缓存 start-->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="">
+    <!--去除缓存 end-->
+
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/base.css">
@@ -67,7 +74,7 @@
                             <a :href="'pages/roomDetail.html?id='+item.id">
                                 <div class="imgpart">
                                     <img src="images/roomPic.jpg" width="100%">
-                                    <a href="pages/recommend.html" class="recommendLink">
+                                    <a  class="recommendLink"  @click="refreeClick(item.typeid,item.uuid,item.id,item.name)">
                                         <img src="images/indexRec.png" width="100%">
                                     </a>
                                 </div>

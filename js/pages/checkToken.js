@@ -35,6 +35,7 @@ new Vue({
                             //     layer.msg(data.messages);
                             // });
                         }
+                        localStorage.removeItem("userinfo");
                          that.tokenData=null;
                          window.location="../pages/login.html";
                     }

@@ -131,10 +131,14 @@ var vm = new Vue({
             }
         },
         //进入推荐页面
-        refreeClick: function(typeid, uuid) {
+        refreeClick: function(typeid, uuid,houseid,name) {
             var target_url = "typeid=" + typeid;
             if (uuid) {
                 target_url += "&uuid=" + uuid;
+            }
+            if(houseid&&name)
+            {
+                target_url += "&houseid="+houseid+"&name="+name;
             }
 
             window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);

@@ -1,5 +1,5 @@
 (function () {
-    var host = "http://local.fang.com/";
+   var host = "http://api.rrzhaofang.com/";
     //未带toke请求
     window.conf = {
         recommend: host + 'home/house/recommend',//首页推荐

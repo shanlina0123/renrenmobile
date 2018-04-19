@@ -8,7 +8,7 @@ new Vue({
                 var that = this;
                 if(!that.tokenData)
                 {
-                    window.location="../pages/login.html";
+                    window.location="../pages/regist.html";
                 }else{
                     if(!JSON.parse(that.tokenData).token)
                     {

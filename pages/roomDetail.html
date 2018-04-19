@@ -39,7 +39,7 @@
             </div>
             <!--产品信息部分-->
             <div class="msgPart samePadding">
-                <p class="partTitle"><img src="../images/yongjin.png"><span>佣金规则</span></p>
+                <p class="partTitle"><img src="../images/yongjin.png"><span v-if="commission[info.commissionid]">{{commission[info.commissionid].name}}</span></p>
                 <ul class="pricePart clearfix">
                     <!-- 新房 -->
                     <li v-if="info.typeid == 1">

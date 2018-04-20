@@ -104,7 +104,11 @@ var vm = new Vue({
             that.getHouseList();
         }, //房型区间
         roomData: function(id) {
-            this.clickNum = id; //房型筛选添加选中样式
+            if (id) {
+                this.clickNum = id;
+            } else {
+                this.clickNum = 0;
+            }
             this.params.roomtypeid = id;
             this.getHouseList();
         }, //开始价格
@@ -131,14 +135,13 @@ var vm = new Vue({
             }
         },
         //进入推荐页面
-        refreeClick: function(typeid, uuid,houseid,name) {
+        refreeClick: function(typeid, uuid, houseid, name) {
             var target_url = "typeid=" + typeid;
             if (uuid) {
                 target_url += "&uuid=" + uuid;
             }
-            if(houseid&&name)
-            {
-                target_url += "&houseid="+houseid+"&name="+name;
+            if (houseid && name) {
+                target_url += "&houseid=" + houseid + "&name=" + name;
             }
 
             window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);

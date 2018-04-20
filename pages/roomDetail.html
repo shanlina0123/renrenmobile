@@ -7,6 +7,11 @@
     <title>房源详情</title>
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <!--去除缓存 start-->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="">
+    <!--去除缓存 end-->
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/room.css">
@@ -105,10 +110,10 @@
                             <li>朝向：<span v-if="orientation[info.orientationid]">{{orientation[info.orientationid].name}}</span></li>
                             <li>装修：<span v-if="decoratestyle[info.decoratestyleid]">{{decoratestyle[info.decoratestyleid].name}}</span></li>
                             <li>电梯：<span>{{info.iselevator?'有':'无'}}</span></li>
-                            <li>层高：<span>{{info.storey}}</span></li>
-                            <li>面宽：<span>{{info.wide}}</span></li>
+                            <li>层高：<span>{{info.storey}}m</span></li>
+                            <li>面宽：<span>{{info.wide}}m</span></li>
                             <li>权属：<span v-if="ownership[info.ownershipid]">{{ownership[info.ownershipid].name}}</span></li>
-                            <li>进深：<span>{{info.depth}}</span></li>
+                            <li>进深：<span>{{info.depth}}m</span></li>
                             <li>年代：<span>{{info.years}}</span></li>
                             <li>用途：<span v-if="purpose[info.purposeid]">{{purpose[info.purposeid].name}}</span></li>
                             <li>物业费：<span>{{info.propertyfee}}元/m<sup>2</sup></span></li>

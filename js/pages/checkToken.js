@@ -8,7 +8,7 @@ new Vue({
                 var that = this;
                 if(!that.tokenData)
                 {
-                    window.location="../pages/login.html";
+                    window.location="../pages/regist.html";
                 }else{
                     if(!JSON.parse(that.tokenData).token)
                     {
@@ -35,6 +35,7 @@ new Vue({
                             //     layer.msg(data.messages);
                             // });
                         }
+                        localStorage.removeItem("userinfo");
                          that.tokenData=null;
                          window.location="../pages/login.html";
                     }
@@ -42,7 +43,7 @@ new Vue({
                 })
                 .catch(function (error)
                 {
-                    //console.log(error);
+                    alert("Token验证异常");
                 });
         }
     }

@@ -6,6 +6,7 @@ new Vue({
         search_params: { "name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
+        link_house_name:null,
         userInfoData: JSON.parse(localStorage.getItem("userinfo")),
         tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
     },
@@ -19,8 +20,14 @@ new Vue({
         },
         //其他链接进去的参数获取
         enterParam: function() {
+            //房源-搜索参数
             this.search_params.typeid = this.GetQueryString("typeid");
             this.search_params.uuid = this.GetQueryString("uuid");
+
+            //房源-推荐参数
+            this.add_params.houseid=this.GetQueryString("houseid")
+            this.add_params.name=this.GetQueryString("name");
+            this.link_house_name=this.GetQueryString("name");
         },
         //检查是否内部外部人源
         checkAfterAdmin: function() {
@@ -33,11 +40,10 @@ new Vue({
             }
         },
         //点击显示房源-模糊搜索
-        showHouseClick: function(house_name) {
+        showHouseClick: function() {
             var url = auth_conf.client_houses;
             var that = this;
-            that.house_name = house_name;
-            that.house_name ? that.search_params.name = that.house_name : null;
+            that.$refs.house_name.value ? that.search_params.name = that.$refs.house_name.value : null;
             axios.post(url, that.search_params, { headers: { "Authorization": that.tokenValue } })
                 .then(function(response) {
                     var data = response.data;

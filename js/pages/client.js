@@ -25,11 +25,13 @@ var vm = new Vue({
             if (this.$refs.name.value) {
                 this.params.name = this.$refs.name.value;
             }
+            this.params.page = 1;
             this.getClientList();
         },
         //搜索
         searchClick: function() {
             this.params.name = this.$refs.name.value;
+            this.params.page = 1;
             this.getClientList();
         },
         //点击修改级别
@@ -139,8 +141,7 @@ var vm = new Vue({
                 });
         },
         linkToRecommend: function() {
-            var target_url = "typeid=1";
-            window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);
+            window.location.href = "../pages/recommend.html";
         }
     },
     created: function() {

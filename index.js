@@ -78,7 +78,20 @@ new Vue({
                 .catch(function(error) {
                     //console.log(error);
                 });
-        }
+        },
+        //进入推荐页面
+        refreeClick: function(typeid, uuid,houseid,name) {
+            var target_url = "typeid=" + typeid;
+            if (uuid) {
+                target_url += "&uuid=" + uuid;
+            }
+            if(houseid&&name)
+            {
+                target_url += "&houseid="+houseid+"&name="+name;
+            }
+
+            window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);
+        },
     },
     created: function() {
         var that = this;
@@ -92,6 +105,6 @@ new Vue({
 $(function() {
     var openid = localStorage.getItem("openid");
     if (!openid || openid == undefined || openid == 'undefined') {
-        //window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fweixin.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fweixin.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
     }
 });

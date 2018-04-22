@@ -44,6 +44,8 @@ $(function() {
                 success: function(result) {
                     if (result.status == 1)
                     {
+                        var data = JSON.stringify(result.data);
+                        localStorage.setItem("userinfo", data);
                         window.location.href = '/index.html';
                     } else
                     {
@@ -94,7 +96,7 @@ new Vue({
                 axios.get(url)
                     .then(function(response) {
                         var data = response.data;
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == 1)
                         {
                             that.openid = data.data.openid;

@@ -53,7 +53,7 @@ var vm = new Vue({
                 .then(function(response) {
                     var data = response.data;
                     if (data.status == 1) {
-
+                        console.log( data );
                         var list = data.data;
                         that.houseList = list.data;
                         that.pages = list.last_page;

@@ -61,7 +61,7 @@ new Vue({
     data: {
         type: [],
         code: '',
-        openid: ''
+        openid:localStorage.getItem("openid")
     },
     methods: {
         getData: function() {
@@ -107,11 +107,11 @@ new Vue({
     },
     created: function() {
         var that = this;
-        if (!that.getQueryString('code'))
+        /*if (!that.getQueryString('code'))
         {
             window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri=http%3A%2F%2Fwx.rrzhaofang.com%2Fpages%2Fregist.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
-        }
+        }*/
         that.getData(); //自定义属性
-        that.getOpenID();
+        //that.getOpenID();
     }
 });

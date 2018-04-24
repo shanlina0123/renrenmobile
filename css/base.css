@@ -216,6 +216,12 @@ label.error {
     position: relative;
 }
 
+.roomListUl .imgpart a img{
+   height: 2.8rem;
+}
+.roomListUl a.recommendLink img{
+    height: auto;!important;
+}
 .roomListUl .imgpart .recommendLink {
     position: absolute;
     right: .1rem;

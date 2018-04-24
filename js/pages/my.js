@@ -17,10 +17,8 @@ new Vue({
                     {
                         that.my_info = data.data;
                     }
-                   // console.log(response.data.status);
                 }).catch(function (error) {
-                //console.log(error);
-               // console.log(this);
+
             });
         },
         showEditMyInfo:function(name,mobile)

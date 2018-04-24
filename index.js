@@ -1,6 +1,7 @@
 new Vue({
     el: '#index',
     data: {
+        path_url:conf.pathUrl,
         recommend: [],
         commission: [],
         tags: [],

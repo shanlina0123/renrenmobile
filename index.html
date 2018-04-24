@@ -73,7 +73,7 @@
                         <li v-for="item in recommend">
                             <a :href="'pages/roomDetail.html?id='+item.id">
                                 <div class="imgpart">
-                                    <img :src="pathUrl +item.covermap" width="100%" >
+                                    <img :src="path_url+item.covermap" width="100%" onerror="src='images/roomPic.jpg'">
                                     <a  class="recommendLink"  @click="refreeClick(item.typeid,item.uuid,item.id,item.name)">
                                         <img src="images/indexRec.png" width="100%">
                                     </a>

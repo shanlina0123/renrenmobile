@@ -26,6 +26,7 @@ $(function() {
 var vm = new Vue({
     el: '#main',
     data: {
+        path_url:conf.pathUrl,
         params: {
             typeid: 1,
             name: '',

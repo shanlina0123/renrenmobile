@@ -1,3 +1,6 @@
+
+
+
 new Vue({
     el: '.wrap',
     data: {
@@ -80,6 +83,7 @@ new Vue({
                 })
                 .catch(function (error)
                 {
+                    localStorage.removeItem("userinfo");
                     alert("Token验证异常");
                 });
         },getQueryString:function( name )

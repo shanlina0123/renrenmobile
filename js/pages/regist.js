@@ -42,6 +42,7 @@ $(function() {
                 url: conf.regist, //url
                 data: $('#main').serialize(),
                 success: function(result) {
+                    console.log(result);
                     if (result.status == 1)
                     {
                         var data = JSON.stringify(result.data);

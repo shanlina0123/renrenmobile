@@ -1,5 +1,5 @@
 (function () {
-    var host = "http://192.168.15.13:8081/";
+    var host = "http://api.rrzhaofang.com/";
     //未带toke请求
     window.conf = {
         recommend: host + 'home/house/recommend',//首页推荐

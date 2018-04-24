@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>确认授权</title>
+    <link rel="stylesheet" href="wui/weui.css"/>
+    <link rel="stylesheet" href="wui/example.css"/>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+</head>
+<body ontouchstart>
+<div class="page">
+    <div class="weui_msg">
+        <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+        <div class="weui_text_area">
+            <h2 class="weui_msg_title">确认授权</h2>
+            <!--<p class="weui_msg_desc">内容详情，可根据实际需要安排</p>-->
+        </div>
+        <div class="weui_opr_area">
+            <p class="weui_btn_area">
+                <a href="javascript:;" onclick="authorization()"  class="weui_btn weui_btn_primary">确定</a>
+                <a href="javascript:;window.opener = null;window.open('', '_self');window.close();"class="weui_btn weui_btn_default">取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function getQueryString( name )
+    {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        if (result != null) {
+            return decodeURIComponent(result[2]);
+        }else
+        {
+            return null;
+        }
+    }
+
+    /**
+     * 授权
+     */
+    function authorization()
+    {
+        var code = getQueryString('code');
+        var type = getQueryString('type');
+        var uuid = getQueryString('uuid');
+        console.log(code,type, uuid)
+        if( parseInt(type) == 1 )
+        {
+            //uuid 为token
+            var url = 'http://api.rrzhaofang.com/admin/wechat/forget?code='+code+'&uuid='+uuid
+        }else
+        {
+            var url = 'http://api.rrzhaofang.com/admin/wechat/authorization?code='+code+'&token='+uuid
+        }
+        $.ajax({
+            type: "GET", //方法类型
+            dataType: "json", //预期服务器返回的数据类型
+            url: url,
+            success: function(result) {
+                if ( result.status == 1 )
+                {
+                    alert( result.messages );
+                    window.opener = null;
+                    window.open('', '_self');
+                    window.close();
+                }else
+                {
+                    alert( result.messages );
+                }
+            },
+            error: function() {
+                alert( '请求失败' );
+            }
+        });
+    }
+</script>
+</body>
+</html>

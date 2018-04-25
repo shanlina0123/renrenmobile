@@ -57,7 +57,7 @@ function checkToken() {
                 if ( result.status != 15 )
                 {
                     localStorage.removeItem("userinfo");
-                    window.location.href = '/login.html';
+                    window.location.href = '../pages/login.html';
 
                 }else
                 {

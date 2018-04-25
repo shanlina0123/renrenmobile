@@ -57,10 +57,11 @@ function checkToken() {
                 if ( result.status != 15 )
                 {
                     localStorage.removeItem("userinfo");
-                    window.location.href = '../pages/login.html';
+                    window.location.href =  window.location.href;
 
                 }else
                 {
+                    localStorage.removeItem("userinfo");
                     alert(result.messages);
                 }
             }

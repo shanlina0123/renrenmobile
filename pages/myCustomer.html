@@ -110,7 +110,7 @@
                                 <li class="houseDate">{{client.housename}}</li>
                                 <li class="stateLi">
                                     <span class="stateShow" v-if="default_followstatus_datas[client.followstatusid]">{{default_followstatus_datas[client.followstatusid]["name"]}}</span>
-                                    <span class="stateShow unAble" v-else>有效</span>
+                                    <span class="stateShow unAble" v-else></span>
                                     <a v-if="tokenUserInfo.isadminafter==1" href="javascript:;" class="editCus stateEdit" @click="clientStatusClick(client.uuid)"><img src="../images/edit.png" width="100%"></a>
                                 </li>
                                 <li class="dateLi unAble">{{client.makedate}}</li>

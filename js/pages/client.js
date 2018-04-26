@@ -53,8 +53,15 @@ var vm = new Vue({
         },
         //修改客户状态
         editStatusClick: function(id, name) {
+            var that = this;
             this.edit_params.followstatusid = id;
-            $(".stateShow").html(name);
+            var client_list = that.client_list;
+            client_list.forEach(function (value,index) {
+                if( that.edit_params.uuid == value.uuid )
+                {
+                    value.followstatusid = id;
+                }
+            });
             $(".statePop").hide();
             this.updateClient();
         },
@@ -96,16 +103,10 @@ var vm = new Vue({
             axios.put(url, that.edit_params, { headers: { "Authorization": that.tokenValue } })
                 .then(function(response) {
                     var data = response.data;
-                    layui.use('layer',  function(id)  {
-                        var  layer  =  layui.layer;
-                        layer.msg(data.messages);
-                    });
+                    layer.msg(data.messages);
                     // console.log(response.data.status);
                 }).catch(function(error) {
-                    layui.use('layer',  function(id)  {
-                        var  layer  =  layui.layer;
                         layer.msg("系统错误");
-                    });
                 });
         },
         //获取默认单分类列表
@@ -177,3 +178,10 @@ layui.use('flow', function() {
         }
     });
 });
+
+$(function(){
+    layui.use('layer',  function(id)  {
+        var  layer  =  layui.layer;
+
+    });
+})

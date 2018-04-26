@@ -25,7 +25,7 @@ function checkToken() {
                     {
                         if( ! result.data.users )
                         {
-                            window.location="../pages/regist.html";
+                            window.location="/pages/regist.html";
 
                         }else
                         {
@@ -34,6 +34,9 @@ function checkToken() {
                             window.location.href =  window.location.href;
                         }
                         localStorage.setItem("openid", result.data.openid);
+                    }else
+                    {
+                        alert( result.messages );
                     }
                 },
                 error: function()
@@ -43,29 +46,32 @@ function checkToken() {
                 }
             });
         }
-    }
-    $.ajax({
-        headers: {
-            Authorization: JSON.parse(tokenData).token,
-        },
-        type: "GET", //方法类型
-        dataType: "json", //预期服务器返回的数据类型
-        url:auth_conf.token, //url
-        success: function(result) {
-            if (result.status != 1)
-            {
-                if ( result.status != 15 )
+    }else
+    {
+        //检测token
+        $.ajax({
+            headers: {
+                Authorization: JSON.parse(tokenData).token,
+            },
+            type: "GET", //方法类型
+            dataType: "json", //预期服务器返回的数据类型
+            url:auth_conf.token, //url
+            success: function(result) {
+                if (result.status != 1)
                 {
-                    localStorage.removeItem("userinfo");
-                    window.location.href = '/login.html';
+                    if ( result.status != 15 )
+                    {
+                        localStorage.removeItem("userinfo");
+                        window.location.href = '/pages/login.html';
 
-                }else
-                {
-                    alert(result.messages);
+                    }else
+                    {
+                        alert(result.messages);
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 

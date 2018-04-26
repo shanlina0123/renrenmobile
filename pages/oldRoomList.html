@@ -129,7 +129,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr v-if="item.iscommission">
                                     <td v-if="commission[item.commissionid]"><img src="../images/yongjin.png" class="yongjinImg">&nbsp;<span class="yongjinWrap">{{commission[item.commissionid].name}}</span></td>
                                 </tr>
                             </table>

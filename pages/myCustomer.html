@@ -51,20 +51,23 @@
             <div class="samePadding">
                 <ul class="custormNum clearfix">
                     <li>
-                        <p>{{client_statistics.refereeCount}}</p>
+                        <p  v-if="client_statistics.refereeCount">{{client_statistics.refereeCount}}</p>
+                        <p v-else>0</p>
                         <span>累计推荐</span>
                     </li>
                     <li>
                         <p v-if="client_statistics.refereeCount-client_statistics.invalidCount">{{client_statistics.refereeCount-client_statistics.invalidCount}}</p>
-                        <p v-else></p>
+                        <p v-else>0</p>
                         <span>有效推荐</span>
                     </li>
                     <li>
-                        <p>{{client_statistics.invalidCount}}</p>
+                        <p v-if="client_statistics.invalidCount">{{client_statistics.invalidCount}}</p>
+                        <p v-else>0</p>
                         <span>无效推荐</span>
                     </li>
                     <li>
-                        <p>{{client_statistics.visitCount}}</p>
+                        <p v-if="client_statistics.visitCount">{{client_statistics.visitCount}}</p>
+                        <p v-else>0</p>
                         <span>上门访问</span>
                     </li>
                 </ul>

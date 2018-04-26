@@ -1,5 +1,6 @@
 (function () {
     var host = "http://192.168.15.222:8081/";
+    
     //未带toke请求
     window.conf = {
         recommend: host + 'home/house/recommend',//首页推荐

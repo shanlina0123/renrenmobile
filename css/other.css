@@ -171,6 +171,7 @@
 
 .customsList {
     margin-top: .2rem;
+    width: 100%;
 }
 
 .customsList tr {

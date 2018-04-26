@@ -1,9 +1,9 @@
 (function () {
-    var host = "http://192.168.15.13:8081/";
+    var host = "http://192.168.15.222:8081/";
     //未带toke请求
     window.conf = {
         recommend: host + 'home/house/recommend',//首页推荐
-        pathUrl:'http://api.rrzhaofang.com/upload/',
+        pathUrl:'http://api.rrzhaofang.com/upload',
         datas: host + 'home/datas',//前端数据
         datas_default: host + 'home/datas-default-one/',//前端自定义属性数据
         datas_defaults:host+'home/datas-default',//前端自定义属性数据

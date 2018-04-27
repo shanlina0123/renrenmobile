@@ -329,6 +329,7 @@
 
 .myMessageUl li>a {
     display: block;
+    -webkit-touch-callout: none;
 }
 
 .myMessageUl li:first-child {

@@ -85,6 +85,10 @@ a:focus {
     color: #333;
 }
 
+a:active {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 
 /*公用样式*/
 

@@ -141,8 +141,19 @@ var vm = new Vue({
                     //console.log(error);
                 });
         },
+        getQueryString: function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 匹配目标参数
+            var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+            if (result != null) {
+                return decodeURIComponent(result[2]);
+            } else {
+                return null;
+            }
+        },
+        //进入推荐页面
         linkToRecommend: function() {
-            window.location.href = "../pages/recommend.html";
+            var target_url = "typeid=1";
+            window.location.href = "../pages/recommend.html?" + encodeURIComponent(target_url);
         }
     },
     created: function() {

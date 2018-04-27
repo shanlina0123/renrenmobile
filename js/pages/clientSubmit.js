@@ -3,7 +3,8 @@ new Vue({
     data: {
         house_name: null,
         add_params: { "name": null, "mobile": null, "houseid": null, "companyid": null, "remark": null },
-        search_params: { "name": null, "typeid": null, "uuid": null },
+        enter_params: { "name": null, "typeid": null, "uuid": null },
+        search_params:{"name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
         link_house_name:null,
@@ -20,9 +21,12 @@ new Vue({
         },
         //其他链接进去的参数获取
         enterParam: function() {
-            //房源-搜索参数
+            //房源-设置参数
+            this.enter_params.typeid = this.GetQueryString("typeid");
+            this.enter_params.uuid = this.GetQueryString("uuid");
+
+            //房源搜索参数
             this.search_params.typeid = this.GetQueryString("typeid");
-            this.search_params.uuid = this.GetQueryString("uuid");
 
             //房源-推荐参数
             this.add_params.houseid=this.GetQueryString("houseid")
@@ -39,36 +43,42 @@ new Vue({
                 that.getCompanyList(); //公司列表
             }
         },
-        //点击显示房源-模糊搜索
-        showHouseClick: function() {
+        //获取房源列表
+        getHouseList: function() {
             var url = auth_conf.client_houses;
             var that = this;
-            that.link_house_name=$("#selectHouse").val();
-           that.search_params.name = $("#selectHouse").val();
             axios.post(url, that.search_params, { headers: { "Authorization": that.tokenValue } })
                 .then(function(response) {
                     var data = response.data;
                     if (data.status == 1) {
                         that.house_list = data.data;
-                        $(".forShowSearch").show();
-                    } else if (data.status == 4) {
-                        that.house_list = data.data;
-                        $(".forShowSearch").hide();
-                        layui.use('layer',  function(id)  {
-                            var  layer  =  layui.layer;
-                            $("#selectHouse").val("");
-                        });
-                    } else {
-                        $(".forShowSearch").hide();
-                        layui.use('layer',  function(id)  {
-                            var  layer  =  layui.layer;
-                            $("#selectHouse").val("");
-                        });
+                        $(".hoseList").hide();
                     }
                 })
                 .catch(function(error) {
                     //console.log(error);
                 });
+        },
+        //点击显示房源下拉框层
+        showHouseList:function () {
+            $(".forShowSearch").toggle();
+        },
+        //过滤列表
+        keyHouseFilter:function () {
+          var that=this;
+           var inputValue=$.trim($("#selectHouse").val());
+            if(inputValue)
+            {
+                var liFilter=$("#hoseList li:contains('"+inputValue+"')");
+                if(liFilter.length>0)
+                {
+                    liFilter.addClass("filterShow").removeClass("hidden");
+                }
+                $("#hoseList li:not('.filterShow')").addClass("hidden");
+            }else{
+                $("#hoseList li").removeClass("filterShow").removeClass("hidden");
+            }
+            $("#hoseList").show();
         },
         //点击显示公司
         showCompanyClick: function() {
@@ -85,6 +95,7 @@ new Vue({
         houseClick: function(id, name) {
             this.add_params.houseid = id;
             $(".selectHouse").val(name);
+            $("#hoseList").attr("clickHouseName",name)
             $(".forShowSearch").hide();
         },
         //选择公司
@@ -113,67 +124,51 @@ new Vue({
         submitClick: function() {
             var url = auth_conf.client_refree;
             var that = this;
+            if ($("#hoseList").attr("clickHouseName") != $("#selectHouse").val()) {
+                layui.use('layer', function (id) {
+                    var layer = layui.layer;
+                    layer.msg("请选择下拉框内的楼盘",{icon:7});
+                });
+                return;
+            }
+            if ($("#userName").val() == "" || $("#uPhone").val() == "") {
+                layui.use('layer', function (id) {
+                    var layer = layui.layer;
+                    layer.msg("请输入客户名称或电话",{icon:7});
+                });
+                return;
+            }
             that.add_params.name = that.$refs.name.value;
             that.add_params.mobile = that.$refs.mobile.value;
             that.add_params.remark = that.$refs.remark.value;
-            $(".recommendForm").validate({
-                errorLabelContainer: $(".errorLabel"),
-                rules: {
-                    userName: {
-                        required: true
-                    },
-                    uPhone: {
-                        required: true,
-                        mobile: true
-                    },
-                    selectHouse: {
-                        required: true
-                    }
-                },
-                messages: {
-                    userName: {
-                        required: "请输入客户姓名"
-                    },
-                    uPhone: {
-                        required: "请输入手机号",
-                        mobile: "请正确请输入手机号"
-                    },
-                    selectHouse: {
-                        required: "请选择楼盘"
-                    }
-                },
-                submitHandler: function(form) {
-                    //token
-                    axios.post(url, that.add_params, { headers: { "Authorization": that.tokenValue } })
-                        .then(function(response) {
-                            var data = response.data;
-                            if (data.status == 1) {
-                                window.location.href = "../pages/myCustomer.html";
-                            } else {
-                                //  alert(data.messages)
-                                layui.use('layer',  function(id)  {
-                                    var  layer  =  layui.layer;
-                                    layer.msg(data.messages);
-                                });
-                            }
-                            // console.log(response.data.status);
-                        }).catch(function(error) {
-                            layui.use('layer',  function(id)  {
-                                var  layer  =  layui.layer;
-                                layer.msg("系统错误");
-                            });
-                            //console.log(error);
-                            // console.log(this);
+            //token
+            axios.post(url, that.add_params, {headers: {"Authorization": that.tokenValue}})
+                .then(function (response) {
+                    var data = response.data;
+                    if (data.status == 1) {
+                        window.location.href = "../pages/myCustomer.html";
+                    } else {
+                        //  alert(data.messages)
+                        layui.use('layer', function (id) {
+                            var layer = layui.layer;
+                            layer.msg(data.messages);
                         });
-
-                }
-            })
-
+                    }
+                    // console.log(response.data.status);
+                }).catch(function (error) {
+                layui.use('layer', function (id) {
+                    var layer = layui.layer;
+                    layer.msg("系统错误");
+                });
+            });
         }
+
     },
     created: function() {
         var that = this;
         that.checkAfterAdmin(); //检查是否业务员
         that.enterParam();
+        that.getHouseList();//获取房源列表
     }
 });
+

@@ -37,20 +37,20 @@
                     <table class="formTable">
                         <tr>
                             <td>客户姓名：</td>
-                            <td><input type="text" class="sameInput" name="userName" ref="name"></td>
+                            <td><input type="text" class="sameInput" name="userName" ref="name" id="userName"></td>
                         </tr>
                         <tr>
                             <td>手机号码：</td>
-                            <td><input type="text" class="sameInput" name="uPhone" ref="mobile"></td>
+                            <td><input type="text" class="sameInput" name="uPhone" ref="mobile" id="uPhone"></td>
                         </tr>
                         <tr>
                             <td>选择楼盘：</td>
                             <!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
                             <td>
                                 <div class="forInset">
-                                    <input type="text" class="sameInput selectHouse" name="selectHouse" id="selectHouse" :value="link_house_name" @keyup="showHouseClick()">
-                                    <ul class="forShowSearch">
-                                        <li v-for="house in house_list" @click="houseClick(house.id,house.name)">{{house.name}}</li>
+                                    <input type="text" class="sameInput selectHouse" name="selectHouse" id="selectHouse" :value="link_house_name" @keyup="keyHouseFilter()" @click="showHouseList()">
+                                    <ul class="forShowSearch " style="display: none" id="hoseList" :clickHouseName="link_house_name"  >
+                                        <li v-for="house in house_list" type="button" @click="houseClick(house.id,house.name)" >{{house.name}}</li>
                                     </ul>
                                 </div>
                             </td>
@@ -72,7 +72,7 @@
                             <td><input type="text" class="sameInput" name="remark" ref="remark"></td>
                         </tr>
                     </table>
-                    <input type="submit" class="formBtn" value="立即推荐" @click="submitClick()">
+                    <input type="button" class="formBtn" value="立即推荐" @click="submitClick()">
                 </form>
             </div>
         </div>

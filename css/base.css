@@ -71,6 +71,11 @@ li {
 img {
     border: none;
 }
+input{
+	appearance:button;
+   -moz-appearance:button; /* Firefox */
+   -webkit-appearance:button; /* Safari 和 Chrome */
+}	
 
 a {
     text-decoration: none;

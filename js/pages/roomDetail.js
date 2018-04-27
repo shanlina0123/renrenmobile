@@ -151,6 +151,17 @@ new Vue({
                 .catch(function(error) {
                     //console.log(error);
                 });
+        },
+        refreeClick: function(typeid, uuid, houseid, name) {
+            var target_url = "typeid=" + typeid;
+            if (uuid) {
+                target_url += "&uuid=" + uuid;
+            }
+            if (houseid && name) {
+                target_url += "&houseid=" + houseid + "&name=" + name;
+            }
+
+            window.location.href = "recommend.html?" + encodeURIComponent(target_url);
         }
     },
     created: function() {

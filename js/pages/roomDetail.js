@@ -1,4 +1,5 @@
-new Vue({
+var iteminfo='';
+var vm = new Vue({
     el: '#main',
     data: {
         pathUrl: conf.pathUrl,
@@ -28,6 +29,7 @@ new Vue({
                 .then(function(response) {
                     var data = response.data;
                     if (data.status == 1) {
+                        iteminfo = data.data;
                         that.info = data.data;
                         that.lng = data.data.lng;
                         that.lat = data.data.lat;
@@ -136,6 +138,7 @@ new Vue({
     el: '#fortell',
     data: {
         connect_tel: '',
+        info:vm.$data.info
     },
     methods: {
         getMyConf: function() {
@@ -152,7 +155,12 @@ new Vue({
                     //console.log(error);
                 });
         },
-        refreeClick: function(typeid, uuid, houseid, name) {
+        refreeClick: function() {
+            var typeid = iteminfo.typeid;
+            var uuid = iteminfo.typeid;
+            var houseid = iteminfo.id;
+            var name = iteminfo.name;
+
             var target_url = "typeid=" + typeid;
             if (uuid) {
                 target_url += "&uuid=" + uuid;
@@ -160,7 +168,6 @@ new Vue({
             if (houseid && name) {
                 target_url += "&houseid=" + houseid + "&name=" + name;
             }
-
             window.location.href = "recommend.html?" + encodeURIComponent(target_url);
         }
     },

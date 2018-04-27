@@ -85,8 +85,9 @@
                                                 <span class="houseName">{{item.name}}</span>
                                             <sup class="forTips unBegin smallFont smallFonts" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
                                             </span>
-                                            <span class="allPrice" v-if="item.typeid==1">{{item.price}}万</span>
+                                            <span class="allPrice" v-if="item.typeid==1">{{item.price}}元/平</span>
                                             <span class="allPrice" v-if="item.typeid==2">{{item.total}}万</span>
+                                            <span class="allPrice" v-if="item.typeid==3">{{item.total}}万</span>
                                             <span class="onePrice">{{item.area}}m<sup>2</sup></span>
                                         </td>
                                     </tr>

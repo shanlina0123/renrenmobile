@@ -43,7 +43,8 @@ new Vue({
         showHouseClick: function() {
             var url = auth_conf.client_houses;
             var that = this;
-            that.$refs.house_name.value ? that.search_params.name = that.$refs.house_name.value : null;
+            that.link_house_name=$("#selectHouse").val();
+           that.search_params.name = $("#selectHouse").val();
             axios.post(url, that.search_params, { headers: { "Authorization": that.tokenValue } })
                 .then(function(response) {
                     var data = response.data;
@@ -53,8 +54,16 @@ new Vue({
                     } else if (data.status == 4) {
                         that.house_list = data.data;
                         $(".forShowSearch").hide();
+                        layui.use('layer',  function(id)  {
+                            var  layer  =  layui.layer;
+                            $("#selectHouse").val("");
+                        });
                     } else {
                         $(".forShowSearch").hide();
+                        layui.use('layer',  function(id)  {
+                            var  layer  =  layui.layer;
+                            $("#selectHouse").val("");
+                        });
                     }
                 })
                 .catch(function(error) {

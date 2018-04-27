@@ -48,7 +48,7 @@
                             <!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
                             <td>
                                 <div class="forInset">
-                                    <input type="text" class="sameInput selectHouse" name="selectHouse"  :value="link_house_name" ref="house_name" @keyup="showHouseClick()">
+                                    <input type="text" class="sameInput selectHouse" name="selectHouse" id="selectHouse" :value="link_house_name" @keyup="showHouseClick()">
                                     <ul class="forShowSearch">
                                         <li v-for="house in house_list" @click="houseClick(house.id,house.name)">{{house.name}}</li>
                                     </ul>

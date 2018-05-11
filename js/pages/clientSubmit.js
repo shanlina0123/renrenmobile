@@ -124,7 +124,7 @@ new Vue({
         //选择公司
         companyClick: function(id, name) {
             this.add_params.companyid = id;
-            $(".showForm").html(name);
+            $(".companyShow").html(name);
             $(".compayUL").hide();
         },
         //获取公司列表

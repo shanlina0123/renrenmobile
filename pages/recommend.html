@@ -60,7 +60,7 @@
                             <td>公司：</td>
                             <td>
                                 <div class="formSelect">
-                                    <div class="showForm" @click="showCompanyClick()">请选择</div>
+                                    <div class="showForm companyShow" @click="showCompanyClick(0,'请选择')" >请选择</div>
                                     <ul class="formUl compayUL">
                                         <li v-for="company in company_list" @click="companyClick(company.id,company.name)">{{company.name}}</li>
                                     </ul>

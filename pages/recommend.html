@@ -13,103 +13,103 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/other.css">
+    <link rel="stylesheet" href="../css/common.css?v=3256575">
+    <link rel="stylesheet" href="../css/base.css?v=3256575">
+    <link rel="stylesheet" href="../css/other.css?v=399595">
     <link rel="stylesheet" href="../js/layui/css/layui.css">
     <script src="../js/modernizr-2.6.2.min.js"></script>
     <script src="../js/rem.js"></script>
     <!-- vue js-->
     <script src="../plugin/js/vue.js"></script>
     <script src="../plugin/js/axios.min.js"></script>
-    <script src="../plugin/js/httpUrl.js"></script>
+    <script src="../plugin/js/httpUrl.js?v=3256575"></script>
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="wrap">
-        <div class="main">
-            <div class="formWrap">
-                <img src="../images/logo.png" class="logo">
-                <form class="recommendForm" id="my_vue_client_submit" v-cloak>
-                    <table class="formTable">
-                        <tr>
-                            <td>客户姓名：</td>
-                            <td><input type="text" class="sameInput" name="userName" ref="name" id="userName"></td>
-                        </tr>
-                        <tr>
-                            <td>手机号码：</td>
-                            <td><input type="text" class="sameInput" name="uPhone" ref="mobile" id="uPhone"></td>
-                        </tr>
-                        <tr>
-                            <td>选择楼盘：</td>
-                            <!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
-                            <td>
-                                <div class="forInset">
-                                    <input type="text" class="sameInput selectHouse" name="selectHouse" id="selectHouse" :value="link_house_name" @keyup="keyHouseFilter()" @click="showHouseList()">
-                                    <ul class="forShowSearch " style="display: none" id="hoseList" :clickHouseName="link_house_name"  >
-                                        <li v-for="house in house_list" type="button" @click="houseClick(house.id,house.name)" >{{house.name}}</li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <!--当是业务员的时候隐藏公司、备注选项给添加class="isShow"即可-->
-                        <tr class="afteradmin">
-                            <td>公司：</td>
-                            <td>
-                                <div class="formSelect">
-                                    <div class="showForm companyShow" @click="showCompanyClick(0,'请选择')" >请选择</div>
-                                    <ul class="formUl compayUL">
-                                        <li v-for="company in company_list" @click="companyClick(company.id,company.name)">{{company.name}}</li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>指定：</td>
-                            <td>
-                                <div class="formSelect">
-                                    <div class="showForm appointShow" @click="appointClick(0,'请选择')" >请选择</div>
-                                    <ul class="formUl appointUL" style="top:.8rem;">
-                                        <li @click="appointClick(1,'指定')">指定</li>
-                                        <li @click="appointClick(0,'非指定')">非指定</li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="adminList hidden">
-                            <td>业务员：</td>
-                            <td>
-                                <div class="formSelect">
-                                    <div class="showForm adminShow" @click="adminClick(0,'请选择')">请选择</div>
-                                    <ul class="formUl adminUL"  style="top:.8rem;">
-                                        <li v-for="admin in admin_list" @click="adminClick(admin.id,admin.nickname)">{{admin.nickname}}</li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="afteradmin">
-                            <td>备注：</td>
-                            <td><input type="text" class="sameInput" name="remark" ref="remark"></td>
-                        </tr>
-                    </table>
-                    <input type="button" class="formBtn" value="立即推荐" @click="submitClick()">
-                </form>
-            </div>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="wrap">
+    <div class="main">
+        <div class="formWrap">
+            <img src="../images/logo.png" class="logo">
+            <form class="recommendForm" id="my_vue_client_submit" v-cloak>
+                <table class="formTable">
+                    <tr>
+                        <td>客户姓名：</td>
+                        <td><input type="text" class="sameInput" name="userName" ref="name" id="userName"></td>
+                    </tr>
+                    <tr>
+                        <td>手机号码：</td>
+                        <td><input type="text" class="sameInput" name="uPhone" ref="mobile" id="uPhone"></td>
+                    </tr>
+                    <tr>
+                        <td>选择楼盘：</td>
+                        <!--选择楼盘时用户在输入的时候有个模糊查询的效果-->
+                        <td>
+                            <div class="forInset" style="z-index:99999;">
+                                <input type="text" class="sameInput selectHouse" name="selectHouse" id="v" :value="link_house_name" @keyup="keyHouseFilter()" @click="showHouseList()">
+                                <ul class="forShowSearch " style="display: none" id="hoseList" :clickHouseName="link_house_name" style="z-index:9999988;" >
+                                    <li v-for="house in house_list" type="button" @click="houseClick(house.id,house.name)" >{{house.name}}</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--当是业务员的时候隐藏公司、备注选项给添加class="isShow"即可-->
+                    <tr class="afteradmin">
+                        <td>公司：</td>
+                        <td>
+                            <div class="formSelect" style="z-index:88888;">
+                                <div class="showForm companyShow" @click="showCompanyClick(0,'请选择')" >请选择</div>
+                                <ul class="formUl compayUL" style="z-index:8888877;">
+                                    <li v-for="company in company_list" @click="companyClick(company.id,company.name)">{{company.name}}</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>指定：</td>
+                        <td>
+                            <div class="formSelect">
+                                <div class="showForm appointShow" @click="appointClick(0,'请选择')" >请选择</div>
+                                <ul class="formUl appointUL" style="top:.8rem;">
+                                    <li @click="appointClick(1,'指定')">指定</li>
+                                    <li @click="appointClick(0,'非指定')">非指定</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="adminList hidden">
+                        <td>业务员：</td>
+                        <td>
+                            <div class="formSelect">
+                                <div class="showForm adminShow" @click="adminClick(0,'请选择')">请选择</div>
+                                <ul class="formUl adminUL"  style="top:.8rem;">
+                                    <li v-for="admin in admin_list" @click="adminClick(admin.id,admin.nickname)">{{admin.nickname}}</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="afteradmin">
+                        <td>备注：</td>
+                        <td><input type="text" class="sameInput" name="remark" ref="remark"></td>
+                    </tr>
+                </table>
+                <input type="button" class="formBtn" value="立即推荐" @click="submitClick()">
+            </form>
         </div>
-        <!-- //main -->
-        <div class="errorLabel"></div>
     </div>
-    <!-- //wrap -->
-    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.validate.js"></script>
-    <script type="text/javascript" src="../js/layui/layui.js"></script>
-    <script type="text/javascript" src="../js/common.js"></script>
-    <!-- 嵌套数据js -->
-    <script type="text/javascript" src="../js/pages/checkToken.js"></script>
-    <script type="text/javascript" src="../js/pages/clientSubmit.js"></script>
+    <!-- //main -->
+    <div class="errorLabel"></div>
+</div>
+<!-- //wrap -->
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/layui/layui.js"></script>
+<script type="text/javascript" src="../js/common.js?v=3256575"></script>
+<!-- 嵌套数据js -->
+<script type="text/javascript" src="../js/pages/checkToken.js?v=3256575"></script>
+<script type="text/javascript" src="../js/pages/clientSubmit.js?v=325657565656"></script>
 </body>
 
 </html>

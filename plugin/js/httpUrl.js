@@ -1,5 +1,5 @@
 (function () {
-    var host = "http://local.fang.com/";
+    var host = "http://192.168.15.222:8081/";
     
     //未带toke请求
     window.conf = {

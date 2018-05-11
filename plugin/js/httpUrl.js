@@ -25,8 +25,9 @@
             client_update: host + 'home/client-update/',  //我的客户列表
             client_houses: host + 'home/client-houses',  //房源下拉框
             client_compnay: host + 'home/company',  //公司下拉框
+            client_chart_admin: host + 'home/chart-admin',  //业务员下拉框
             client_refree: host + 'home/client-refree',  //立即推荐客户
-            client_editInfo:host + 'home/user-updateinfo',  //立即推荐客户
+            client_editInfo:host + 'home/user-updateinfo',  //修改用户信息
             datas_default_user_one_list: host + 'home/datas-default-user-one/',//前端自定义属性数据
         }
 })();

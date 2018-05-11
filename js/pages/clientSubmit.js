@@ -2,11 +2,12 @@ new Vue({
     el: '#my_vue_client_submit',
     data: {
         house_name: null,
-        add_params: { "name": null, "mobile": null, "houseid": null, "companyid": null, "remark": null },
+        add_params: { "name": null, "mobile": null, "houseid": null, "companyid": null, "remark": null ,"isappoint":0,"adminid":0},
         enter_params: { "name": null, "typeid": null, "uuid": null },
         search_params:{"name": null, "typeid": null, "uuid": null },
         company_list: [],
         house_list: [],
+        admin_list:[],
         link_house_name:null,
         userInfoData: JSON.parse(localStorage.getItem("userinfo")),
         tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
@@ -42,6 +43,28 @@ new Vue({
                 $(".afteradmin").removeClass("isShow");
                 that.getCompanyList(); //公司列表
             }
+        },
+        //点击指定
+        appointClick:function(id,name){
+            var that=this;
+            $(".appointShow").html(name);
+            that.add_params.isappoint=id;
+            if(id==1)
+            {
+                $(".adminList").removeClass("hidden");
+                that.getAdminList();//业务员列表
+            }else{
+                $(".adminList").removeClass("hidden").addClass("hidden");
+                that.add_params.adminid=0;
+            }
+            $(".appointUL").toggle();
+        },
+        //选择业务员
+        adminClick:function (id,name) {
+            var that=this;
+            $(".adminShow").html(name);
+            that.add_params.adminid=id;
+            $(".adminUL").toggle();
         },
         //获取房源列表
         getHouseList: function() {
@@ -120,6 +143,22 @@ new Vue({
                     //console.log(error);
                 });
         },
+        //获取业务员列表
+        getAdminList: function() {
+            var url = auth_conf.client_chart_admin;
+            var that = this;
+            axios.get(url, { headers: { "Authorization": that.tokenValue } })
+                .then(function(response) {
+                    var data = response.data;
+                    if (data.status == 1) {
+                        that.admin_list = data.data;
+                        $(".formUl").hide();
+                    }
+                })
+                .catch(function(error) {
+                    //console.log(error);
+                });
+        },
         //立即推荐
         submitClick: function() {
             var url = auth_conf.client_refree;
@@ -135,6 +174,14 @@ new Vue({
                 layui.use('layer', function (id) {
                     var layer = layui.layer;
                     layer.msg("请输入客户名称或电话",{icon:7});
+                });
+                return;
+            }
+            if(that.add_params.isappoint==1&&that.add_params.adminid==0)
+            {
+                layui.use('layer', function (id) {
+                    var layer = layui.layer;
+                    layer.msg("请选择指定的业务员",{icon:7});
                 });
                 return;
             }

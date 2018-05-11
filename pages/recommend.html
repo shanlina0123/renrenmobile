@@ -67,6 +67,29 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>指定：</td>
+                            <td>
+                                <div class="formSelect">
+                                    <div class="showForm appointShow" @click="appointClick(0,'请选择')" >请选择</div>
+                                    <ul class="formUl appointUL" style="top:.8rem;">
+                                        <li @click="appointClick(1,'指定')">指定</li>
+                                        <li @click="appointClick(0,'非指定')">非指定</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="adminList hidden">
+                            <td>业务员：</td>
+                            <td>
+                                <div class="formSelect">
+                                    <div class="showForm adminShow" @click="adminClick(0,'请选择')">请选择</div>
+                                    <ul class="formUl adminUL"  style="top:.8rem;">
+                                        <li v-for="admin in admin_list" @click="adminClick(admin.id,admin.nickname)">{{admin.nickname}}</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
                         <tr class="afteradmin">
                             <td>备注：</td>
                             <td><input type="text" class="sameInput" name="remark" ref="remark"></td>

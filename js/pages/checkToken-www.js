@@ -59,14 +59,12 @@ function checkToken() {
             success: function(result) {
                 if (result.status != 1)
                 {
-                    if ( result.status != 15 )
+                    var code = getQueryString('code');
+                    if( !code )
                     {
-                        localStorage.removeItem("userinfo");
-                        window.location.href = '/pages/login.html';
-
-                    }else
-                    {
-                        alert(result.messages);
+                        var hrefUrl = window.location.href;
+                        hrefUrl = encodeURI(hrefUrl);
+                        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbe1cdb19d2290193&redirect_uri='+hrefUrl+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
                     }
                 }
             }

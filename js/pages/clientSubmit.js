@@ -107,10 +107,10 @@ new Vue({
         showCompanyClick: function() {
             // var that = this;
             // that.toggle();
-            if ($(".formUl")[0].childElementCount == 0) {
-                $(".formUl").hide();
+            if ($(".compayUL")[0].childElementCount == 0) {
+                $(".compayUL").hide();
             } else {
-                $(".formUl").toggle();
+                $(".compayUL").toggle();
             }
 
         },
@@ -125,7 +125,7 @@ new Vue({
         companyClick: function(id, name) {
             this.add_params.companyid = id;
             $(".showForm").html(name);
-            $(".formUl").hide();
+            $(".compayUL").hide();
         },
         //获取公司列表
         getCompanyList: function() {
@@ -136,7 +136,7 @@ new Vue({
                     var data = response.data;
                     if (data.status == 1) {
                         that.company_list = data.data;
-                        $(".formUl").hide();
+                        $(".compayUL").hide();
                     }
                 })
                 .catch(function(error) {
@@ -152,7 +152,6 @@ new Vue({
                     var data = response.data;
                     if (data.status == 1) {
                         that.admin_list = data.data;
-                        $(".formUl").hide();
                     }
                 })
                 .catch(function(error) {

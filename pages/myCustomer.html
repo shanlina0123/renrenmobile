@@ -61,7 +61,7 @@
                         <span>累计推荐</span>
                     </li>
                     <li>
-                        <p v-if="client_statistics.refereeCount-client_statistics.invalidCount">{{client_statistics.refereeCount-client_statistics.invalidCount}}</p>
+                        <p v-if="client_statistics.refereeCount-client_statistics.invalidCount>0">{{client_statistics.refereeCount-client_statistics.invalidCount}}</p>
                         <p v-else>0</p>
                         <span>有效推荐</span>
                     </li>

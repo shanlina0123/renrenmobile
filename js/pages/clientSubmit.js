@@ -33,7 +33,7 @@ new Vue({
             this.add_params.houseid=this.GetQueryString("houseid")
             this.add_params.name=this.GetQueryString("name");
             this.link_house_name=this.GetQueryString("name");
-            $("#selectHouse").val(link_house_name);
+			 $("#selectHouse").val(link_house_name);
         },
         //检查是否内部外部人源
         checkAfterAdmin: function() {

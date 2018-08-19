@@ -245,6 +245,8 @@ label.error {
 .roomListUl .roomTable {
     margin-top: .15rem;
     font-size: .4rem;
+    width: 100%;
+    background-color: #f7f5ef;
 }
 
 .roomListUl .roomTable tr td {

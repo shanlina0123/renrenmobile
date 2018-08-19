@@ -8,7 +8,7 @@ new Vue({
         company_list: [],
         house_list: [],
         admin_list:[],
-        link_house_name:null,
+        link_house_name:'',
         userInfoData: JSON.parse(localStorage.getItem("userinfo")),
         tokenValue: JSON.parse(localStorage.getItem("userinfo")).token
     },
@@ -33,7 +33,7 @@ new Vue({
             this.add_params.houseid=this.GetQueryString("houseid")
             this.add_params.name=this.GetQueryString("name");
             this.link_house_name=this.GetQueryString("name");
-			 $("#selectHouse").val(link_house_name);
+			 $("#selectHouse").val(this.link_house_name);
         },
         //检查是否内部外部人源
         checkAfterAdmin: function() {
@@ -105,14 +105,21 @@ new Vue({
             $("#hoseList").show();
         },
         //点击显示公司
-        showCompanyClick: function() {
-            // var that = this;
-            // that.toggle();
-            if ($(".compayUL")[0].childElementCount == 0) {
-                $(".compayUL").hide();
-            } else {
-                $(".compayUL").toggle();
+        showCompanyClick: function(e) {
+            var that=this;
+            var inputValue=$.trim($("#companyName").val());
+            if(inputValue)
+            {
+                var liFilter=$("#compayUL li:contains('"+inputValue+"')");
+                if(liFilter.length>0)
+                {
+                    liFilter.addClass("filterShow").removeClass("hidden");
+                }
+                $("#compayUL li:not('.filterShow')").addClass("hidden");
+            }else{
+                $("#compayUL li").removeClass("filterShow").removeClass("hidden");
             }
+            $("#compayUL").show();
 
         },
         //选择房源
@@ -125,7 +132,7 @@ new Vue({
         //选择公司
         companyClick: function(id, name) {
             this.add_params.companyid = id;
-            $(".companyShow").html(name);
+            $(".companyShow").val(name);
             $(".compayUL").hide();
         },
         //获取公司列表

@@ -82,7 +82,9 @@
                                     <tr>
                                         <td>
                                             <span class="newHouse">
-                                                <span class="houseName">{{item.name}}</span>
+                                                <span class="houseName" v-if="item.typeid==1">[新房]{{item.name}}</span>
+                                                <span class="houseName" v-if="item.typeid==2">[二手房]{{item.name}}</span>
+                                                <span class="houseName" v-if="item.typeid==3">[商铺写字楼]{{item.name}}</span>
                                             <sup class="forTips unBegin smallFont smallFonts" v-if="salestatus[item.salestatusid]">{{salestatus[item.salestatusid].name}}</sup>
                                             </span>
                                             <span class="allPrice" v-if="item.typeid==1">{{item.price}}元/平</span>

@@ -121,6 +121,9 @@
                             <li>楼盘：<span>{{info.name}}</span></li>
                         </ul>
                     </div>
+                    <div class="showMap samePadding" v-if="info.typeid == 2">
+                        备注：{{info.content}}
+                    </div>
                     <div class="showMap samePadding">
                         <p>地址：{{info.fulladdr}}</p>
                         <div class="roomMap" id="roomMap"></div>
